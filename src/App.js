@@ -1,9 +1,9 @@
-import Test from './components/test';
+import DataPrint from './components/DataPrint';
 
 function App() {
   return (
     <div>
-      <Test />
+      <DataPrint />
     </div>
   );
 }
