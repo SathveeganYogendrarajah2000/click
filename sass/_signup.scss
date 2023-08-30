@@ -43,4 +43,62 @@
       width: 895px;
     }
   }
+
+  &_form {
+    height: 717.33px;
+    position: relative;
+    width: 630px;
+
+    &_formGroup-1 {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      left: 0;
+      padding: 0px 0px 5px;
+      position: absolute;
+      top: 0;
+      width: 630px;
+
+      &_label1 {
+        height: 21.27px;
+        position: relative;
+        width: 630px;
+        color: #333333;
+        font-family: "Montserrat-Medium", Helvetica;
+        font-size: 14px;
+        font-weight: 500;
+        height: 20px;
+        left: 0;
+        letter-spacing: 0;
+        line-height: 20px;
+        position: relative;
+        top: -1px;
+        white-space: nowrap;
+      }
+      &_nameInput1 {
+        background-color: #ffffff;
+        border: 1px solid;
+        border-color: #cccccc;
+        height: 46px;
+        position: relative;
+        width: 630px;
+      }
+    }
+    &_formGroup-2 {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 9.99px;
+      left: 0;
+      padding: 0px 0px 5.01px;
+      position: absolute;
+      top: 112px;
+      width: 630px;
+
+      &_label2 {
+        
+      }
+    }
+  }
 }

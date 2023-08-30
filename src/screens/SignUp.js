@@ -13,24 +13,34 @@ const SignUp = () => {
           </p>
         </div>
         {/*ABOVE DONE*/}
-        <div className="form">
-          <div className="div-form-group">
-            <lable className="label1">
-              <div className="text-wrapper-3">First Name/Given Name</div>
-              <div className="text-wrapper-4">*</div>
-            </lable>
-            <input type="text" required />
+        <div className="signUp_form">
+          <div className="signUp_form_formGroup-1">
+            <div className="signUp_form_formGroup-1_label1">
+              <lable for="nameInput1">First Name/Given Name *</lable>
+            </div>
+
+            <input
+              className="signUp_form_formGroup-1_nameInput1"
+              id="nameInput1"
+              type="text"
+              required
+            />
           </div>
 
-          <div className="div-form-group-2">
-            <label className="label2">
-              <p className="text-wrapper-3">Family Name / Last Name</p>
-              <div className="text-wrapper-5">*</div>
-            </label>
-            <input type="text" required />
-          </div>
+          <div className="signUp_form_formGroup-2">
+            <div className="signUp_form_formGroup-2_label2">
+              <label for="nameInput2">Family Name / Last Name * </label>
+            </div>
 
-          <div className="div-form-group-3">
+            <input
+              id="nameInput2"
+              type="text"
+              required
+              className="signUp_form_formGroup-2_nameInput1"
+            />
+          </div>
+          {/*
+          <div className="signUp_form_formGroup-3">
             <div className="label">
               <div className="text-wrapper-3">Mobile/Email</div>
               <div className="text-wrapper-6">*</div>
@@ -51,7 +61,7 @@ const SignUp = () => {
             </div>
           </div>
 
-          <div className="div-form-group-4">
+          <div className="signUp_form_formGroup-4">
             <div className="label-2">
               <div className="text-wrapper-3">Verification</div>
               <div className="text-wrapper-9">*</div>
@@ -64,7 +74,7 @@ const SignUp = () => {
             <input type="text" required placeholder="Enter Verification Code" />
           </div>
 
-          <div className="div-form-group-5">
+          <div className="signUp_form_formGroup-5">
             <label className="label-2">
               <div className="text-wrapper-3">Password</div>
               <div className="text-wrapper-12">*</div>
@@ -83,7 +93,7 @@ const SignUp = () => {
               <div className="symbol-2"></div>
             </div>
           </div>
-          <div className="div-policy">
+          <div className="signUp_form_policy">
             <div className="label-3" />
             <div className="overlap">
               <p className="p">
@@ -101,7 +111,7 @@ const SignUp = () => {
               <div className="text-wrapper-18">.</div>
             </div>
           </div>
-          <button className="div-sl-btn-normal">Submit</button>
+          <button className="signUp_form_sl-btn-normal">Submit</button> */}
         </div>
       </div>
       {/* <h2>Sign Up</h2>
