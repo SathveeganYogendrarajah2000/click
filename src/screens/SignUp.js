@@ -26,7 +26,6 @@ const SignUp = () => {
               required
             />
           </div>
-
           <div className="signUp_form_formGroup-2">
             <div className="signUp_form_label">
               <label for="nameInput2">Family Name / Last Name * </label>
@@ -39,54 +38,54 @@ const SignUp = () => {
               className="signUp_form_nameInput"
             />
           </div>
-
           <div className="signUp_form_formGroup-3">
             <div className="signUp_form_label">
               <label>Mobile / Email *</label>
             </div>
 
-            <div className="signUp_form_formGroup-3_sl-flexbox">
-              <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2">
-                <input className="signUp_form_nameInput" type="text" required />
-                <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select">
-                  <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select_js-text">
-                    <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select_js-text_symbol"></div>
-                    <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select_js-text_text-wrapper-7">
-                      E-mail
-                    </div>
-                  </div>
-                </div>
+            <div className="signUp_form_formGroup-3_inputField">
+              <div className="signUp_form_formGroup-3_inputField_dropdownSelect">
+                <select name="verficationMethod" id="verficationMethod">
+                  <option value="email">E-mail</option>
+                  <option value="phone">Phone</option>
+                </select>
               </div>
-              <div className="signUp_form_formGroup-3_sl-flexbox_verify-identity">
-                <div className="signUp_form_formGroup-3_sl-flexbox_verify-identity_text-wrapper-8">
-                  Send
-                </div>
-              </div>
+              <input
+                type="text"
+                className="signUp_form_nameInput signUp_form_formGroup-3_inputField_input"
+              />
+              <button className="signUp_form_formGroup-3_inputField_btn">
+                Send
+              </button>
             </div>
           </div>
-          {/*
-
           <div className="signUp_form_formGroup-4">
-            <div className="label-2">
-              <div className="text-wrapper-3">Verification</div>
-              <div className="text-wrapper-9">*</div>
+            <div className="signUp_form_label">
+              <label for="input3">Verification *</label>
             </div>
-            <div className="div-tips-title">
-              <div className="text-wrapper-10">
-                Not received verification code?
-              </div>
+            <input
+              className="signUp_form_nameInput"
+              id="input3"
+              type="text"
+              required
+              placeholder="Enter Verification Code"
+            />
+            <div className="signUp_form_formGroup-4_tips-title">
+              Not received verification code?
             </div>
-            <input type="text" required placeholder="Enter Verification Code" />
           </div>
-
           <div className="signUp_form_formGroup-5">
-            <label className="label-2">
-              <div className="text-wrapper-3">Password</div>
-              <div className="text-wrapper-12">*</div>
-            </label>
-            <input type="password" required />
-            <div className="div-info">
-              <p className="your-password-must">
+            <div className="signUp_form_label">
+              <label for="password">Password *</label>
+            </div>
+            <input
+              className="signUp_form_nameInput"
+              id="password"
+              type="password"
+              required
+            />
+            <div className="signUp_form_formGroup-5_info">
+              <p className="signUp_form_formGroup-5_info_your-password-must">
                 * Your password must contain at least 8 characters, with a
                 combination of English letters (a - z, A - Z)
                 <br />
@@ -94,43 +93,16 @@ const SignUp = () => {
                 be a numeric digit.
               </p>
             </div>
-            <div className="div-input-wrap">
-              <div className="symbol-2"></div>
-            </div>
           </div>
           <div className="signUp_form_policy">
-            <div className="label-3" />
-            <div className="overlap">
-              <p className="p">
-                I have read and agree to the Shangri-La Circle
-              </p>
-              <div className="link">
-                <div className="text-wrapper-13">Terms and Conditions</div>
-              </div>
-              <div className="text-wrapper-14">, the</div>
-              <div className="link-2">
-                <div className="text-wrapper-15">Privacy</div>
-                <div className="text-wrapper-16">Policy</div>
-              </div>
-              <div className="text-wrapper-17">and the</div>
-              <div className="text-wrapper-18">.</div>
-            </div>
+            <input className="signUp_form_policy_checkbox" type="checkbox" id="policy" />
+            <label for="policy">
+              I have read and agree to the CLICK Hotel Terms and Conditions
+            </label>
           </div>
-          <button className="signUp_form_sl-btn-normal">Submit</button> */}
+          <button className="signUp_form_sl-btn-normal">Submit</button>
         </div>
       </div>
-      {/* <h2>Sign Up</h2>
-        <form>
-          <label>Name:</label>
-          <input type="text" required />
-          <label>Phone:</label>
-          <input type="tel" required />
-          <label>Email:</label>
-          <input type="email" required />
-          <label>Password:</label>
-          <input type="password" required />
-          <button>Sign Up</button>
-        </form> */}
     </div>
   );
 };
