@@ -12,15 +12,15 @@ const SignUp = () => {
             with CLICK!”
           </p>
         </div>
-        {/*ABOVE DONE*/}
+
         <div className="signUp_form">
           <div className="signUp_form_formGroup-1">
-            <div className="signUp_form_formGroup-1_label1">
-              <lable for="nameInput1">First Name/Given Name *</lable>
+            <div className="signUp_form_label">
+              <lable for="nameInput1">First Name / Given Name *</lable>
             </div>
 
             <input
-              className="signUp_form_formGroup-1_nameInput1"
+              className="signUp_form_nameInput"
               id="nameInput1"
               type="text"
               required
@@ -28,7 +28,7 @@ const SignUp = () => {
           </div>
 
           <div className="signUp_form_formGroup-2">
-            <div className="signUp_form_formGroup-2_label2">
+            <div className="signUp_form_label">
               <label for="nameInput2">Family Name / Last Name * </label>
             </div>
 
@@ -36,30 +36,35 @@ const SignUp = () => {
               id="nameInput2"
               type="text"
               required
-              className="signUp_form_formGroup-2_nameInput1"
+              className="signUp_form_nameInput"
             />
           </div>
-          {/*
+
           <div className="signUp_form_formGroup-3">
-            <div className="label">
-              <div className="text-wrapper-3">Mobile/Email</div>
-              <div className="text-wrapper-6">*</div>
+            <div className="signUp_form_label">
+              <label>Mobile / Email *</label>
             </div>
-            <div className="div-sl-flexbox">
-              <div className="overlap-group-2">
-                <input type="text" required />
-                <div className="div-dropdown-select">
-                  <div className="div-js-text">
-                    <div className="text-wrapper-7">E-mail</div>
+
+            <div className="signUp_form_formGroup-3_sl-flexbox">
+              <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2">
+                <input className="signUp_form_nameInput" type="text" required />
+                <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select">
+                  <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select_js-text">
+                    <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select_js-text_symbol"></div>
+                    <div className="signUp_form_formGroup-3_sl-flexbox_overlap-group-2_dropdown-select_js-text_text-wrapper-7">
+                      E-mail
+                    </div>
                   </div>
-                  <div className="symbol"></div>
                 </div>
               </div>
-              <div className="div-verify-identity">
-                <div className="text-wrapper-8">Send</div>
+              <div className="signUp_form_formGroup-3_sl-flexbox_verify-identity">
+                <div className="signUp_form_formGroup-3_sl-flexbox_verify-identity_text-wrapper-8">
+                  Send
+                </div>
               </div>
             </div>
           </div>
+          {/*
 
           <div className="signUp_form_formGroup-4">
             <div className="label-2">
