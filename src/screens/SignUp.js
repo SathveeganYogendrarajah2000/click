@@ -95,7 +95,11 @@ const SignUp = () => {
             </div>
           </div>
           <div className="signUp_form_policy">
-            <input className="signUp_form_policy_checkbox" type="checkbox" id="policy" />
+            <input
+              className="signUp_form_policy_checkbox"
+              type="checkbox"
+              id="policy"
+            />
             <label for="policy">
               I have read and agree to the CLICK Hotel Terms and Conditions
             </label>
