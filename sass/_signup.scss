@@ -1,6 +1,6 @@
 select {
   // A reset of styles, including removing the default dropdown arrow
-  appearance: none;
+  
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;
@@ -150,6 +150,7 @@ select {
           height: 46px;
           position: relative;
           width: 146px;
+          padding: 0 555px;
 
           //for dropdown menu
           display: grid;

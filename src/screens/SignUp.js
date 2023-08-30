@@ -1,4 +1,5 @@
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 const SignUp = () => {
   return (
     <div>
@@ -107,6 +108,7 @@ const SignUp = () => {
           <button className="signUp_form_sl-btn-normal">Submit</button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
