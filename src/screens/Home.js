@@ -3,7 +3,9 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <h1>Home</h1>
+      <div className="homepage">
+        <div className="homepage_hero"></div>
+      </div>
     </div>
   );
 };

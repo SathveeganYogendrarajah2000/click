@@ -1,26 +1,4 @@
 import { Link, NavLink } from 'react-router-dom';
-// const NavBar = () => {
-//   return (
-//     <nav className="navbar">
-//       <div className="navbar_logo">
-//         <Link to="/" className="navbar_active">
-//           <h1>Logo</h1>
-//         </Link>
-//       </div>
-//       <div className="navbar_links">
-//         <Link to="/">Home</Link>
-//         <Link to="/about">About Us</Link>
-//         <Link to="/contact">Contact</Link>
-//         <Link to="/booking">Booking</Link>
-//         <Link to="/dinein">Dine In</Link>
-//       </div>
-//       <div className="navbar_otherlinks">
-//         <Link to="/signin">Sign in</Link>
-//         <Link to="/signup">Sign up</Link>
-//       </div>
-//     </nav>
-//   );
-// };
 const NavBar = () => {
   return (
     <nav className="navbar">
