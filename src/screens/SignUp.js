@@ -3,17 +3,16 @@ const SignUp = () => {
   return (
     <div>
       <NavBar />
-      <div className="sign-up">
-        <div className="div-register-title">
-          <div className="overlap-group">
-            <div className="heading-join">CLICK</div>
-            <p className="heading-to-enjoy">
-              “Unlock Exclusive Delights: Sign Up to Experience Personalized
-              Dining, Effortless Reservations, and Seamless Culinary Adventures
-              with CLICK!”
-            </p>
-          </div>
+      <div className="signUp">
+        <div className="signUp_registerTitle">
+          <div className="signUp_registerTitle_headingJoin">CLICK</div>
+          <p className="signUp_registerTitle_headingToEnjoy">
+            “Unlock Exclusive Delights: Sign Up to Experience Personalized
+            Dining, Effortless Reservations, and Seamless Culinary Adventures
+            with CLICK!”
+          </p>
         </div>
+        {/*ABOVE DONE*/}
         <div className="form">
           <div className="div-form-group">
             <lable className="label1">
