@@ -1,4 +1,5 @@
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import IntroLogo from '../assets/images/Homepage_click_logo.png';
 import { Fragment } from 'react';
 const Home = () => {
@@ -17,7 +18,8 @@ const Home = () => {
         </div>
         <div className="homepage_brandname">
           <div className="homepage_brandname_logo">
-            <img src={IntroLogo} alt="click image" srcset="" />
+            {/* <img src={IntroLogo} alt="click image" srcset="" /> */}
+            <h1>Athena</h1>
           </div>
           <p>Seamlessly Connect, Simplify, and Elevate Your Experience!</p>
         </div>
@@ -26,6 +28,7 @@ const Home = () => {
           <div className="homepage_info_cards"></div>
         </div>
       </div>
+      <Footer />
     </Fragment>
   );
 };

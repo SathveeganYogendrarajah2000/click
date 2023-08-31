@@ -1,0 +1,12 @@
+.footer {
+  background-color: $primary-color;
+  height: 30vh;
+  &_content {
+    width: 80%;
+    height: 80%;
+    margin: auto auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
