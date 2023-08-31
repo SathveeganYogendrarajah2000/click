@@ -1,6 +1,82 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+// import { auth } from "./firebase";
+
+import Dropdown from "react-dropdown";
+
+const generateRandomVerificationCode = () => {
+  const characters = "0123456789";
+  const codeLength = 6;
+  let code = "";
+
+  for (let i = 0; i < codeLength; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    code += characters[randomIndex];
+  }
+
+  return code;
+};
+
+// ToDo: Implement this function after setting up Firebase
+const sendVerificationCode = async (code) => {
+  // try {
+  //   const user = auth.currentUser;
+  //   await user.sendEmailVerification({
+  //     code,
+  //     url: "https://your-website-url.com/verify", // Replace with your verification URL
+  //   });
+  //   console.log("Verification code sent successfully");
+  // } catch (error) {
+  //   console.error("Error sending verification code:", error.message);
+  // }
+};
+
 const SignUp = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobileOrEmail, setMobileOrEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [verificationMethod, setVerificationMethod] = useState("email");
+  const [verificationCode, setVerificationCode] = useState("");
+  const [verificationSent, setVerificationSent] = useState(false);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+
+  const history = useHistory();
+
+  const handleSendVerification = () => {
+    // Generate and send verification code
+    const code = generateRandomVerificationCode(); // Implement this function
+    sendVerificationCode(code); // Implement this function
+    setVerificationSent(true);
+  };
+
+  const handleVerifyCode = (enteredCode) => {
+    if (enteredCode === verificationCode) {
+      setSubmitDisabled(false);
+    } else {
+      setSubmitDisabled(true);
+    }
+  };
+
+  // ToDo: Implement this function after setting up Firebase
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    try {
+      // const userCredential = await auth.createUserWithEmailAndPassword(
+      //   mobileOrEmail,
+      //   password
+      // );
+      // console.log("User registered successfully:", userCredential.user);
+      // Save user's first name and last name to Firestore or other storage
+      history.push("/login");
+    } catch (error) {
+      console.error("Error creating user:", error.message);
+    }
+  };
+
   return (
     <div>
       <NavBar />
@@ -46,17 +122,26 @@ const SignUp = () => {
 
             <div className="signUp_form_formGroup-3_inputField">
               <div className="signUp_form_formGroup-3_inputField_dropdownSelect">
-                <select name="verficationMethod" id="verficationMethod">
+                <Dropdown
+                  options={["E-mail", "Mobile"]}
+                  placeholder={"E-mail"}
+                />
+
+                {/* <select name="verficationMethod" id="verficationMethod">
                   <option value="email">E-mail</option>
                   <option value="phone">Phone</option>
-                </select>
+                </select> */}
               </div>
               <input
                 type="text"
                 className="signUp_form_nameInput signUp_form_formGroup-3_inputField_input"
               />
-              <button className="signUp_form_formGroup-3_inputField_btn">
-                Send
+              <button
+                className="signUp_form_formGroup-3_inputField_btn"
+                onClick={handleSendVerification}
+                disabled={verificationSent}
+              >
+                {verificationSent ? "Sent" : "Send"}
               </button>
             </div>
           </div>
@@ -70,6 +155,9 @@ const SignUp = () => {
               type="text"
               required
               placeholder="Enter Verification Code"
+              onChange={(e) => {
+                handleVerifyCode(e.target.value);
+              }}
             />
             <div className="signUp_form_formGroup-4_tips-title">
               Not received verification code?
@@ -105,7 +193,13 @@ const SignUp = () => {
               I have read and agree to the CLICK Hotel Terms and Conditions
             </label>
           </div>
-          <button className="signUp_form_sl-btn-normal">Submit</button>
+          <button
+            className="signUp_form_sl-btn-normal"
+            onClick={handleSignup}
+            disabled={submitDisabled}
+          >
+            Submit
+          </button>
         </div>
       </div>
       <Footer />
@@ -114,111 +208,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-// import React from "react";
-// import "./style.css";
-
-// export const SignUp = () => {
-//   return (
-//     <div className="sign-up">
-//       <div className="div-register-title">
-//         <div className="overlap-group">
-//           <div className="heading-join">CLICK</div>
-//           <p className="heading-to-enjoy">
-//             “Unlock Exclusive Delights: Sign Up to Experience Personalized
-//             Dining, Effortless Reservations, and Seamless Culinary Adventures
-//             with CLICK!”
-//           </p>
-//         </div>
-//       </div>
-//       <div className="form">
-//         <div className="div-form-group">
-//           <lable className="label1">
-//             <div className="text-wrapper-3">First Name/Given Name</div>
-//             <div className="text-wrapper-4">*</div>
-//           </lable>
-//           <input type="text" required />
-//         </div>
-
-//         <div className="div-form-group-2">
-//           <label className="label2">
-//             <p className="text-wrapper-3">Family Name / Last Name</p>
-//             <div className="text-wrapper-5">*</div>
-//           </label>
-//           <input type="text" required />
-//         </div>
-
-//         <div className="div-form-group-3">
-//           <div className="label">
-//             <div className="text-wrapper-3">Mobile/Email</div>
-//             <div className="text-wrapper-6">*</div>
-//           </div>
-//           <div className="div-sl-flexbox">
-//             <div className="overlap-group-2">
-//               <input type="text" required />
-//               <div className="div-dropdown-select">
-//                 <div className="div-js-text">
-//                   <div className="text-wrapper-7">E-mail</div>
-//                 </div>
-//                 <div className="symbol"></div>
-//               </div>
-//             </div>
-//             <div className="div-verify-identity">
-//               <div className="text-wrapper-8">Send</div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="div-form-group-4">
-//           <div className="label-2">
-//             <div className="text-wrapper-3">Verification</div>
-//             <div className="text-wrapper-9">*</div>
-//           </div>
-//           <div className="div-tips-title">
-//             <div className="text-wrapper-10">
-//               Not received verification code?
-//             </div>
-//           </div>
-//           <input type="text" required placeholder="Enter Verification Code" />
-//         </div>
-
-//         <div className="div-form-group-5">
-//           <label className="label-2">
-//             <div className="text-wrapper-3">Password</div>
-//             <div className="text-wrapper-12">*</div>
-//           </label>
-//           <input type="password" required />
-//           <div className="div-info">
-//             <p className="your-password-must">
-//               * Your password must contain at least 8 characters, with a
-//               combination of English letters (a - z, A - Z)
-//               <br />
-//               and numeric digits (0 - 9). At least one of the characters must be
-//               a numeric digit.
-//             </p>
-//           </div>
-//           <div className="div-input-wrap">
-//             <div className="symbol-2"></div>
-//           </div>
-//         </div>
-//         <div className="div-policy">
-//           <div className="label-3" />
-//           <div className="overlap">
-//             <p className="p">I have read and agree to the Shangri-La Circle</p>
-//             <div className="link">
-//               <div className="text-wrapper-13">Terms and Conditions</div>
-//             </div>
-//             <div className="text-wrapper-14">, the</div>
-//             <div className="link-2">
-//               <div className="text-wrapper-15">Privacy</div>
-//               <div className="text-wrapper-16">Policy</div>
-//             </div>
-//             <div className="text-wrapper-17">and the</div>
-//             <div className="text-wrapper-18">.</div>
-//           </div>
-//         </div>
-//         <button className="div-sl-btn-normal">Submit</button>
-//       </div>
-//     </div>
-//   );
-// };
