@@ -2,37 +2,10 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 // import { auth } from "./firebase";
 
 import Dropdown from "react-dropdown";
-
-const generateRandomVerificationCode = () => {
-  const characters = "0123456789";
-  const codeLength = 6;
-  let code = "";
-
-  for (let i = 0; i < codeLength; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    code += characters[randomIndex];
-  }
-
-  return code;
-};
-
-// ToDo: Implement this function after setting up Firebase
-const sendVerificationCode = async (code) => {
-  // try {
-  //   const user = auth.currentUser;
-  //   await user.sendEmailVerification({
-  //     code,
-  //     url: "https://your-website-url.com/verify", // Replace with your verification URL
-  //   });
-  //   console.log("Verification code sent successfully");
-  // } catch (error) {
-  //   console.error("Error sending verification code:", error.message);
-  // }
-};
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -44,7 +17,34 @@ const SignUp = () => {
   const [verificationSent, setVerificationSent] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
-  const history = useHistory();
+  // const history = useHistory();
+
+  const generateRandomVerificationCode = () => {
+    const characters = "0123456789";
+    const codeLength = 6;
+    let code = "";
+
+    for (let i = 0; i < codeLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      code += characters[randomIndex];
+    }
+
+    return code;
+  };
+
+  // ToDo: Implement this function after setting up Firebase
+  const sendVerificationCode = async (code) => {
+    try {
+      const user = auth.currentUser;
+      await user.sendEmailVerification({
+        code,
+        url: "https://your-website-url.com/verify", // Replace with your verification URL
+      });
+      console.log("Verification code sent successfully");
+    } catch (error) {
+      console.error("Error sending verification code:", error.message);
+    }
+  };
 
   const handleSendVerification = () => {
     // Generate and send verification code
@@ -71,7 +71,7 @@ const SignUp = () => {
       // );
       // console.log("User registered successfully:", userCredential.user);
       // Save user's first name and last name to Firestore or other storage
-      history.push("/login");
+      
     } catch (error) {
       console.error("Error creating user:", error.message);
     }
