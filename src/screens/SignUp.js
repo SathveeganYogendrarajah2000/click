@@ -17,6 +17,7 @@ const SignUp = () => {
   const [verificationSent, setVerificationSent] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
+
   // const nodemailer = require("nodemailer");
 
   // // Create a transporter to send emails (you should configure this with your email service)
@@ -27,6 +28,7 @@ const SignUp = () => {
   //     pass: "your-email-password", // Your email password
   //   },
   // });
+
 
   // const history = useHistory();
 
@@ -61,6 +63,7 @@ const SignUp = () => {
       //     console.log("Verification code sent successfully:", info.response);
       //   }
       // });
+
     } catch (error) {
       console.error("Error sending verification code:", error.message);
     }
