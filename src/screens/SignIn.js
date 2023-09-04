@@ -4,8 +4,7 @@ import Google from "../assets/google.svg";
 
 const SignIn = () => {
   return (
-    <div>
-      <NavBar />
+    <div className="frame">
       <div className="container">
         <header className="container_header">
           <img className="container_header_logo" alt="Logo" src={Logo} />
@@ -13,8 +12,8 @@ const SignIn = () => {
             <p className="container_header_heading_text">
               Log in to your account
             </p>
-            <div className="container_text-wrapper container_header_heading_text-wrapper">
-              <p className="container_header_heading_text-wrapper_div">
+            <div className="container_text-wrapper">
+              <p className="container_text-wrapper_div">
                 Welcome back! Please enter your details.
               </p>
             </div>
@@ -53,16 +52,22 @@ const SignIn = () => {
           </div>
           <div className="container_content-2_row">
             <div className="container_content-2_row_components-checkbox">
-              <div className="container_content-2_row_components-checkbox_wrapper">
-                <div className="container_content-2_row_components-checkbox_wrapper_checkbox-input">
-                  <input
-                    type="checkbox"
-                    className="container_content-2_row_components-checkbox_wrapper_checkbox-input_bg"
-                  />
-                </div>
-              </div>
+              {/* <div className="container_content-2_row_components-checkbox_wrapper"> */}
+              {/* <div className="container_content-2_row_components-checkbox_wrapper_checkbox-input"> */}
+              <input
+                id="rememberMe"
+                type="checkbox"
+                className="container_content-2_row_components-checkbox_wrapper"
+              />
+              {/* </div> */}
+              {/* </div> */}
               <div className="container_text-wrapper">
-                <div className="container_text-wrapper_text-2">Remember me</div>
+                <label
+                  for="rememberMe"
+                  className="container_content-2_form_text-2"
+                >
+                  Remember me
+                </label>
               </div>
             </div>
             <div className="container_text-wrapper">
@@ -72,16 +77,20 @@ const SignIn = () => {
             </div>
           </div>
           <div className="container_content-2_actions">
-            <button className="container_content-2_actions_button">
+            <button className="container_content-2_actions_button container_text-wrapper">
               {/* <div className="container_text-wrapper">
                 <div className="text-4"> */}
               Sign in
               {/* </div>
               </div> */}
             </button>
-            <button className="button-medium">
-              <div className="icon">
-                <img className="icon_img" alt="Icon" src={Google} />
+            <button className="container_content-2_actions_button-medium">
+              <div className="container_content-2_actions_button-medium_icon">
+                <img
+                  className="container_content-2_actions_button-medium_icon_img"
+                  alt="Icon"
+                  src={Google}
+                />
               </div>
               <div className="container_text-wrapper">
                 <div className="container_text-wrapper_text-5">
@@ -97,11 +106,10 @@ const SignIn = () => {
               Don't have an account?
             </div>
           </div>
-          <button>
-            <div className="container_text-wrapper">
-              <div className="container_text-wrapper_text-6">Sign up</div>
-            </div>
-          </button>
+
+          <div className="container_text-wrapper">
+            <div className="container_text-wrapper_text-6">Sign up</div>
+          </div>
         </div>
       </div>
     </div>
