@@ -12,10 +12,21 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [mobileOrEmail, setMobileOrEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [verificationMethod, setVerificationMethod] = useState("email");
+  // const [verificationMethod, setVerificationMethod] = useState("email");
   const [verificationCode, setVerificationCode] = useState("");
   const [verificationSent, setVerificationSent] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(true);
+
+  const nodemailer = require("nodemailer");
+
+  // Create a transporter to send emails (you should configure this with your email service)
+  const transporter = nodemailer.createTransport({
+    service: "Gmail", // Specify your email service
+    auth: {
+      user: "your-email@gmail.com", // Your email address
+      pass: "your-email-password", // Your email password
+    },
+  });
 
   // const history = useHistory();
 
@@ -32,15 +43,24 @@ const SignUp = () => {
     return code;
   };
 
-  // ToDo: Implement this function after setting up Firebase
-  const sendVerificationCode = async (code) => {
+  const sendVerificationCode = async (code, email) => {
     try {
-      const user = auth.currentUser;
-      await user.sendEmailVerification({
-        code,
-        url: "https://your-website-url.com/verify", // Replace with your verification URL
+      // Define email content
+      const mailOptions = {
+        from: "your-email@gmail.com", // Sender's email address
+        to: email, // Recipient's email address
+        subject: "Verification Code", // Email subject
+        text: `Your verification code is: ${code}`, // Email body
+      };
+
+      // Send the email
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error("Error sending verification code:", error);
+        } else {
+          console.log("Verification code sent successfully:", info.response);
+        }
       });
-      console.log("Verification code sent successfully");
     } catch (error) {
       console.error("Error sending verification code:", error.message);
     }
@@ -48,8 +68,9 @@ const SignUp = () => {
 
   const handleSendVerification = () => {
     // Generate and send verification code
-    const code = generateRandomVerificationCode(); // Implement this function
-    sendVerificationCode(code); // Implement this function
+    const code = generateRandomVerificationCode();
+    setVerificationCode(code);
+    sendVerificationCode(code, mobileOrEmail);
     setVerificationSent(true);
   };
 
@@ -71,7 +92,6 @@ const SignUp = () => {
       // );
       // console.log("User registered successfully:", userCredential.user);
       // Save user's first name and last name to Firestore or other storage
-      
     } catch (error) {
       console.error("Error creating user:", error.message);
     }
@@ -101,6 +121,9 @@ const SignUp = () => {
               id="nameInput1"
               type="text"
               required
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
             />
           </div>
           <div className="signUp_form_formGroup-2">
@@ -113,6 +136,9 @@ const SignUp = () => {
               type="text"
               required
               className="signUp_form_nameInput"
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
             />
           </div>
           <div className="signUp_form_formGroup-3">
@@ -126,15 +152,13 @@ const SignUp = () => {
                   options={["E-mail", "Mobile"]}
                   placeholder={"E-mail"}
                 />
-
-                {/* <select name="verficationMethod" id="verficationMethod">
-                  <option value="email">E-mail</option>
-                  <option value="phone">Phone</option>
-                </select> */}
               </div>
               <input
                 type="text"
                 className="signUp_form_nameInput signUp_form_formGroup-3_inputField_input"
+                onChange={(e) => {
+                  setMobileOrEmail(e.target.value);
+                }}
               />
               <button
                 className="signUp_form_formGroup-3_inputField_btn"
@@ -171,6 +195,9 @@ const SignUp = () => {
               className="signUp_form_nameInput"
               id="password"
               type="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               required
             />
             <div className="signUp_form_formGroup-5_info">
