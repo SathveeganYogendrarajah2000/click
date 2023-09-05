@@ -24,11 +24,17 @@ const SignIn = () => {
             <div className="container_content-2_form_form-item">
               <div className="container_content-2_form_label">
                 <div className="container_text-wrapper">
-                  <div className="container_content-2_form_text-2">Email</div>
+                  <label
+                    htmlFor="email"
+                    className="container_content-2_form_text-2"
+                  >
+                    Email
+                  </label>
                 </div>
               </div>
               <div className="container_content-2_form_form-item_input">
                 <input
+                  id="email"
                   className="container_content-2_form_form-item_input_input-base"
                   type="email"
                   required
@@ -38,11 +44,17 @@ const SignIn = () => {
             <div className="container_content-2_form_form-item-2">
               <div className="container_content-2_form_label">
                 <div className="container_text-wrapper">
-                  <div className="container_text-wrapper_text-2">Password</div>
+                  <label
+                    htmlFor="password"
+                    className="container_text-wrapper_text-2"
+                  >
+                    Password
+                  </label>
                 </div>
               </div>
               <div className="container_content-2_form_form-item-2_password">
                 <input
+                  id="password"
                   className="container_content-2_form_form-item-2_password_input-2"
                   type="password"
                   required
@@ -63,7 +75,7 @@ const SignIn = () => {
               {/* </div> */}
               <div className="container_text-wrapper">
                 <label
-                  for="rememberMe"
+                  htmlFor="rememberMe"
                   className="container_content-2_form_text-2"
                 >
                   Remember me
