@@ -2,7 +2,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { auth } from "./firebase";
 
 import Dropdown from "react-dropdown";
@@ -17,7 +17,7 @@ const SignUp = () => {
   const [verificationSent, setVerificationSent] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
-
+  const navigate = useNavigate();
   // const nodemailer = require("nodemailer");
 
   // // Create a transporter to send emails (you should configure this with your email service)
@@ -28,9 +28,6 @@ const SignUp = () => {
   //     pass: "your-email-password", // Your email password
   //   },
   // });
-
-
-  // const history = useHistory();
 
   const generateRandomVerificationCode = () => {
     const characters = "0123456789";
@@ -64,6 +61,7 @@ const SignUp = () => {
       //   }
       // });
 
+      console.log("Verification code sent successfully:", code);
     } catch (error) {
       console.error("Error sending verification code:", error.message);
     }
@@ -75,6 +73,11 @@ const SignUp = () => {
     setVerificationCode(code);
     sendVerificationCode(code, mobileOrEmail);
     setVerificationSent(true);
+  };
+
+  const handleResendVerification = () => {
+    setVerificationSent(false);
+    setMobileOrEmail("");
   };
 
   const handleVerifyCode = (enteredCode) => {
@@ -95,6 +98,7 @@ const SignUp = () => {
       // );
       // console.log("User registered successfully:", userCredential.user);
       // Save user's first name and last name to Firestore or other storage
+      navigate("/");
     } catch (error) {
       console.error("Error creating user:", error.message);
     }
@@ -116,7 +120,7 @@ const SignUp = () => {
         <div className="signUp_form">
           <div className="signUp_form_formGroup-1">
             <div className="signUp_form_label">
-              <lable for="nameInput1">First Name / Given Name *</lable>
+              <label htmlFor="nameInput1">First Name / Given Name *</label>
             </div>
 
             <input
@@ -124,6 +128,7 @@ const SignUp = () => {
               id="nameInput1"
               type="text"
               required
+              value={firstName}
               onChange={(e) => {
                 setFirstName(e.target.value);
               }}
@@ -131,7 +136,7 @@ const SignUp = () => {
           </div>
           <div className="signUp_form_formGroup-2">
             <div className="signUp_form_label">
-              <label for="nameInput2">Family Name / Last Name * </label>
+              <label htmlFor="nameInput2">Family Name / Last Name * </label>
             </div>
 
             <input
@@ -139,6 +144,7 @@ const SignUp = () => {
               type="text"
               required
               className="signUp_form_nameInput"
+              value={lastName}
               onChange={(e) => {
                 setLastName(e.target.value);
               }}
@@ -159,6 +165,7 @@ const SignUp = () => {
               <input
                 type="text"
                 className="signUp_form_nameInput signUp_form_formGroup-3_inputField_input"
+                value={mobileOrEmail}
                 onChange={(e) => {
                   setMobileOrEmail(e.target.value);
                 }}
@@ -174,7 +181,7 @@ const SignUp = () => {
           </div>
           <div className="signUp_form_formGroup-4">
             <div className="signUp_form_label">
-              <label for="input3">Verification *</label>
+              <label htmlFor="input3">Verification *</label>
             </div>
             <input
               className="signUp_form_nameInput"
@@ -186,18 +193,22 @@ const SignUp = () => {
                 handleVerifyCode(e.target.value);
               }}
             />
-            <div className="signUp_form_formGroup-4_tips-title">
+            <div
+              className="signUp_form_formGroup-4_tips-title"
+              onClick={handleResendVerification}
+            >
               Not received verification code?
             </div>
           </div>
           <div className="signUp_form_formGroup-5">
             <div className="signUp_form_label">
-              <label for="password">Password *</label>
+              <label htmlFor="password">Password *</label>
             </div>
             <input
               className="signUp_form_nameInput"
               id="password"
               type="password"
+              value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -219,7 +230,7 @@ const SignUp = () => {
               type="checkbox"
               id="policy"
             />
-            <label for="policy">
+            <label htmlFor="policy">
               I have read and agree to the CLICK Hotel Terms and Conditions
             </label>
           </div>
