@@ -117,7 +117,7 @@ const SignUp = () => {
           </p>
         </div>
 
-        <div className="signUp_form">
+        <form className="signUp_form">
           <div className="signUp_form_formGroup-1">
             <div className="signUp_form_label">
               <label htmlFor="nameInput1">First Name / Given Name *</label>
@@ -236,12 +236,12 @@ const SignUp = () => {
           </div>
           <button
             className="signUp_form_sl-btn-normal"
-            onClick={handleSignup}
+            onSubmit={handleSignup}
             disabled={submitDisabled}
           >
             Submit
           </button>
-        </div>
+        </form>
       </div>
       <Footer />
     </div>
