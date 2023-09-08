@@ -1,4 +1,7 @@
 .bookingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   &_hero {
     background-image: url("../assets/images/HeroForBooking.jpeg");
     height: 90vh;
@@ -119,6 +122,44 @@
         &:hover {
           background-color: #0056b3;
         }
+      }
+    }
+  }
+
+  &_content {
+    align-items: center;
+    padding: 16px 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &_nav {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      justify-content: center;
+
+      &_link {
+        display: flex;
+        border-color: #e2e2e2;
+        border-radius: 2px 0px 0px 2px;
+        border-right-style: solid;
+        border-right-width: 1px;
+        height: 40px;
+        width: 130px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &_last-link {
+        border-right: none;
+      }
+
+      &_text-wrapper {
+        color: #4a4a4a;
+        font-family: "Calibri-Regular", Helvetica;
+        font-size: 16px;
+        font-weight: 400;     
       }
     }
   }

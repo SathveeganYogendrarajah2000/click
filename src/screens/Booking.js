@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 import Footer from "./components/Footer.js";
 import NavBar from "./components/NavBar";
@@ -119,7 +119,53 @@ const Booking = () => {
             </button>
           </div>
         </div>
-        <div className="bookingContainer_content"></div>
+        <div className="bookingContainer_content">
+          <nav className="bookingContainer_content_nav">
+            <div className="bookingContainer_content_nav_link">
+              <NavLink
+                to="/booking/overview"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                Overview
+              </NavLink>
+            </div>
+            <div className="bookingContainer_content_nav_link">
+              <NavLink
+                exact
+                to="/booking/guestrooms"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                Guest Rooms
+              </NavLink>
+            </div>
+            <div className="bookingContainer_content_nav_link">
+              <NavLink
+                to="/dinein"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                Dine in
+              </NavLink>
+            </div>
+            <div className="bookingContainer_content_nav_link">
+              <NavLink
+                to="/dinein/offers"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                Offers
+              </NavLink>
+            </div>
+            <div className="bookingContainer_content_nav_link bookingContainer_content_nav_last-link">
+              <NavLink
+                to="/booking/experiences"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                Experiences
+              </NavLink>
+            </div>
+          </nav>
+
+          
+        </div>
       </div>
       <Footer />
     </Fragment>
