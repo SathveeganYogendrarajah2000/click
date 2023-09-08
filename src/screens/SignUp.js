@@ -3,9 +3,11 @@ import Footer from "./components/Footer";
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { auth } from "./firebase";
+import { auth, db } from "../firebase.js";
 
 import Dropdown from "react-dropdown";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -88,20 +90,31 @@ const SignUp = () => {
     }
   };
 
-  // ToDo: Implement this function after setting up Firebase
   const handleSignup = async (e) => {
     e.preventDefault();
-    try {
-      // const userCredential = await auth.createUserWithEmailAndPassword(
-      //   mobileOrEmail,
-      //   password
-      // );
-      // console.log("User registered successfully:", userCredential.user);
-      // Save user's first name and last name to Firestore or other storage
-      navigate("/");
-    } catch (error) {
-      console.error("Error creating user:", error.message);
-    }
+    createUserWithEmailAndPassword(auth, mobileOrEmail, password)
+      .then((userCredential) => {
+        const userId = userCredential.user.uid;
+
+        const docRef = addDoc(collection(db, "users"), {
+          user_id: userId,
+          firstName: firstName,
+          lastName: lastName,
+          role: "customer",
+        });
+        console.log("Document written with ID: ", docRef.id);
+        // collection(db, "users").doc(userId).set({
+        // firstName: firstName,
+        // lastName: lastName,
+        // role: "customer",
+        // });
+
+        console.log(userCredential);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -156,14 +169,18 @@ const SignUp = () => {
             </div>
 
             <div className="signUp_form_formGroup-3_inputField">
-              <div className="signUp_form_formGroup-3_inputField_dropdownSelect">
+              <label
+                htmlFor="email"
+                className="signUp_form_formGroup-3_inputField_dropdownSelect"
+              >
                 <Dropdown
                   options={["E-mail", "Mobile"]}
                   placeholder={"E-mail"}
                 />
-              </div>
+              </label>
               <input
                 type="text"
+                id="email"
                 className="signUp_form_nameInput signUp_form_formGroup-3_inputField_input"
                 value={mobileOrEmail}
                 onChange={(e) => {
@@ -236,7 +253,8 @@ const SignUp = () => {
           </div>
           <button
             className="signUp_form_sl-btn-normal"
-            onSubmit={handleSignup}
+            type="submit"
+            onClick={handleSignup}
             disabled={submitDisabled}
           >
             Submit

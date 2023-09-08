@@ -29,7 +29,7 @@ const NavBar = () => {
           <h1>Logo</h1>
         </NavLink>
       </div>
-      <div className="navbar_links">
+      <div className="navbar_links">    
         <NavLink exact to="/">
           Home
         </NavLink>
