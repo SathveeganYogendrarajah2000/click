@@ -7,6 +7,7 @@ import { auth, db } from "../firebase.js";
 
 import Dropdown from "react-dropdown";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -93,6 +94,21 @@ const SignUp = () => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, mobileOrEmail, password)
       .then((userCredential) => {
+        const userId = userCredential.user.uid;
+
+        const docRef = addDoc(collection(db, "users"), {
+          user_id: userId,
+          firstName: firstName,
+          lastName: lastName,
+          role: "customer",
+        });
+        console.log("Document written with ID: ", docRef.id);
+        // collection(db, "users").doc(userId).set({
+        // firstName: firstName,
+        // lastName: lastName,
+        // role: "customer",
+        // });
+
         console.log(userCredential);
         navigate("/");
       })
