@@ -1,136 +1,108 @@
-.nav {
+.div-room-list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 54px;
+  padding: 4px 0px 16px;
+  position: relative;
+}
+
+.div-room-list .heading-heading {
+  color: #333333;
+  font-family: "Calibri-Regular", Helvetica;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 48px;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.div-room-list .text-wrapper {
+  color: #333333;
+  font-family: "Calibri-Regular", Helvetica;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 48px;
+}
+
+.div-room-list .span {
+  font-size: 47px;
+}
+
+.div-room-list .text-wrapper-2 {
+  font-family: "Broadway-Regular", Helvetica;
+  font-size: 47px;
+}
+
+.div-room-list .article {
   align-items: flex-start;
-  display: inline-flex;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
   position: relative;
 }
 
-.nav .link {
-  background-color: #ffffff;
-  border-color: #e2e2e2;
-  border-radius: 2px 0px 0px 2px;
-  border-right-style: solid;
-  border-right-width: 1px;
-  height: 40px;
+.div-room-list .p {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
   position: relative;
-  width: 128.09px;
 }
 
-.nav .text-wrapper {
-  color: #4a4a4a;
+.div-room-list .whether-you-re-keen {
+  color: #333333;
   font-family: "Calibri-Regular", Helvetica;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  height: 15px;
-  left: 37px;
   letter-spacing: 0;
-  line-height: 40px;
-  position: absolute;
-  text-align: center;
-  top: 11px;
-  white-space: nowrap;
-  width: 54px;
-}
-
-.nav .div {
-  background: linear-gradient(
-    180deg,
-    rgba(210, 151, 81, 0.8) 0%,
-    rgb(210, 151, 81) 49%,
-    rgb(170, 121, 56) 100%
-  );
-  border-color: #e2e2e2;
-  border-right-style: solid;
-  border-right-width: 1px;
-  height: 40px;
+  line-height: 24px;
+  margin-top: -1px;
   position: relative;
-  width: 128.09px;
+  width: fit-content;
 }
 
-.nav .text-wrapper-2 {
-  color: #ffffff;
-  font-family: "Calibri-Regular", Helvetica;
-  font-size: 14px;
-  font-weight: 400;
-  height: 15px;
-  left: 25px;
+.div-room-list .as-per-government {
+  color: #333333;
+  font-family: "Calibri-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
   letter-spacing: 0;
-  line-height: 40px;
-  position: absolute;
-  text-align: center;
-  top: 11px;
-  white-space: nowrap;
-  width: 77px;
-}
-
-.nav .pseudo {
-  border-color: #aa7938;
-  border-left-style: solid;
-  border-left-width: 6px;
-  border-right-style: solid;
-  border-right-width: 6px;
-  border-top-style: solid;
-  border-top-width: 5px;
-  height: 5px;
-  left: 59px;
-  position: absolute;
-  top: 40px;
-  width: 12px;
-}
-
-.nav .div-wrapper {
-  background-color: #ffffff;
-  border-color: #e2e2e2;
-  border-right-style: solid;
-  border-right-width: 1px;
-  height: 40px;
+  line-height: 24px;
+  margin-right: -19px;
+  margin-top: -1px;
   position: relative;
-  width: 128.09px;
+  width: fit-content;
 }
 
-.nav .text-wrapper-3 {
-  color: #4a4a4a;
+.div-room-list .for-further-details {
+  color: #333333;
   font-family: "Calibri-Regular", Helvetica;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  height: 15px;
-  left: 45px;
   letter-spacing: 0;
-  line-height: 40px;
-  position: absolute;
-  text-align: center;
-  top: 11px;
+  line-height: 24px;
+  margin-top: -1px;
+  position: relative;
   white-space: nowrap;
-  width: 37px;
+  width: fit-content;
 }
 
-.nav .text-wrapper-4 {
-  color: #4a4a4a;
+.div-room-list .text-wrapper-3 {
+  color: #333333;
   font-family: "Calibri-Regular", Helvetica;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  height: 15px;
-  left: 46px;
   letter-spacing: 0;
-  line-height: 40px;
-  position: absolute;
-  text-align: center;
-  top: 11px;
-  white-space: nowrap;
-  width: 34px;
+  line-height: 24px;
 }
 
-.nav .text-wrapper-5 {
-  color: #4a4a4a;
-  font-family: "Calibri-Regular", Helvetica;
-  font-size: 14px;
-  font-weight: 400;
-  height: 15px;
-  left: 30px;
-  letter-spacing: 0;
-  line-height: 40px;
-  position: absolute;
-  text-align: center;
-  top: 11px;
-  white-space: nowrap;
-  width: 68px;
+.div-room-list .text-wrapper-4 {
+  font-family: "Calibri-Bold", Helvetica;
+  font-weight: 700;
 }

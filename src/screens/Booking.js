@@ -1,13 +1,17 @@
 import React, { Fragment, useState } from "react";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 
 import Footer from "./components/Footer.js";
-import NavBar from "./components/NavBar";
+import NavBarStyled from "./components/NavBarStyled.jsx";
 
-import Logo from "../assets/Logo.svg";
+import Overview from "./subScreens/Overview.jsx";
+import GuestRooms from "./subScreens/GuestRooms.jsx";
+import Offers from "./subScreens/Offers.jsx";
+import Experiences from "./subScreens/Experiences.jsx";
+import DineIn from "./DineIn.js";
 
 const Booking = () => {
   const [roomType, setRoomType] = useState("");
@@ -24,27 +28,7 @@ const Booking = () => {
     <Fragment>
       <div className="bookingContainer">
         <div className="bookingContainer_hero">
-          {/* <NavBar className="bookingContainer_hero_navbar" /> */}
-          <div className="bookingContainer_hero_navbar navbar">
-            <div className="navbar_logo">
-              <NavLink to="/">
-                <img src={Logo} style={{ fill: "white" }} alt="logo" />
-              </NavLink>
-            </div>
-            <div className="navbar_links">
-              <NavLink exact to="/">
-                Home
-              </NavLink>
-              <NavLink to="/about">About Us</NavLink>
-              <NavLink to="/contact">Contact</NavLink>
-              <NavLink to="/booking">Booking</NavLink>
-              <NavLink to="/dinein">Dine In</NavLink>
-            </div>
-            <div className="navbar_otherlinks">
-              <NavLink to="/signin">Sign in</NavLink>
-              <NavLink to="/signup">Sign up</NavLink>
-            </div>
-          </div>
+          <NavBarStyled />
           <div className="bookingContainer_hero_searchbar">
             <select
               className="bookingContainer_hero_searchbar_select-room"
@@ -138,23 +122,8 @@ const Booking = () => {
                 Guest Rooms
               </NavLink>
             </div>
+
             <div className="bookingContainer_content_nav_link">
-              <NavLink
-                to="/dinein"
-                className="bookingContainer_content_nav_text-wrapper"
-              >
-                Dine in
-              </NavLink>
-            </div>
-            <div className="bookingContainer_content_nav_link">
-              <NavLink
-                to="/dinein/offers"
-                className="bookingContainer_content_nav_text-wrapper"
-              >
-                Offers
-              </NavLink>
-            </div>
-            <div className="bookingContainer_content_nav_link bookingContainer_content_nav_last-link">
               <NavLink
                 to="/booking/experiences"
                 className="bookingContainer_content_nav_text-wrapper"
@@ -162,9 +131,20 @@ const Booking = () => {
                 Experiences
               </NavLink>
             </div>
+            <div className="bookingContainer_content_nav_link bookingContainer_content_nav_last-link">
+              <NavLink
+                to="/dinein"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                Dine in
+              </NavLink>
+            </div>
           </nav>
-
-          
+          <Routes>
+            <Route path="/overview" element={<Overview />} />
+            <Route path="/guestrooms" element={<GuestRooms />} />
+            <Route path="/experiences" element={<Experiences />} />
+          </Routes>
         </div>
       </div>
       <Footer />

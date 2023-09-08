@@ -138,6 +138,7 @@
       flex-direction: row;
       position: relative;
       justify-content: center;
+      cursor: pointer;
 
       &_link {
         display: flex;
@@ -159,7 +160,7 @@
         color: #4a4a4a;
         font-family: "Calibri-Regular", Helvetica;
         font-size: 16px;
-        font-weight: 400;     
+        font-weight: 400;
       }
     }
   }
