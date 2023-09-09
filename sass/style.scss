@@ -6,6 +6,15 @@
 @import "signin";
 @import "booking";
 @import "guestrooms";
+
+@font-face {
+  font-family: "Broadway";
+  src: url("https://fontsforyou.com/fonts/b/Broadway.ttf");
+}
+@font-face {
+  font-family: "CalibriBold";
+  src: url("https://fontsforyou.com/fonts/c/CalibriBold.ttf");
+}
 * {
   box-sizing: border-box;
   margin: 0;

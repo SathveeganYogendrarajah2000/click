@@ -142,7 +142,7 @@ const Booking = () => {
           </nav>
           <Routes>
             <Route path="/overview" element={<Overview />} />
-            <Route path="/guestrooms" element={<GuestRooms />} />
+            <Route path="/guestrooms/*" element={<GuestRooms adult={adults} child={children} />} />
             <Route path="/experiences" element={<Experiences />} />
           </Routes>
         </div>

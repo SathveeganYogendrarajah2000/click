@@ -1,19 +1,62 @@
-.div-room-list {
-  align-items: center;
+.div-rate-tab {
+  align-items: flex-start;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #d2975133;
   display: flex;
+  max-width: 1280px;
+  min-height: 1px;
+  padding: 0px 713px 1px 0px;
+  position: relative;
+  width: 1280px;
+}
+
+.div-rate-tab .button {
+  align-items: center;
+  background-color: #d2975133;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-style: solid;
+  border-top-style: solid;
+  display: inline-flex;
+  flex: 0 0 auto;
   flex-direction: column;
-  gap: 54px;
-  padding: 4px 0px 16px;
+  min-height: 60px;
+  padding: 11px 1px 19px;
   position: relative;
 }
 
-.div-room-list .heading-heading {
-  color: #333333;
+.div-rate-tab .text-wrapper {
+  color: #272727;
   font-family: "Calibri-Regular", Helvetica;
-  font-size: 40px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 48px;
+  line-height: 23px;
+  margin-top: -3px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.div-rate-tab .div-rate-tab-per {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  padding: 0px 18.4px 0px 18.6px;
+  position: relative;
+}
+
+.div-rate-tab .div {
+  color: #9b9b9b;
+  font-family: "Calibri-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 23px;
   margin-top: -1px;
   position: relative;
   text-align: center;
@@ -21,88 +64,68 @@
   width: fit-content;
 }
 
-.div-room-list .text-wrapper {
-  color: #333333;
-  font-family: "Calibri-Regular", Helvetica;
-  font-size: 40px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 48px;
-}
-
-.div-room-list .span {
-  font-size: 47px;
-}
-
-.div-room-list .text-wrapper-2 {
-  font-family: "Broadway-Regular", Helvetica;
-  font-size: 47px;
-}
-
-.div-room-list .article {
-  align-items: flex-start;
-  display: flex;
+.div-rate-tab .button-2 {
+  align-items: center;
+  border: 1px solid;
+  border-color: #d2975133;
+  display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
-  gap: 16px;
+  min-height: 60px;
+  padding: 11px 1px 19px;
   position: relative;
 }
 
-.div-room-list .p {
-  align-items: flex-start;
-  display: flex;
-  flex: 0 0 auto;
-  position: relative;
-}
-
-.div-room-list .whether-you-re-keen {
-  color: #333333;
+.div-rate-tab .text-wrapper-2 {
+  color: #272727;
   font-family: "Calibri-Regular", Helvetica;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 24px;
+  line-height: 23px;
   margin-top: -1px;
   position: relative;
-  width: fit-content;
-}
-
-.div-room-list .as-per-government {
-  color: #333333;
-  font-family: "Calibri-Bold", Helvetica;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 24px;
-  margin-right: -19px;
-  margin-top: -1px;
-  position: relative;
-  width: fit-content;
-}
-
-.div-room-list .for-further-details {
-  color: #333333;
-  font-family: "Calibri-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 24px;
-  margin-top: -1px;
-  position: relative;
+  text-align: center;
   white-space: nowrap;
   width: fit-content;
 }
 
-.div-room-list .text-wrapper-3 {
-  color: #333333;
-  font-family: "Calibri-Regular", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 24px;
+.div-rate-tab .pseudo {
+  border: 12px solid;
+  border-color: #d29751;
+  height: 25px;
+  left: 76px;
+  position: absolute;
+  top: -12px;
+  width: 25px;
 }
 
-.div-room-list .text-wrapper-4 {
-  font-family: "Calibri-Bold", Helvetica;
-  font-weight: 700;
+.div-rate-tab .div-wrapper {
+  align-items: flex-start;
+  background-color: #d29751;
+  border: 1px solid;
+  border-color: #80808021;
+  border-radius: 5px;
+  display: flex;
+  height: 34px;
+  justify-content: center;
+  left: -1px;
+  padding: 5px 51.96px 5.73px 52.17px;
+  position: absolute;
+  top: -42px;
+  width: 191px;
+}
+
+.div-rate-tab .text-wrapper-3 {
+  color: #ffffff;
+  font-family: "Calibri-Regular", Helvetica;
+  font-size: 16.4px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 23px;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
 }
