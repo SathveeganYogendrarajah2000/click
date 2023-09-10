@@ -4,6 +4,8 @@ import StandardRates from "./StandardRates";
 import MemberRates from "./MemberRates";
 import PackageRates from "./PackageRates";
 
+import RoomOffer01 from "../../assets/images/RoomOffer01.jpeg";
+
 const GuestRooms = (props) => {
   return (
     <>
@@ -92,6 +94,89 @@ const GuestRooms = (props) => {
             <Route path="/memberrates" element={<MemberRates />} />
             <Route path="/packagerates" element={<PackageRates />} />
           </Routes>
+        </div>
+        <div className="guestroomContainer_offers">
+          <div className="guestroomContainer_offers_title">
+            Offers & Promotions
+          </div>
+          <div className="guestroomContainer_offers_carousel">
+            <div className="guestroomContainer_offers_carousel_item">
+              <img
+                src={RoomOffer01}
+                alt="offer1"
+                className="guestroomContainer_offers_carousel_item_image"
+              />
+              <div className="guestroomContainer_offers_carousel_item_details">
+                <div className="guestroomContainer_offers_carousel_item_details_c1">
+                  <p className="guestroomContainer_offers_carousel_item_details_c1_01">
+                    Suite surprises
+                  </p>
+                  <p className="guestroomContainer_offers_carousel_item_details_c1_02">
+                    Suite room with breakfast & Lounge access
+                  </p>
+                </div>
+                <div className="guestroomContainer_offers_carousel_item_details_c2">
+                  <p className="guestroomContainer_offers_carousel_item_details_c2_deadline">
+                    Valid till 31 Mar 2024
+                  </p>
+                  <button className="guestroomContainer_offers_carousel_item_details_c2_btn">
+                    VIEW DETAILS
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="guestroomContainer_offers_carousel_item">
+              <img
+                src={RoomOffer01}
+                alt="offer1"
+                className="guestroomContainer_offers_carousel_item_image"
+              />
+              <div className="guestroomContainer_offers_carousel_item_details">
+                <div className="guestroomContainer_offers_carousel_item_details_c1">
+                  <p className="guestroomContainer_offers_carousel_item_details_c1_01">
+                    City Woyage
+                  </p>
+                  <p className="guestroomContainer_offers_carousel_item_details_c1_02">
+                    Exquisite stays at our iconic hotels, made special with
+                    pampering and indulgence.
+                  </p>
+                </div>
+                <div className="guestroomContainer_offers_carousel_item_details_c2">
+                  <p className="guestroomContainer_offers_carousel_item_details_c2_deadline">
+                    Round the year
+                  </p>
+                  <button className="guestroomContainer_offers_carousel_item_details_c2_btn">
+                    VIEW DETAILS
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="guestroomContainer_offers_carousel_item">
+              <img
+                src={RoomOffer01}
+                alt="offer1"
+                className="guestroomContainer_offers_carousel_item_image"
+              />
+              <div className="guestroomContainer_offers_carousel_item_details">
+                <div className="guestroomContainer_offers_carousel_item_details_c1">
+                  <p className="guestroomContainer_offers_carousel_item_details_c1_01">
+                    Bed Breakfast and More
+                  </p>
+                  <p className="guestroomContainer_offers_carousel_item_details_c1_02">
+                    Lowest available rate with flexible cancellation policy
+                  </p>
+                </div>
+                <div className="guestroomContainer_offers_carousel_item_details_c2">
+                  <p className="guestroomContainer_offers_carousel_item_details_c2_deadline">
+                    Round the year
+                  </p>
+                  <button className="guestroomContainer_offers_carousel_item_details_c2_btn">
+                    VIEW DETAILS
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
