@@ -1,7 +1,9 @@
+import RoomBookingCard from "../components/RoomBookingCard";
+
 const StandardRates = () => {
   return (
     <div>
-      <h1>StandardRates</h1>
+      <RoomBookingCard />
     </div>
   );
 };

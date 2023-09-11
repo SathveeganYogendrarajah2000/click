@@ -116,7 +116,7 @@ const Booking = () => {
             <div className="bookingContainer_content_nav_link">
               <NavLink
                 exact
-                to="/booking/guestrooms"
+                to="/booking/guestrooms/standardrates"
                 className="bookingContainer_content_nav_text-wrapper"
               >
                 Guest Rooms
