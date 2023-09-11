@@ -1,0 +1,167 @@
+.bookingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  &_hero {
+    background-image: url("../assets/images/HeroForBooking.jpeg");
+    height: 90vh;
+    width: 100%;
+
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    position: relative; /* Ensure proper layering with content */
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+
+    &_navbar {
+      flex-direction: row;
+      width: 100%;
+      background: linear-gradient(
+        180deg,
+        rgb(17, 6, 5) 0%,
+        rgba(17, 6, 5, 0) 100%
+      );
+      position: absolute;
+      top: 0;
+    }
+
+    &_searchbar {
+      display: flex;
+      flex-direction: row;
+      padding: 16px 64px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      gap: 20px;
+
+      &_select-room {
+        width: 300px;
+        padding: 8px;
+        border: 1px solid #d28422;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      &_date-picker-section {
+        width: 300px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+
+        &_01 {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          width: 150px;
+        }
+        &_picker {
+          width: 150px;
+          padding: 8px;
+          border: 1px solid #d28422;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+
+        &_label {
+          color: #fff;
+        }
+      }
+
+      &_people-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+
+        &_item {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        &_input-people {
+          width: 50px; /* Adjust the width as needed */
+          padding: 8px 8px 8px 10px;
+          border: 1px solid #d28422;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+      }
+
+      &_check-button {
+        width: 300px;
+        padding: 10px;
+        background-color: #d28422; /* Adjust the background color as needed */
+        color: #fff; /* Text color */
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Add a smooth transition on hover */
+
+        /* Center the button text */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+
+  &_content {
+    align-items: center;
+    padding: 16px 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &_nav {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      justify-content: center;
+      cursor: pointer;
+
+      &_link {
+        display: flex;
+        border-color: #e2e2e2;
+        border-radius: 2px 0px 0px 2px;
+        border-right-style: solid;
+        border-right-width: 1px;
+        height: 40px;
+        width: 130px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &_last-link {
+        border-right: none;
+      }
+
+      &_text-wrapper {
+        color: #4a4a4a;
+        font-family: "Calibri-Regular", Helvetica;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+}
