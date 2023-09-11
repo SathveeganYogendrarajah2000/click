@@ -64,6 +64,7 @@
       flex-direction: row;
       justify-content: flex-start;
       cursor: pointer;
+      border-bottom: solid #fbe6cc;
 
       &_item {
         font-size: 12px;
@@ -90,6 +91,11 @@
           text-align: center;
         }
       }
+    }
+    &_standardrates {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
   }
   &_offers {
