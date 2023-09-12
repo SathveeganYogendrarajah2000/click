@@ -1,4 +1,7 @@
 .homepage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   &_hero {
     // display: flex;
     // align-items: flex-end;
@@ -101,5 +104,19 @@
   }
   &_map {
     height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &_title {
+      text-align: center;
+      font-family: "Bubbler One-Regular", Helvetica;
+      font-size: xx-large;
+    }
+    &_container {
+      height: 100%;
+      width: 100%;
+    }
   }
 }

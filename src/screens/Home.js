@@ -178,9 +178,12 @@ const Home = () => {
           </div>
         </div>
         <div className="homepage_map">
-          <MapContainer
+          <div className="homepage_map_title">Location</div>
+          {/* <MapContainer
+            className="homepage_map_container"
             center={[51.505, -0.09]}
-            zoom={13}
+            zoom={4}
+            maxZoom={13}
             scrollWheelZoom={false}
           >
             <TileLayer
@@ -192,7 +195,7 @@ const Home = () => {
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>
             </Marker>
-          </MapContainer>
+          </MapContainer> */}
         </div>
       </div>
       <Footer />
