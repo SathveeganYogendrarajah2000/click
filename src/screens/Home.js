@@ -5,6 +5,9 @@ import { Fragment, useState } from "react";
 import NavBarStyled from "./components/NavBarStyled";
 import RoomCard from "./components/RoomCard";
 import Carousel from "./components/Carousel";
+import table01 from "../assets/images/homePageTable01.jpg";
+import table02 from "../assets/images/homePageTable02.jpg";
+
 const Home = () => {
   const [roomType, setRoomType] = useState("");
   const [checkInDate, setCheckInDate] = useState(null);
@@ -164,8 +167,16 @@ const Home = () => {
           </div>
           <div className="homepage_info_cards">
             <h1 className="homepage_info_cards_title">Dine In</h1>
+            <div className="homepage_info_cards_tableCard">
+              <img src={table01} alt="" className="homepage_info_cards_img01" />
+              <button className="homepage_info_cards_button">
+                Reserve Your Tables
+              </button>
+              <img src={table02} alt="" className="homepage_info_cards_img02" />
+            </div>
           </div>
         </div>
+        <div className="homepage_map"></div>
       </div>
       <Footer />
     </Fragment>
