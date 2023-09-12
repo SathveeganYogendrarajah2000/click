@@ -7,6 +7,7 @@ import RoomCard from "./components/RoomCard";
 import Carousel from "./components/Carousel";
 import table01 from "../assets/images/homePageTable01.jpg";
 import table02 from "../assets/images/homePageTable02.jpg";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 
 const Home = () => {
   const [roomType, setRoomType] = useState("");
@@ -176,7 +177,23 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="homepage_map"></div>
+        <div className="homepage_map">
+          <MapContainer
+            center={[51.505, -0.09]}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[51.505, -0.09]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
+        </div>
       </div>
       <Footer />
     </Fragment>
