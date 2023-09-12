@@ -1,0 +1,141 @@
+.roomcardContainer {
+  align-items: flex-start;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 460px;
+  position: relative;
+
+  &_image {
+    width: 100%;
+    height: 60%;
+
+    &_picture-web {
+      position: relative;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &_details {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    height: 40%;
+
+    &_c1 {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      position: relative;
+      width: 60%;
+      height: 100%;
+
+      &_heading {
+        color: #323232;
+        font-family: "Calibri-Bold", Helvetica;
+        font-size: 24px;
+        font-weight: 700;
+        height: 34px;
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      &_description {
+        color: #4a4a4a;
+        font-family: "Calibri-Regular", Helvetica;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        width: 100%;
+      }
+
+      &_row1 {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0 12px;
+
+        &_feature {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 16px;
+
+          &_text {
+            color: #4a4a4a;
+            font-family: "Calibri-Regular", Helvetica;
+            font-size: 10px;
+            font-weight: 400;
+          }
+
+          &_img {
+            width: 30px;
+          }
+        }
+      }
+
+      &_row2 {
+        color: #4a4a4a;
+        font-family: "Calibri-Regular", Helvetica;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+      }
+    }
+
+    &_c2 {
+      width: 40%;
+      place-self: end;
+      text-align: right;
+      color: #4a4a4a;
+      font-family: "Calibri-Regular", Helvetica;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      justify-content: space-evenly;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      &_row1 {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        &_01 {
+          font-weight: bolder;
+          font-size: 24px;
+        }
+
+        &_02 {
+          font-size: 12px;
+          font-weight: 400;
+          color: #9b9b9b;
+        }
+      }
+
+      &_row2 {
+        &_btn {
+          text-align: center;
+          border-radius: 4px;
+          background-color: #aa7938;
+          color: #fff;
+          font-family: "Calibri-Regular", Helvetica;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 20px;
+          padding: 4px 16px;
+        }
+      }
+    }
+  }
+}
