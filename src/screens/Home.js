@@ -51,7 +51,12 @@ const Home = () => {
   return (
     <Fragment>
       <div className="homepage">
-        <div className="homepage_hero bookingContainer_hero">
+        <div
+          style={{
+            backgroundImage: `url(${require("../assets/images/homepage_hero.jpg")})`,
+          }}
+          className="homepage_hero bookingContainer_hero"
+        >
           <NavBarStyled />
           <div className="bookingContainer_hero_searchbar">
             <select
@@ -140,12 +145,13 @@ const Home = () => {
         <div className="homepage_brandname">
           <div className="homepage_brandname_logo">
             {/* <img src={IntroLogo} alt="click image" srcset="" /> */}
-            <h1>Athena</h1>
+            <h1>CLICK</h1>
           </div>
           <p>Seamlessly Connect, Simplify, and Elevate Your Experience!</p>
         </div>
         <div className="homepage_info">
           <div className="homepage_info_cards">
+            <h1 className="homepage_info_cards_title">Rooms</h1>
             <Carousel roomData={roomData} />
             {/* <RoomCard
               imagePath="https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
@@ -156,7 +162,9 @@ const Home = () => {
               price="125"
             /> */}
           </div>
-          <div className="homepage_info_cards"></div>
+          <div className="homepage_info_cards">
+            <h1 className="homepage_info_cards_title">Dine In</h1>
+          </div>
         </div>
       </div>
       <Footer />

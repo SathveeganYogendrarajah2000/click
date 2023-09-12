@@ -27,7 +27,12 @@ const Booking = () => {
   return (
     <Fragment>
       <div className="bookingContainer">
-        <div className="bookingContainer_hero">
+        <div
+          style={{
+            backgroundImage: `url(${require("../assets/images/HeroForBooking.jpeg")})`,
+          }}
+          className="bookingContainer_hero"
+        >
           <NavBarStyled />
           <div className="bookingContainer_hero_searchbar">
             <select
@@ -142,7 +147,10 @@ const Booking = () => {
           </nav>
           <Routes>
             <Route path="/overview" element={<Overview />} />
-            <Route path="/guestrooms/*" element={<GuestRooms adult={adults} child={children} />} />
+            <Route
+              path="/guestrooms/*"
+              element={<GuestRooms adult={adults} child={children} />}
+            />
             <Route path="/experiences" element={<Experiences />} />
           </Routes>
         </div>
