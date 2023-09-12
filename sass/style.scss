@@ -1,8 +1,17 @@
-@import 'config';
-@import 'navbar';
-@import 'homepage';
-@import 'footer';
-@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import "config";
+@import "navbar";
+@import "homepage";
+@import "signup";
+@import "footer";
+@import "signin";
+@import "booking";
+@import "guestrooms";
+@import "roombookingcard";
+
+@font-face {
+  font-family: "Broadway";
+  src: url("https://fontsforyou.com/fonts/b/Broadway.ttf");
+}
 * {
   box-sizing: border-box;
   margin: 0;
