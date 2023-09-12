@@ -9,9 +9,7 @@ import NavBarStyled from "./components/NavBarStyled.jsx";
 
 import Overview from "./subScreens/Overview.jsx";
 import GuestRooms from "./subScreens/GuestRooms.jsx";
-import Offers from "./subScreens/Offers.jsx";
 import Experiences from "./subScreens/Experiences.jsx";
-import DineIn from "./DineIn.js";
 
 const Booking = () => {
   const [roomType, setRoomType] = useState("");
@@ -123,7 +121,7 @@ const Booking = () => {
               </NavLink>
             </div>
 
-            <div className="bookingContainer_content_nav_link">
+            <div className="bookingContainer_content_nav_link bookingContainer_content_nav_last-link">
               <NavLink
                 to="/booking/experiences"
                 className="bookingContainer_content_nav_text-wrapper"
@@ -131,18 +129,13 @@ const Booking = () => {
                 Experiences
               </NavLink>
             </div>
-            <div className="bookingContainer_content_nav_link bookingContainer_content_nav_last-link">
-              <NavLink
-                to="/dinein"
-                className="bookingContainer_content_nav_text-wrapper"
-              >
-                Dine in
-              </NavLink>
-            </div>
           </nav>
           <Routes>
             <Route path="/overview" element={<Overview />} />
-            <Route path="/guestrooms/*" element={<GuestRooms adult={adults} child={children} />} />
+            <Route
+              path="/guestrooms/*"
+              element={<GuestRooms adult={adults} child={children} />}
+            />
             <Route path="/experiences" element={<Experiences />} />
           </Routes>
         </div>
