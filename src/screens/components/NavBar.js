@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 // const NavBar = () => {
 //   return (
@@ -22,6 +23,7 @@ import { Link, NavLink } from "react-router-dom";
 //   );
 // };
 const NavBar = () => {
+  const [user, setUser] = useState(false);
   return (
     <nav className="navbar">
       <div className="navbar_logo">
