@@ -1,8 +1,15 @@
+
 import "../../css/Dining.css";
+import food_1 from "../../assets/images/food_1.jpg";
+import food_2 from "../../assets/images/food_2.jpg";
+import food_3 from "../../assets/images/food_3.png";
+import food_4 from "../../assets/images/food_4.jpg";
+
 
 function Dining(){
     return(
-        <div className="dining_Container">  
+        <div className="dining_Container"> 
+            
             <h2 className="dining_FindRes">Find Reservations</h2>
             <h1 className="dining_Heading">CLICK</h1>
             
@@ -16,14 +23,33 @@ function Dining(){
             cuilinary innovation and hospitality.</p>
 
             <h3 className="dining_CenterHeading">Pictures from our users</h3>
+            <div className="dining_Image">
+                <img
+                    src={food_1}
+                    alt="food1"
+                />
+                <img
+                    src={food_2}
+                    alt="food2"
+                />
+                <img
+                    src={food_3}
+                    alt="food3"
+                />
+                <img
+                    src={food_4}
+                    alt="food4"
+                />
+                
+            </div>
             <h2 className="dining_CenterHeading">Main Course</h2>
             <h3 className="dining_Heading">Starters</h3>
             <h4 className="dining_ContentHeading">Imported Salmon Steak</h4>
             <p className= "dining_ContentDetail">Base de arroz aguacate, salmon noruego, semillas de sesame, edamome, wakame y soja light</p>
             <h4 className="dining_ContentHeading">Poke bol</h4>
-            <p></p>
+            <p className= "dining_ContentDetail">Queso de cobra light, datiles, jamon serrano y rucula</p>
             <h4 className="dining_ContentHeading">Ensalada Cesar</h4>
-            <p></p>
+            <p className= "dining_ContentDetail">lechuga, tomate, espinacas, pollo asado, picatostes, queso proteinico y salsa cesar 0%</p>
             <h3 className="dining_Heading">Main Course</h3>
             <h4 className="dining_ContentHeading">Oriental</h4>
 
