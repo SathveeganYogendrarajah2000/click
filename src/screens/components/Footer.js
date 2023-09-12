@@ -1,35 +1,81 @@
+import React from "react";
+
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="footer_content">
-        <div className="footer_content_one">
-          <h3>Athena</h3>
-          <p>
-            <strong>Address:</strong>
-          </p>
-          <address>
-            123 Placeholder Street,
-            <br /> Cityville,
-            <br /> State Province,
-            <br /> Country
-          </address>
-          <p>
-            <strong>Phone Number:</strong> (123) 456-7890
-          </p>
-        </div>
-        <div className="footer_content_two">
-          <p>© 2021 RAthena</p>
-          <p>Privacy Policy</p>
-          <p>Terms of Service</p>
-        </div>
-        <div className="footer_content_three">
-            <div className="join">JOIN</div>
-            <p>Join with us</p>
-            
+    <div className="Box">
+      <h1 style={{ color: "#d28422", textAlign: "center", marginTop: "-50px" }}>
+        CLICK The Luxurious Hotel in SriLanka
+      </h1>
+      <div className="Box_Container">
+        <div className="Box_Container_Row">
+          <div className="Box_Container_Row_Column">
+            <div className="Box_Container_Row_Heading">About Us</div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Aim
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Vision
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Testimonials
+            </div>
+          </div>
+          <div className="Box_Container_Row_Column">
+            <div className="Box_Container_Row_Heading">Services</div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Writing
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Internships
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Coding
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Teaching
+            </div>
+          </div>
+          <div className="Box_Container_Row_Column">
+            <div className="Box_Container_Row_Heading">Contact Us</div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Uttar Pradesh
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Ahemdabad
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Indore
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              Mumbai
+            </div>
+          </div>
+          <div className="Box_Container_Row_Column">
+            <div className="Box_Container_Row_Heading">Social Media</div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              <i className="fab fa-facebook-f">
+                <span style={{ marginLeft: "10px" }}>Facebook</span>
+              </i>
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              <i className="fab fa-instagram">
+                <span style={{ marginLeft: "10px" }}>Instagram</span>
+              </i>
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              <i className="fab fa-twitter">
+                <span style={{ marginLeft: "10px" }}>Twitter</span>
+              </i>
+            </div>
+            <div className="Box_Container_Row_FooterLink" href="#">
+              <i className="fab fa-youtube">
+                <span style={{ marginLeft: "10px" }}>Youtube</span>
+              </i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default Footer;
