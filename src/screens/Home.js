@@ -4,12 +4,46 @@ import IntroLogo from "../assets/images/Homepage_click_logo.png";
 import { Fragment, useState } from "react";
 import NavBarStyled from "./components/NavBarStyled";
 import RoomCard from "./components/RoomCard";
+import Carousel from "./components/Carousel";
 const Home = () => {
   const [roomType, setRoomType] = useState("");
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
+
+  const roomData = [
+    {
+      imagePath:
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      name: "Luxury Room Facade View01",
+      description:
+        "Elegant and warm color palettes, combined with textured furnishings, give the rooms a sophisticated style that feels personally inviting and cozy",
+      type: "King/Twin",
+      capacity: "4",
+      price: "125",
+    },
+    {
+      imagePath:
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      name: "Luxury Room Facade View02",
+      description:
+        "Elegant and warm color palettes, combined with textured furnishings, give the rooms a sophisticated style that feels personally inviting and cozy",
+      type: "King/Twin",
+      capacity: "4",
+      price: "125",
+    },
+    {
+      imagePath:
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      name: "Luxury Room Facade View03",
+      description:
+        "Elegant and warm color palettes, combined with textured furnishings, give the rooms a sophisticated style that feels personally inviting and cozy",
+      type: "King/Twin",
+      capacity: "4",
+      price: "125",
+    },
+  ];
 
   const handleSearch = () => {
     // Handle the search logic here
@@ -112,14 +146,15 @@ const Home = () => {
         </div>
         <div className="homepage_info">
           <div className="homepage_info_cards">
-            <RoomCard
+            <Carousel roomData={roomData} />
+            {/* <RoomCard
               imagePath="https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
               name="Luxury Room Facade View"
               description="Elegant and warm color palettes, combined with textured furnishings, give the rooms a sophisticated style that feels personally inviting and cozy"
               type="King/Twin"
               capacity="4"
               price="125"
-            />
+            /> */}
           </div>
           <div className="homepage_info_cards"></div>
         </div>
