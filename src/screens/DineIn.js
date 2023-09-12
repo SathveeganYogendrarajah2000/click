@@ -1,9 +1,20 @@
-import NavBar from './components/NavBar';
+import NavBarStyled from "./components/NavBar";
+import ReservationForm from "./components/ReservationForm";
+import "../css/ReservationForm.css";
+
+import Dining from "../screens/subScreens/Dining";
+//import Footer from "./components/Footer.js";
+
 const DineIn = () => {
   return (
     <div>
-      <NavBar />
-      <h1>Dine In</h1>
+      <div className="bookingContainer_hero">
+        <NavBarStyled />
+      </div>
+      <div className="reservationForm_container">
+        <Dining />
+        <ReservationForm />
+      </div>
     </div>
   );
 };
