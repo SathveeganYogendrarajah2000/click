@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //   position: fixed;
+  //   width: 100%;
+  padding: 20px 40px;
+  background-color: $navbar-bg;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  &_links {
+    a {
+      padding: 0 40px;
+    }
+    a.active {
+      color: $primary-color;
+    }
+  }
+  &_otherlinks {
+    a {
+      padding: 0 20px;
+    }
+    a.active {
+      color: $primary-color;
+    }
+  }
+}

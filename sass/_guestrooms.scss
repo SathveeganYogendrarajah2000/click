@@ -1,0 +1,183 @@
+.guestroomContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 54px;
+  padding: 4px 0px 16px;
+  position: relative;
+
+  &_heading {
+    color: #333333;
+    font-family: "Calibri-Regular", Helvetica;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 48px;
+    text-align: center;
+    padding-bottom: 16px;
+
+    &_text-wrapper-2 {
+      font-family: "Broadway", Helvetica;
+      font-size: 47px;
+      font-weight: bold;
+    }
+  }
+
+  &_article {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 16px;
+
+    &_para {
+      color: #333333;
+      font-family: "Calibri-Bold", Helvetica;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: justify;
+
+      &_contact {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &_rooms {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+
+    &_selected-room {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #d28422;
+      &_span {
+        font-weight: normal;
+        color: #9b9b9b;
+      }
+    }
+    &_navbar {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      cursor: pointer;
+      border-bottom: solid #fbe6cc;
+
+      &_item {
+        font-size: 12px;
+        text-align: center;
+        border-style: solid;
+        border-color: #d2975133;
+        border-width: 1px;
+        border-bottom-width: 3px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+
+        &_title {
+          color: #333333;
+          font-family: "CalibriBold", Helvetica;
+          font-weight: bold;
+        }
+
+        &_price {
+          color: #9b9b9b;
+          font-size: 10px;
+          text-align: center;
+        }
+      }
+    }
+    &_standardrates {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+  &_offers {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    align-items: center;
+
+    &_title {
+      font-family: "CalibriBold", Helvetica;
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+    &_carousel {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+
+      &_item {
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        &_image {
+            border-radius: 5px;
+        }
+
+        &_details {
+          display: flex;
+          flex-direction: row;
+          gap: 16px;
+          &_c1 {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            &_01 {
+              font-size: 16px;
+              font-weight: bold;
+            }
+            &_02 {
+              font-size: 12px;
+              text-align: justify;
+              font-weight: 400;
+              color: #585656;
+            }
+          }
+          &_c2 {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 300px;
+            align-items: flex-end;
+            
+            &_deadline {
+              font-size: 12px;
+              font-weight: 400;
+              color: #d29751;
+            }
+            &_btn {
+              position: absolute;
+              bottom: 0px;
+              padding: 6px 20px;
+              background: linear-gradient(
+                180deg,
+                rgb(170, 121, 56) 0%,
+                rgb(170, 121, 56) 33%,
+                rgb(210, 151, 81) 100%
+              );
+              background-color: rgba(255, 255, 255, 1);
+              border-radius: 8px;
+              justify-content: center;
+              font-size: 10px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

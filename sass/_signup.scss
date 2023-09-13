@@ -1,0 +1,273 @@
+// select {
+//   // A reset of styles, including removing the default dropdown arrow
+
+//   background-color: transparent;
+//   border: none;
+//   padding: 0 1em 0 0;
+//   margin: 0;
+//   width: 100%;
+//   font-family: inherit;
+//   font-size: inherit;
+//   cursor: inherit;
+//   line-height: inherit;
+
+//   // Stack above custom arrow
+//   z-index: 1;
+
+//   // Remove dropdown arrow in IE10 & IE11
+//   // @link https://www.filamentgroup.com/lab/select-css.html
+//   &::-ms-expand {
+//     display: none;
+//   }
+
+//   // Remove focus outline, will add on alternate element
+//   outline: none;
+// }
+
+.signUp {
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  overflow: hidden;
+  position: relative;
+  padding: 0 0 36px 0;
+
+  &_registerTitle {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px #00000014;
+    height: 277px;
+    position: relative;
+    width: 1440px;
+
+    &_headingJoin {
+      color: #aa7938;
+      font-family: "Broadway-Regular", Helvetica;
+      font-size: 50px;
+      font-weight: 400;
+      height: 36px;
+      left: 639px;
+      letter-spacing: 0;
+      line-height: 36px;
+      position: absolute;
+      text-align: center;
+      top: 39px;
+      white-space: nowrap;
+    }
+    &_headingToEnjoy {
+      color: #333333;
+      font-family: "Bubbler One-Regular", Helvetica;
+      font-size: 30px;
+      font-weight: 400;
+      height: 92px;
+      left: 272px;
+      letter-spacing: 0;
+      line-height: 38px;
+      position: absolute;
+      text-align: center;
+      top: 121px;
+      width: 895px;
+    }
+  }
+
+  &_form {
+    height: 717.33px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 630px;
+
+    &_label {
+      height: 21.27px;
+      position: relative;
+      width: 630px;
+      color: #333333;
+      font-family: "Montserrat-Medium", Helvetica;
+      font-size: 14px;
+      font-weight: 500;
+      height: 20px;
+      left: 0;
+      letter-spacing: 0;
+      line-height: 20px;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    &_nameInput {
+      background-color: #ffffff;
+      border: 1px solid;
+      border-color: #cccccc;
+      height: 46px;
+      position: relative;
+      width: 630px;
+      padding: 10px;
+    }
+
+    &_formGroup-1 {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      left: 0;
+      padding: 0px 0px 5px;
+      position: absolute;
+      top: 0;
+      width: 630px;
+    }
+    &_formGroup-2 {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      left: 0;
+      padding: 0px 0px 5px;
+      position: absolute;
+      top: 112px;
+      width: 630px;
+    }
+    &_formGroup-3 {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      left: 0;
+      position: absolute;
+      top: 225px;
+      width: 630px;
+
+      &_inputField {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        background: #fff;
+        justify-content: space-evenly;
+        width: 630px;
+
+        &_dropdownSelect {
+          display: flex;
+          justify-content: center;
+          width: 100px;
+          cursor: pointer;
+
+          //   //for dropdown menu
+          //   display: grid;
+          //   grid-template-areas: "select";
+          //   align-items: center;
+          //   position: relative;
+
+          //   border: 1px solid var(--select-border);
+          //   border-radius: 0.25em;
+          //   padding: 0.25em 0.5em;
+
+          //   font-size: 14px;
+          //   cursor: pointer;
+          //   line-height: 1.1;
+
+          //   &:not(&_dropdownSelect--multiple)::after {
+          //     content: "";
+          //     justify-self: end;
+          //     width: 0.8em;
+          //     height: 0.5em;
+          //     background-color: var(--select-arrow);
+          //     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+          //   }
+        }
+
+        &_btn {
+          align-items: center;
+          background-color: #d29751;
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 110px;
+          height: 46px;
+          font-family: "Montserrat-Medium", Helvetica;
+          font-size: 14px;
+          font-weight: 500;
+          white-space: nowrap;
+          cursor: pointer;
+        }
+      }
+    }
+    &_formGroup-4 {
+      height: 106px;
+      left: 0;
+      position: absolute;
+      top: 332px;
+      width: 630px;
+
+      &_tips-title {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        left: 0;
+        width: 165px;
+        color: #333333;
+        font-family: "Montserrat-Medium", Helvetica;
+        font-size: 12px;
+        font-weight: 500;
+        height: 15px;
+        line-height: 18px;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+    }
+    &_formGroup-5 {
+      height: 123px;
+      left: 0;
+      position: absolute;
+      top: 468px;
+      width: 630px;
+
+      &_info {
+        align-items: flex-start;
+        display: flex;
+        left: 0;
+        position: absolute;
+        top: 87px;
+        width: 630px;
+
+        &_your-password-must {
+          color: #666666;
+          font-family: "Montserrat-Regular", Helvetica;
+          font-size: 12px;
+          font-weight: 400;
+          letter-spacing: 0;
+          line-height: 18px;
+          margin-top: -1px;
+          position: relative;
+          width: fit-content;
+        }
+      }
+    }
+    &_policy {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      height: 40px;
+      left: 0;
+      position: absolute;
+      top: 621px;
+      width: 630px;
+      font-family: "Montserrat-Medium", Helvetica;
+      font-size: 14px;
+      font-weight: 500;
+
+      &_checkbox {
+        cursor: pointer;
+      }
+    }
+
+    &_sl-btn-normal {
+      background-color: #d29751;
+      box-sizing: border-box;
+      height: 46px;
+      justify-content: center;
+      left: 0;
+      padding: 0px 288.4px 0px 288.6px;
+      position: absolute;
+      top: 671px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import "config";
+@import "navbar";
+@import "homepage";
+@import "signup";
+@import "footer";
+@import "signin";
+@import "booking";
+@import "guestrooms";
+@import "roombookingcard";
+
+@font-face {
+  font-family: "Broadway";
+  src: url("https://fontsforyou.com/fonts/b/Broadway.ttf");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "popins", sans-serif;
+}
+
+body {
+  background-color: #fff;
+}
