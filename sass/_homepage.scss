@@ -1,0 +1,122 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  &_hero {
+    // display: flex;
+    // align-items: flex-end;
+    // justify-content: center;
+    // background-image: url("../assets/images/homepage_hero.jpg");
+    // width: 100%;
+    // height: 90vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    // &_bottom {
+    //   background-color: $hero-black;
+    //   opacity: 0.9;
+    //   width: 100%;
+    // }
+  }
+  &_brandname {
+    width: 90%;
+    height: 60vh;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin-top: 30px;
+      font-size: 32px;
+    }
+    &_logo {
+      h1 {
+        font-family: "Broadway", Helvetica;
+        // font-family: "Allura", cursive;
+        font-size: 150px;
+        color: #d29751;
+      }
+    }
+  }
+  &_info {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+
+    &_cards {
+      margin: 20px;
+      width: 500px;
+      height: 630px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      // background-color: aqua;
+      &_title {
+        text-align: center;
+        font-family: "Bubbler One-Regular", Helvetica;
+        // height: 20%;
+      }
+
+      &_tableCard {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        height: 100%;
+      }
+
+      &_img01 {
+        width: 100%;
+        height: 40%;
+        // background-image: url("../assets/images/homepage_info01.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      &_img02 {
+        width: 100%;
+        height: 40%;
+        // background-image: url("../assets/images/homepage_info02.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      &_button {
+        width: 100%;
+        height: 10%;
+        font-size: 24px;
+        background-color: #d29751;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: #f2c078;
+        }
+      }
+    }
+  }
+  &_map {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &_title {
+      text-align: center;
+      font-family: "Bubbler One-Regular", Helvetica;
+      font-size: xx-large;
+    }
+    &_container {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
