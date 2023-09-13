@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+
+import Logo from "../../assets/Logo.svg";
+
 // const NavBar = () => {
 //   return (
 //     <nav className="navbar">
@@ -22,16 +27,40 @@ import { Link, NavLink } from "react-router-dom";
 //     </nav>
 //   );
 // };
-const NavBar = () => {
-  const [user, setUser] = useState(false);
+const NavBar = (props) => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+      console.log("Authentication state changed:", user);
+    });
+    // Clean up the subscription when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log("Sign-out successful.");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("An error happened.");
+      });
+  };
   return (
-    <nav className="navbar">
+    <nav style={props.style} className="navbar">
       <div className="navbar_logo">
         <NavLink to="/">
-          <h1>Logo</h1>
+          <img src={Logo} style={{ fill: "white" }} alt="logo" />
         </NavLink>
       </div>
-      <div className="navbar_links">    
+      <div className="navbar_links">
         <NavLink exact to="/">
           Home
         </NavLink>
@@ -41,8 +70,20 @@ const NavBar = () => {
         <NavLink to="/dinein">Dine In</NavLink>
       </div>
       <div className="navbar_otherlinks">
-        <NavLink to="/signin">Sign in</NavLink>
-        <NavLink to="/signup">Sign up</NavLink>
+        {!user && (
+          <>
+            <NavLink to="/signin">Sign in</NavLink>
+            <NavLink to="/signup">Sign up</NavLink>
+          </>
+        )}
+        {user && (
+          <>
+            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/signin" onClick={handleSignout}>
+              Sign out
+            </NavLink>
+          </>
+        )}
       </div>
     </nav>
   );

@@ -52,6 +52,15 @@ const Home = () => {
   const handleSearch = () => {
     // Handle the search logic here
   };
+
+  const style = {
+    flexDirection: "row",
+    width: "100%",
+    background:
+      "linear-gradient(180deg,rgb(17, 6, 5) 0%,rgba(17, 6, 5, 0) 100%)",
+    position: "absolute",
+    top: 0,
+  };
   return (
     <Fragment>
       <div className="homepage">
@@ -61,7 +70,7 @@ const Home = () => {
           }}
           className="homepage_hero bookingContainer_hero"
         >
-          <NavBarStyled />
+          <NavBar style={style} />
           <div className="bookingContainer_hero_searchbar">
             <select
               className="bookingContainer_hero_searchbar_select-room"

@@ -5,7 +5,7 @@ import { NavLink, Route, Routes } from "react-router-dom";
 // import "react-datepicker/dist/react-datepicker.css";
 
 import Footer from "./components/Footer.js";
-import NavBarStyled from "./components/NavBarStyled.jsx";
+import NavBar from "./components/NavBarStyled.jsx";
 
 import Overview from "./subScreens/Overview.jsx";
 import GuestRooms from "./subScreens/GuestRooms.jsx";
@@ -23,7 +23,14 @@ const Booking = () => {
   const handleSearch = () => {
     // Handle the search logic here
   };
-
+  const style = {
+    flexDirection: "row",
+    width: "100%",
+    background:
+      "linear-gradient(180deg,rgb(17, 6, 5) 0%,rgba(17, 6, 5, 0) 100%)",
+    position: "absolute",
+    top: 0,
+  };
   return (
     <Fragment>
       <div className="bookingContainer">
@@ -33,7 +40,7 @@ const Booking = () => {
           }}
           className="bookingContainer_hero"
         >
-          <NavBarStyled />
+          <NavBar style={style} />
           <div className="bookingContainer_hero_searchbar">
             <select
               className="bookingContainer_hero_searchbar_select-room"
