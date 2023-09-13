@@ -23,22 +23,26 @@ function Dining(){
             cuilinary innovation and hospitality.</p>
 
             <h3 className="dining_CenterHeading">Pictures from our users</h3>
-            <div className="dining_Image">
+            <div className="dining_ImageContainer">
                 <img
                     src={food_1}
                     alt="food1"
+                    className="dining_Image"
                 />
                 <img
                     src={food_2}
                     alt="food2"
+                    className="dining_Image"
                 />
                 <img
                     src={food_3}
                     alt="food3"
+                    className="dining_Image"
                 />
                 <img
                     src={food_4}
                     alt="food4"
+                    className="dining_Image"
                 />
                 
             </div>

@@ -50,11 +50,15 @@
     text-align: justify;
 }
 
-.dining_Image{
+.dining_ImageContainer{
     display: flex;
     flex-direction: row;
-    padding: 5px ;
-    margin-left: 20px;
-    height: 5%;
-    
+    margin-left: 20%;
+    margin-bottom: 10px;
+}
+
+.dining_Image{
+    height: 120px;
+    width: 120px;
+    padding: 1px;
 }
