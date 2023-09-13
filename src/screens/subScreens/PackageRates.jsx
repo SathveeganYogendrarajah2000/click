@@ -1,41 +1,33 @@
+import { db } from "../../firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import RoomBookingCard from "../components/RoomBookingCard";
 
 const PackageRates = () => {
-  const bookingCardData = [
-    {
-      imagePath:
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      name: "Luxury Room Facade View",
-      description:
-        "Elegant and warm color palettes, combined with textured furnishings, give the rooms a sophisticated style that feels personally inviting and cozy",
-      type: "King/Twin",
-      capacity: "4",
-      price: "125",
-    },
-    {
-      imagePath:
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      name: "Luxury Room Facade View",
-      description:
-        "Elegant and warm color palettes, combined with textured furnishings, give the rooms a sophisticated style that feels personally inviting and cozy",
-      type: "King/Twin",
-      capacity: "4",
-      price: "125",
-    },
-    {
-      imagePath:
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      name: "Luxury Room Facade View",
-      description:
-        "Elegant and warm color palettes, combined with textured furnishings, give the rooms a sophisticated style that feels personally inviting and cozy",
-      type: "King/Twin",
-      capacity: "4",
-      price: "125",
-    },
-  ];
+  const [roomsDetails, setRoomsDetails] = useState([]); // Initialize state to hold data
+
+  useEffect(() => {
+    // Use an asynchronous function inside useEffect to fetch data
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "rooms"));
+        const roomData = [];
+        querySnapshot.forEach((doc) => {
+          roomData.push(doc.data());
+        });
+        setRoomsDetails(roomData); // Set the data in state when fetched
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData(); // Call the async function to fetch data
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array to fetch data once on component mount
   return (
     <div className="guestroomContainer_rooms_standardrates">
-      {bookingCardData.map((bookingCard, index) => (
+      {roomsDetails.map((bookingCard, index) => (
         <RoomBookingCard
           key={index} // Use a unique key for each card (typically an ID)
           imagePath={bookingCard.imagePath}
