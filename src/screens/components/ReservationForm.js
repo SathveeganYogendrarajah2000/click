@@ -117,21 +117,21 @@ function ReservationForm() {
           onChange={(e) => setComments(e.target.value)}
         />
       </div>
-      <div >
-        <button
-          type="submit"
-          onSubmit={handleReserveNow}
-          style={{
-            color: "#ffffff",
-            width: "100%",
-            backgroundColor: "#f10909",
-            borderRadius: "6px",
-            height: "35px",
-          }}
-        >
-          Reserve Now
-        </button>
-      </div>
+      
+      <button
+        type="submit"
+        onSubmit={handleReserveNow}
+        style={{
+          color: "#ffffff",
+          width: "100%",
+          backgroundColor: "#f10909",
+          borderRadius: "6px",
+          height: "35px",
+        }}
+      >
+        Reserve Now
+      </button>
+      
     </form>
   );
 }

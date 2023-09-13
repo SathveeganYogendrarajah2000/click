@@ -9,9 +9,6 @@
   
 }
 
-
-
-/* Style the form title */
 .reservationForm_heading {
   width: 100%;
   padding: 5px ;
@@ -23,7 +20,6 @@
   border-radius: 5px;
 }
 
-/* Style form input fields and labels */
 .reservationForm_label {
   display: inline-block;
   margin-bottom: 5px;
@@ -35,7 +31,7 @@
   width: 100%;
   padding: 5px;
   margin-bottom: 15px;
-  border: 1px solid #2841e8;
+  border: 1px solid #333344;
   border-radius: 5px;
 }
 

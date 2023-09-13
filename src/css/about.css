@@ -1,0 +1,26 @@
+.about_contentHeading1{
+    text-align: center;
+    padding: 10px ;
+    margin-bottom: 5px;
+    color: #d29751;
+}
+.about_contentHeading2{
+    text-align: left;
+    padding: 10px ;
+    margin-bottom: 5px;
+    color: #9b8c07;
+}
+
+.about_contentHeading3{
+    text-align: left;
+    padding: 10px ;
+    margin-bottom: 3px;
+    color: #9b8c07;
+}
+
+.about_contentHeading4{
+    text-align: justify;
+    padding: 10px ;
+    margin-bottom: 5px;
+    color: #060606;
+}
