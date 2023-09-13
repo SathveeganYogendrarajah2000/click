@@ -117,19 +117,19 @@ const Booking = () => {
           <nav className="bookingContainer_content_nav">
             <div className="bookingContainer_content_nav_link">
               <NavLink
-                to="/booking/overview"
-                className="bookingContainer_content_nav_text-wrapper"
-              >
-                Overview
-              </NavLink>
-            </div>
-            <div className="bookingContainer_content_nav_link">
-              <NavLink
                 exact
                 to="/booking/guestrooms/standardrates"
                 className="bookingContainer_content_nav_text-wrapper"
               >
                 Guest Rooms
+              </NavLink>
+            </div>
+            <div className="bookingContainer_content_nav_link">
+              <NavLink
+                to="/booking/overview"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                FAQS
               </NavLink>
             </div>
 
