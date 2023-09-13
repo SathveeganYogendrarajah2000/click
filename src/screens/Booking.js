@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 
 // import DatePicker from "react-datepicker";
@@ -6,21 +6,28 @@ import { NavLink, Route, Routes } from "react-router-dom";
 
 import Footer from "./components/Footer.js";
 import NavBar from "./components/NavBarStyled.jsx";
+import useSearch from "./components/useSearch.jsx";
 
 import Overview from "./subScreens/Overview.jsx";
 import GuestRooms from "./subScreens/GuestRooms.jsx";
 import Experiences from "./subScreens/Experiences.jsx";
+import Searchbar from "./components/Searchbar.jsx";
 
 const Booking = () => {
-  const [roomType, setRoomType] = useState("");
-  const [checkInDate, setCheckInDate] = useState(null);
-  const [checkOutDate, setCheckOutDate] = useState(null);
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
+  const {
+    roomType,
+    setRoomType,
+    checkInDate,
+    setCheckInDate,
+    checkOutDate,
+    setCheckOutDate,
+    adults,
+    setAdults,
+    children,
+    setChildren,
+    handleSearch,
+  } = useSearch();
 
-  const handleSearch = () => {
-    // Handle the search logic here
-  };
   const style = {
     flexDirection: "row",
     width: "100%",
@@ -39,79 +46,19 @@ const Booking = () => {
           className="bookingContainer_hero"
         >
           <NavBar style={style} />
-          <div className="bookingContainer_hero_searchbar">
-            <select
-              className="bookingContainer_hero_searchbar_select-room"
-              value={roomType}
-              onChange={(e) => setRoomType(e.target.value)}
-            >
-              <option value="">Select Room Type</option>
-              <option value="suite">Suite Room</option>
-              <option value="single">Single Bedroom</option>
-              <option value="double">Double Bedroom</option>
-              {/* Add more room types */}
-            </select>
-            <div className="bookingContainer_hero_searchbar_date-picker-section">
-              <div className="bookingContainer_hero_searchbar_date-picker-section-01">
-                <label
-                  className="bookingContainer_hero_searchbar_date-picker-section_label"
-                  htmlFor="date-picker-1"
-                >
-                  Check-in
-                </label>
-                <input
-                  id="date-picker-1"
-                  className="bookingContainer_hero_searchbar_date-picker-section_picker"
-                  type="date"
-                  value={checkInDate}
-                  onChange={(date) => setCheckInDate(date)}
-                />
-              </div>
-              <div className="bookingContainer_hero_searchbar_date-picker-section-01">
-                <label
-                  className="bookingContainer_hero_searchbar_date-picker-section_label"
-                  htmlFor="date-picker-2"
-                >
-                  Check-out
-                </label>
-                <input
-                  id="date-picker-2"
-                  className="bookingContainer_hero_searchbar_date-picker-section_picker"
-                  type="date"
-                  value={checkOutDate}
-                  onChange={(date) => setCheckOutDate(date)}
-                />
-              </div>
-            </div>
-
-            <div className="bookingContainer_hero_searchbar_people-section">
-              <div className="bookingContainer_hero_searchbar_people-section-item">
-                <label style={{ color: "#fff" }}>Adults:</label>
-                <input
-                  className="bookingContainer_hero_searchbar_people-section_input-people"
-                  type="number"
-                  value={adults}
-                  onChange={(e) => setAdults(e.target.value)}
-                />
-              </div>
-              <div className="bookingContainer_hero_searchbar_people-section-item">
-                <label style={{ color: "#fff" }}>Children:</label>
-                <input
-                  className="bookingContainer_hero_searchbar_people-section_input-people"
-                  type="number"
-                  value={children}
-                  onChange={(e) => setChildren(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <button
-              className="bookingContainer_hero_searchbar_check-button"
-              onClick={handleSearch}
-            >
-              Check Availability
-            </button>
-          </div>
+          <Searchbar
+            roomType={roomType}
+            setRoomType={setRoomType}
+            checkInDate={checkInDate}
+            setCheckInDate={setCheckInDate}
+            checkOutDate={checkOutDate}
+            setCheckOutDate={setCheckOutDate}
+            adults={adults}
+            setAdults={setAdults}
+            children={children}
+            setChildren={setChildren}
+            onSearch={handleSearch}
+          />
         </div>
         <div className="bookingContainer_content">
           <nav className="bookingContainer_content_nav">
