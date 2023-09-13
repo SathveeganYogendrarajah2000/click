@@ -38,16 +38,16 @@ const Footer = () => {
           <div className="Box_Container_Row_Column">
             <div className="Box_Container_Row_Heading">Contact Us</div>
             <div className="Box_Container_Row_FooterLink" href="#">
-              Uttar Pradesh
+              Phone 01
             </div>
             <div className="Box_Container_Row_FooterLink" href="#">
-              Ahemdabad
+              Phone 02
             </div>
             <div className="Box_Container_Row_FooterLink" href="#">
-              Indore
+              Address
             </div>
             <div className="Box_Container_Row_FooterLink" href="#">
-              Mumbai
+              SriLanka
             </div>
           </div>
           <div className="Box_Container_Row_Column">

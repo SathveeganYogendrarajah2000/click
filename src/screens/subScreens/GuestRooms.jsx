@@ -56,7 +56,7 @@ const GuestRooms = (props) => {
           <nav className="guestroomContainer_rooms_navbar">
             <NavLink
               exact
-              to="/booking/guestrooms/standardrates"
+              to="/booking"
               className="guestroomContainer_rooms_navbar_item"
             >
               <div className="guestroomContainer_rooms_navbar_item_title">
@@ -90,7 +90,7 @@ const GuestRooms = (props) => {
             </NavLink>
           </nav>
           <Routes>
-            <Route path="/standardrates" element={<StandardRates />} />
+            <Route path="/" element={<StandardRates />} />
             <Route path="/memberrates" element={<MemberRates />} />
             <Route path="/packagerates" element={<PackageRates />} />
           </Routes>

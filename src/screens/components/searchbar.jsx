@@ -13,7 +13,7 @@ const Searchbar = ({
 }) => {
   const handleSearch = () => {
     // Call the onSearch callback to perform the search
-    onSearch();
+    // onSearch(rooms, availabilityData);
   };
   return (
     <div className="bookingContainer_hero_searchbar">

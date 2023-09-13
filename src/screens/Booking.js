@@ -65,7 +65,7 @@ const Booking = () => {
             <div className="bookingContainer_content_nav_link">
               <NavLink
                 exact
-                to="/booking/guestrooms/standardrates"
+                to="/booking"
                 className="bookingContainer_content_nav_text-wrapper"
               >
                 Guest Rooms
@@ -92,7 +92,7 @@ const Booking = () => {
           <Routes>
             <Route path="/overview" element={<Overview />} />
             <Route
-              path="/guestrooms/*"
+              path="/*"
               element={<GuestRooms adult={adults} child={children} />}
             />
             <Route path="/experiences" element={<Experiences />} />

@@ -1,5 +1,6 @@
 // custom hook to handle search logic
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const useSearch = () => {
   const [roomType, setRoomType] = useState("");
@@ -8,13 +9,36 @@ const useSearch = () => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 
-  const handleSearch = () => {
-    // Implement your search logic here
-    console.log("Room Type:", roomType);
-    console.log("Check-In Date:", checkInDate);
-    console.log("Check-Out Date:", checkOutDate);
-    console.log("Adults:", adults);
-    console.log("Children:", children);
+  const navigate = useNavigate();
+
+  const handleSearch = (rooms, availabilityData) => {
+    let filteredRooms = rooms;
+
+    if (roomType) {
+      filteredRooms = filteredRooms.filter((room) => room.type === roomType);
+    }
+
+    if (checkInDate && checkOutDate) {
+      filteredRooms = filteredRooms.filter((room) => {
+        const roomAvailability = availabilityData[room.id];
+        return (
+          roomAvailability &&
+          roomAvailability.checkAvailability(checkInDate, checkOutDate)
+        );
+      });
+    }
+
+    const totalCapacity = parseInt(adults, 10) + parseInt(children, 10);
+
+    if (totalCapacity > 0) {
+      filteredRooms = filteredRooms.filter(
+        (room) => room.capacity >= totalCapacity
+      );
+    }
+
+    // Now, filteredRooms contains the rooms that meet all criteria.
+    console.log("Filtered Rooms:", filteredRooms);
+    navigate("/booking/guestrooms/standardrates");
   };
 
   return {
