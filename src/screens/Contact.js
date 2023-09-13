@@ -20,72 +20,74 @@ function Contact() {
   return (
     <div>
       <NavBar />
+      <img src={contactUs} alt="contact us" width=" 100%" height="600px" th/>
       <div className="contact_midContainer">     
         <div className="contact_contentContainer">
-          <img src={contactUs} alt="contact us" height=" 100%" width="400px"/>
+          
           <div>
             <h1 className="contact_contentHeading1">Contact Us at CLICK: </h1>
             <h4 className="contact_contentHeading4">Whether you have inquiries about our menu, book a reservation,
                 or have any special requests, our staff is here to make your experience exceptional.
                 Our dedicated team is always ready to assist you. </h4>
           </div>
-          
-        </div>
-      <div className="contact_formContainer">
-        <form className="contact_form">
-          <h2 className="contact_formHeading">Contact Customer Support</h2>
-          <input
-            className="contact_formInput"
-            type="text"
-            id="name"
-            value={name}
-            placeholder="Your full name"
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-                      
-          <input
-            className="contact_formInput"
-            type="email"
-            id="email"
-            value={email}
-            placeholder="Your email address"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+        </div>  
+        
+          <div className="contact_formContainer">
+            <form className="contact_form">
+              <h2 className="contact_formHeading">Contact Customer Support</h2>
+              <input
+                className="contact_formInput"
+                type="text"
+                id="name"
+                value={name}
+                placeholder="Your full name"
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+                          
+              <input
+                className="contact_formInput"
+                type="email"
+                id="email"
+                value={email}
+                placeholder="Your email address"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+                        
+              <input
+                className="contact_formInput"
+                type="text"
+                id="contactnumber"
+                value={contactnumber}
+                placeholder="Your contact number"
+                onChange={(e) => setContactNumber(e.target.value)}
+                required
+              />
                     
-          <input
-            className="contact_formInput"
-            type="text"
-            id="contactnumber"
-            value={contactnumber}
-            placeholder="Your contact number"
-            onChange={(e) => setContactNumber(e.target.value)}
-            required
-          />
-                 
-          <input
-            className="contact_formInput"
-            type="text"
-            id="reason"
-            value={reason}
-            placeholder="Reason for contact"
-            onChange={(e) => setReason(e.target.value)}
-            required
-          />
-         
-          <div className="contact_buttonContainer">
-            <button
-              type="submit"
-              onSubmit={handleSubmit}
-              className="contact_submitButton"
-            >
-              Send Now
-            </button>
+              <input
+                className="contact_formInput"
+                type="text"
+                id="reason"
+                value={reason}
+                placeholder="Reason for contact"
+                onChange={(e) => setReason(e.target.value)}
+                required
+              />
+            
+              <div className="contact_buttonContainer">
+                <button
+                  type="submit"
+                  onSubmit={handleSubmit}
+                  className="contact_submitButton"
+                >
+                  Send Now
+                </button>
+              </div>
+              
+            </form>
           </div>
-          
-        </form>
-      </div>
+        
       </div>
 
       <Footer />
