@@ -42,7 +42,7 @@ const Searchbar = ({
             className="bookingContainer_hero_searchbar_date-picker-section_picker"
             type="date"
             value={checkInDate}
-            onChange={(date) => setCheckInDate(date)}
+            onChange={(e) => setCheckInDate(e.target.value)}
           />
         </div>
         <div className="bookingContainer_hero_searchbar_date-picker-section-01">
@@ -57,7 +57,7 @@ const Searchbar = ({
             className="bookingContainer_hero_searchbar_date-picker-section_picker"
             type="date"
             value={checkOutDate}
-            onChange={(date) => setCheckOutDate(date)}
+            onChange={(e) => setCheckOutDate(e.target.value)}
           />
         </div>
       </div>
