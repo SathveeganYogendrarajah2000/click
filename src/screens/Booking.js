@@ -9,7 +9,10 @@ import NavBar from "./components/NavBar.js";
 
 import Overview from "./subScreens/Overview.jsx";
 import GuestRooms from "./subScreens/GuestRooms.jsx";
+
+//import Offers from "./subScreens/Offers.jsx";
 import Experiences from "./subScreens/Experiences.jsx";
+//import DineIn from "./DineIn.js";
 
 const Booking = () => {
   const [roomType, setRoomType] = useState("");
