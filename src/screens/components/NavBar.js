@@ -29,10 +29,12 @@ import Logo from "../../assets/Logo.svg";
 // };
 const NavBar = (props) => {
   const [user, setUser] = useState(null);
+  // const [uid, setUid] = useState('');
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        // setUid(user.uid);
       } else {
         setUser(null);
       }
@@ -47,6 +49,7 @@ const NavBar = (props) => {
       .then(() => {
         // Sign-out successful.
         console.log("Sign-out successful.");
+        // setUid('');
       })
       .catch((error) => {
         // An error happened.
@@ -78,7 +81,7 @@ const NavBar = (props) => {
         )}
         {user && (
           <>
-            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/userprofile">Profile</NavLink>
             <NavLink to="/signin" onClick={handleSignout}>
               Sign out
             </NavLink>

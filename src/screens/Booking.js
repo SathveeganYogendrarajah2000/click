@@ -5,7 +5,7 @@ import { NavLink, Route, Routes } from "react-router-dom";
 // import "react-datepicker/dist/react-datepicker.css";
 
 import Footer from "./components/Footer.js";
-import NavBar from "./components/NavBarStyled.jsx";
+import NavBar from "./components/NavBar.js";
 
 import Overview from "./subScreens/Overview.jsx";
 import GuestRooms from "./subScreens/GuestRooms.jsx";
