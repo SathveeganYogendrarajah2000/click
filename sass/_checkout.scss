@@ -1,0 +1,125 @@
+/* checkout-page.css */
+.checkout-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.checkout-container_roomDetails {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.checkout-container_roomDetails_name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.checkout-container_roomDetails_price {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_type {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_capacity {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_description {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.checkout-container_roomDetails_loading {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.checkout-container_customerDetails {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.checkout-container_customerDetails_title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.checkout-container_customerDetails_name {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.checkout-container_customerDetails_type {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_customerDetails_checkIN {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_customerDetails_checkOut {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_customerDetails_adults {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_customerDetails_children {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_customerDetails_price {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_customerDetails_totalPrice {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.checkout-container_customerDetails_confirm-button {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.checkout-container_customerDetails_confirm-button:hover {
+  background-color: #0056b3;
+}
