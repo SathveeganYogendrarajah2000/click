@@ -1,0 +1,66 @@
+/* UserProfile.css */
+
+.user-profile {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-header-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-header-username {
+  font-size: 24px;
+  margin: 0;
+}
+
+.profile-header-bio {
+  font-size: 16px;
+  margin: 0;
+}
+
+.user-info-heading,
+.user-posts-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.user-info-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-info-list li {
+  margin-bottom: 10px;
+}
+
+.user-info-list strong {
+  font-weight: bold;
+}
+
+.user-post {
+  margin-bottom: 20px;
+}
+
+.user-post-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.user-post-text {
+  font-size: 16px;
+}
