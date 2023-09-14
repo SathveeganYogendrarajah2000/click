@@ -34,7 +34,7 @@ const Booking = () => {
       <div className="bookingContainer">
         <div
           style={{
-            backgroundImage: `url(${require("../Assets/images/HeroForBooking.jpeg")})`,
+            backgroundImage: `url(${require("../assets/images/HeroForBooking.jpeg")})`,
           }}
           className="bookingContainer_hero"
         >

@@ -4,7 +4,7 @@ import StandardRates from "./StandardRates";
 import MemberRates from "./MemberRates";
 import PackageRates from "./PackageRates";
 
-import RoomOffer01 from "../../Assets/images/RoomOffer01.jpeg";
+import RoomOffer01 from "../../assets/images/RoomOffer01.jpeg";
 
 const GuestRooms = (props) => {
   return (

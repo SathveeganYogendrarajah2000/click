@@ -1,5 +1,5 @@
-import bedType from "../../Assets/images/bedType.png";
-import maximumOccoumpany from "../../Assets/images/maximumOccoumpany.png";
+import bedType from "../../assets/images/bedType.png";
+import maximumOccoumpany from "../../assets/images/maximumOccoumpany.png";
 
 const RoomCard = (props) => {
   return (

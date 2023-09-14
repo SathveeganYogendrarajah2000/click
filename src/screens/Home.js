@@ -1,12 +1,12 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import IntroLogo from "../Assets/images/Homepage_click_logo.png";
+import IntroLogo from "../assets/images/Homepage_click_logo.png";
 import { Fragment, useState } from "react";
 import NavBarStyled from "./components/NavBarStyled";
 import RoomCard from "./components/RoomCard";
 import Carousel from "./components/Carousel";
-import table01 from "../Assets/images/homePageTable01.jpg";
-import table02 from "../Assets/images/homePageTable02.jpg";
+import table01 from "../assets/images/homePageTable01.jpg";
+import table02 from "../assets/images/homePageTable02.jpg";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 
 const Home = () => {
@@ -66,7 +66,7 @@ const Home = () => {
       <div className="homepage">
         <div
           style={{
-            backgroundImage: `url(${require("../Assets/images/homepage_hero.jpg")})`,
+            backgroundImage: `url(${require("../assets/images/homepage_hero.jpg")})`,
           }}
           className="homepage_hero bookingContainer_hero"
         >

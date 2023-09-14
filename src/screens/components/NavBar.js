@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
-import Logo from "../../Assets/Logo.svg";
+import Logo from "../../assets/Logo.svg";
 
 // const NavBar = () => {
 //   return (
