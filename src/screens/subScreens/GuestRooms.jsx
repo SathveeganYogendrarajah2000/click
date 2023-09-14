@@ -14,7 +14,6 @@ const GuestRooms = (props) => {
           <p className="guestroomContainer_heading">
             Guest Rooms at
             <span className="guestroomContainer_heading_text-wrapper-2">
-              {" "}
               CLICK
             </span>
             , SriLanka
@@ -63,7 +62,7 @@ const GuestRooms = (props) => {
                 STANDARD RATES
               </div>
               <div className="guestroomContainer_rooms_navbar_item_price">
-                from LKR 15,000 per night
+                from $150 per night
               </div>
             </NavLink>
             <NavLink
@@ -74,7 +73,7 @@ const GuestRooms = (props) => {
                 MEMBER RATES
               </div>
               <div className="guestroomContainer_rooms_navbar_item_price">
-                from LKR 11,500 per night
+                from $100 per night
               </div>
             </NavLink>
             <NavLink
@@ -85,7 +84,7 @@ const GuestRooms = (props) => {
                 PACKAGES RATES
               </div>
               <div className="guestroomContainer_rooms_navbar_item_price">
-                from LKR 17,500 per night
+                from $125 per night
               </div>
             </NavLink>
           </nav>
