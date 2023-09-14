@@ -14,6 +14,7 @@ const StandardRates = () => {
         const roomData = [];
         querySnapshot.forEach((doc) => {
           roomData.push(doc.data());
+          console.log(doc.id, " => ", doc.data());
         });
         setRoomsDetails(roomData); // Set the data in state when fetched
       } catch (error) {
@@ -37,6 +38,7 @@ const StandardRates = () => {
           type={bookingCard.type}
           capacity={bookingCard.capacity}
           price={bookingCard.price}
+          roomID={bookingCard.roomID}
         />
       ))}
     </div>

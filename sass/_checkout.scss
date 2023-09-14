@@ -1,0 +1,140 @@
+/* checkout-page.css */
+.checkout-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.checkout-container_roomDetails {
+  flex: 1;
+  background-color: #fff;
+  width: 60%;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.checkout-container_roomDetails_name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.checkout-container_roomDetails_price {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_type {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_capacity {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_description {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.checkout-container_roomDetails_img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.checkout-container_roomDetails_loading {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.checkout-container_roomDetails {
+  flex: 1;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.checkout-container_roomDetails h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.checkout-container_roomDetails_price {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.checkout-container_roomDetails_type,
+.checkout-container_roomDetails_capacity,
+.checkout-container_roomDetails_description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.checkout-container_roomDetails_img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.checkout-container_customerDetails {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.checkout-container_customerDetails_title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.checkout-container_customerDetails_inputSec {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.checkout-container_customerDetails_label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.checkout-container_customerDetails_input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.checkout-container_customerDetails_totalPrice {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.checkout-container_customerDetails_confirm-button {
+  background-color: #aa7938;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.checkout-container_customerDetails_confirm-button:hover {
+  background-color: #7b4804;
+}
