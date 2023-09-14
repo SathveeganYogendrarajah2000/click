@@ -8,6 +8,7 @@ import DineIn from './screens/DineIn';
 import SignIn from './screens/SignIn';
 import SignUp from './screens/SignUp';
 import FindReservation from './screens/FindReservation';
+import CheckoutPage from './screens/CheckoutPage';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/booking/*" element={<Booking />} />
+          <Route path="/checkout/:roomId" element={<CheckoutPage />} />
           <Route path="/dinein/*" element={<DineIn />} />
           <Route path='/dinein/findReservation' element={<FindReservation />} />
           <Route path="/signin" element={<SignIn />} />

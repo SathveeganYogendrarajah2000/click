@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import bedType from "../../assets/images/bedType.png";
 import maximumOccoumpany from "../../assets/images/maximumOccoumpany.png";
 
@@ -56,9 +58,11 @@ const RoomBookingCard = (props) => {
           </div>
 
           <div className="roombookingcardContainer_details_c2_row2">
-            <button className="button-2 roombookingcardContainer_details_c2_row2_btn">
-              VIEW RATES
-            </button>
+            <NavLink to={`/checkout/${props.roomID}`}>
+              <button className="button-2 roombookingcardContainer_details_c2_row2_btn">
+                VIEW RATES
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
