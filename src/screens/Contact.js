@@ -21,7 +21,8 @@ function Contact() {
   return (
     <div>
       <NavBar />
-      <img src={contactUs} alt="contact us" width=" 100%" height="600px" />
+      <div className="contact_container">
+      <img src={contactUs} alt="contact us" width=" 100%" height="450px" />
       <div className="contact_midContainer">     
         <div className="contact_contentContainer">
           
@@ -90,7 +91,7 @@ function Contact() {
           </div>
         
       </div>
-
+      </div>
       <Footer />
     </div>
   );
