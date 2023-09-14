@@ -121,13 +121,7 @@ function ReservationForm() {
       <button
         type="submit"
         onSubmit={handleReserveNow}
-        style={{
-          color: "#ffffff",
-          width: "100%",
-          backgroundColor: "#f10909",
-          borderRadius: "6px",
-          height: "35px",
-        }}
+        className="reservation-formButton"
       >
         Reserve Now
       </button>

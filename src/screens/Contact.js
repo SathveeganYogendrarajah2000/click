@@ -1,8 +1,9 @@
 import { React, useState } from "react";
 import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
 import "../css/contact.css"
 import contactUs from "../assets/images/contact-us-concept.jpg"
+//import NavBarStyled from "./components/NavBarStyled";
+import NavBar from "./components/NavBar";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -20,7 +21,7 @@ function Contact() {
   return (
     <div>
       <NavBar />
-      <img src={contactUs} alt="contact us" width=" 100%" height="600px" th/>
+      <img src={contactUs} alt="contact us" width=" 100%" height="600px" />
       <div className="contact_midContainer">     
         <div className="contact_contentContainer">
           
