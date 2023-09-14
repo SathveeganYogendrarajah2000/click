@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 Database.js
-firebase.js
 .env
+firebase.js

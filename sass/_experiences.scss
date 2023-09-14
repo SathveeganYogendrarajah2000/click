@@ -1,0 +1,166 @@
+/* Styles for the Experience page */
+
+.experienceContainer {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.experienceContainer_heading {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.experienceContainer_subHeading {
+  font-size: 28px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.experienceContainer_description {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Key Features Section */
+.experienceContainer_keyFeatures {
+  font-size: 24px;
+  color: #333;
+  margin-top: 30px;
+}
+
+.experienceContainer_featureText {
+  font-size: 18px;
+  color: #444;
+  margin-top: 10px;
+}
+
+.experienceContainer_featureList {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.experienceContainer_featureItem {
+  font-size: 16px;
+  color: #555;
+  margin-top: 5px;
+}
+.experienceContainer_featureItem::before {
+  content: "✔"; /* You can change this to any icon or bullet you prefer */
+  font-size: 20px;
+  color: #007bff; /* Icon color */
+  position: absolute;
+  left: -20px; /* Adjust the icon's position */
+  top: 0;
+}
+
+.experienceContainer_featureItem_text {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Benefits Section */
+.experienceContainer_benefits {
+  font-size: 24px;
+  color: #333;
+  margin-top: 30px;
+}
+
+.experienceContainer_benefitsText {
+  font-size: 18px;
+  color: #444;
+  margin-top: 10px;
+}
+
+.experienceContainer_benefitsList {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.experienceContainer_benefitsItem {
+  font-size: 16px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.experienceContainer_benefitsItem_text {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Performance Metrics Section */
+.experienceContainer_performance {
+  font-size: 24px;
+  color: #333;
+  margin-top: 30px;
+}
+
+.experienceContainer_performanceText {
+  font-size: 18px;
+  color: #444;
+  margin-top: 10px;
+}
+
+.experienceContainer_performanceList {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.experienceContainer_performanceItem {
+  font-size: 16px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.experienceContainer_performanceItem_text {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Support Section */
+.experienceContainer_support {
+  font-size: 24px;
+  color: #333;
+  margin-top: 30px;
+}
+
+.experienceContainer_supportText {
+  font-size: 18px;
+  color: #444;
+  margin-top: 10px;
+}
+
+/* FAQs Section */
+.experienceContainer_faq {
+  font-size: 24px;
+  color: #333;
+  margin-top: 30px;
+}
+
+.experienceContainer_faqText {
+  font-size: 18px;
+  color: #444;
+  margin-top: 10px;
+}
+
+.experienceContainer_faqLink {
+  font-size: 18px;
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.experienceContainer_faqLink:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}

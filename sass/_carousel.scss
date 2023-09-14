@@ -1,0 +1,15 @@
+.carousel-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  &_button {
+    height: fit-content;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+  }
+}

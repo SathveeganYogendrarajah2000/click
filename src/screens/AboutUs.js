@@ -9,10 +9,11 @@ import feedback from "../assets/images/Feedback.png";
 
 const AboutUs = () => {
   return (
-    <div>
+    <>
       <NavBar />
       <div className="aboutUs">
         <div className="aboutUs_about-section">
+
           <h1>About Us Page</h1>
           <p>Some text about who we are and what we do.</p>
           <p>
@@ -28,12 +29,14 @@ const AboutUs = () => {
               <div class="aboutUs_row_column_card_container">
                 <h2>Harsha</h2>
                 <p className="aboutUs_row_column_card_container_title">
+
                   CEO & Founder
                 </p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                 <p>jane@example.com</p>
                 <p>
                   <button className="aboutUs_row_column_card_container_button">
+
                     Contact
                   </button>
                 </p>
@@ -47,12 +50,14 @@ const AboutUs = () => {
               <div className="aboutUs_row_column_card_container">
                 <h2>Sathveegan</h2>
                 <p className="aboutUs_row_column_card_container_title">
+
                   Art Director
                 </p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                 <p>mike@example.com</p>
                 <p>
                   <button className="aboutUs_row_column_card_container_button">
+
                     Contact
                   </button>
                 </p>
@@ -63,13 +68,14 @@ const AboutUs = () => {
           <div className="aboutUs_row_column">
             <div className="aboutUs_row_column_card">
               {/* <img src="/w3images/team3.jpg" alt="John" style="width:100%" /> */}
-              <div class="aboutUs_row_column_card_container">
+              <div className="aboutUs_row_column_card_container">
                 <h2>Sathurgini</h2>
                 <p className="aboutUs_row_column_card_container_title">Designer</p>
                 <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                 <p>john@example.com</p>
                 <p>
                   <button className="aboutUs_row_column_card_container_button">
+
                     Contact
                   </button>
                 </p>
@@ -131,6 +137,7 @@ const AboutUs = () => {
       <h2 className="aboutUs_contentHeading1">Thank you for choosing CLICK as your destination for exceptional cuisine and relaxation. We can't wait to welcome you!</h2>
       <Footer/>
     </div>
+
   );
 };
 

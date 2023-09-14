@@ -5,10 +5,11 @@ import { NavLink, Route, Routes } from "react-router-dom";
 // import "react-datepicker/dist/react-datepicker.css";
 
 import Footer from "./components/Footer.js";
-import NavBarStyled from "./components/NavBarStyled.jsx";
+import NavBar from "./components/NavBar.js";
 
 import Overview from "./subScreens/Overview.jsx";
 import GuestRooms from "./subScreens/GuestRooms.jsx";
+
 //import Offers from "./subScreens/Offers.jsx";
 import Experiences from "./subScreens/Experiences.jsx";
 //import DineIn from "./DineIn.js";
@@ -23,12 +24,24 @@ const Booking = () => {
   const handleSearch = () => {
     // Handle the search logic here
   };
-
+  const style = {
+    flexDirection: "row",
+    width: "100%",
+    background:
+      "linear-gradient(180deg,rgb(17, 6, 5) 0%,rgba(17, 6, 5, 0) 100%)",
+    position: "absolute",
+    top: 0,
+  };
   return (
     <Fragment>
       <div className="bookingContainer">
-        <div className="bookingContainer_hero">
-          <NavBarStyled />
+        <div
+          style={{
+            backgroundImage: `url(${require("../assets/images/HeroForBooking.jpeg")})`,
+          }}
+          className="bookingContainer_hero"
+        >
+          <NavBar style={style} />
           <div className="bookingContainer_hero_searchbar">
             <select
               className="bookingContainer_hero_searchbar_select-room"
@@ -107,14 +120,6 @@ const Booking = () => {
           <nav className="bookingContainer_content_nav">
             <div className="bookingContainer_content_nav_link">
               <NavLink
-                to="/booking/overview"
-                className="bookingContainer_content_nav_text-wrapper"
-              >
-                Overview
-              </NavLink>
-            </div>
-            <div className="bookingContainer_content_nav_link">
-              <NavLink
                 exact
                 to="/booking/guestrooms/standardrates"
                 className="bookingContainer_content_nav_text-wrapper"
@@ -122,8 +127,16 @@ const Booking = () => {
                 Guest Rooms
               </NavLink>
             </div>
-
             <div className="bookingContainer_content_nav_link">
+              <NavLink
+                to="/booking/overview"
+                className="bookingContainer_content_nav_text-wrapper"
+              >
+                FAQS
+              </NavLink>
+            </div>
+
+            <div className="bookingContainer_content_nav_link bookingContainer_content_nav_last-link">
               <NavLink
                 to="/booking/experiences"
                 className="bookingContainer_content_nav_text-wrapper"
@@ -131,18 +144,13 @@ const Booking = () => {
                 Experiences
               </NavLink>
             </div>
-            <div className="bookingContainer_content_nav_link bookingContainer_content_nav_last-link">
-              <NavLink
-                to="/dinein"
-                className="bookingContainer_content_nav_text-wrapper"
-              >
-                Dine in
-              </NavLink>
-            </div>
           </nav>
           <Routes>
             <Route path="/overview" element={<Overview />} />
-            <Route path="/guestrooms/*" element={<GuestRooms adult={adults} child={children} />} />
+            <Route
+              path="/guestrooms/*"
+              element={<GuestRooms adult={adults} child={children} />}
+            />
             <Route path="/experiences" element={<Experiences />} />
           </Routes>
         </div>
