@@ -25,6 +25,7 @@
 .dining_Heading{
     padding: 5px ;
     margin-bottom: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .dining_ContentDetail{
@@ -53,12 +54,13 @@
 .dining_ImageContainer{
     display: flex;
     flex-direction: row;
-    margin-left: 20%;
-    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
 }
 
 .dining_Image{
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
     padding: 1px;
 }
