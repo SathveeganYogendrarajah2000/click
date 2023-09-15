@@ -8,6 +8,8 @@ import Carousel from "./components/Carousel";
 import table01 from "../assets/images/homePageTable01.jpg";
 import table02 from "../assets/images/homePageTable02.jpg";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+// import FloatingChatButton from "./components/FloatingChatButton";
+// import Chatbot from "./components/Chatbot";
 
 const Home = () => {
   const [roomType, setRoomType] = useState("");
@@ -207,6 +209,13 @@ const Home = () => {
           </MapContainer> */}
         </div>
       </div>
+      {/* <iframe
+        title="chatbot"
+        allow="microphone;"
+        width="350"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/b03404e7-69c4-435b-92a2-3c2d464fb635"
+      ></iframe> */}
       <Footer />
     </Fragment>
   );
