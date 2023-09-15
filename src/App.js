@@ -10,9 +10,17 @@ import SignUp from "./screens/SignUp";
 import FindReservation from "./screens/FindReservation";
 import CheckoutPage from "./screens/CheckoutPage";
 import UserProfile from "./screens/UserProfile";
-
+import { useState } from "react";
+import FloatingChatButton from "./screens/components/FloatingChatButton";
+import Chatbot from "./screens/components/Chatbot";
 
 function App() {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+
+  const toggleChatbot = (isOpen) => {
+    setIsChatbotOpen(isOpen);
+    console.log(isOpen);
+  };
   return (
     <div className="App">
       <BrowserRouter>
@@ -30,6 +38,9 @@ function App() {
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </BrowserRouter>
+      <FloatingChatButton onClick={() => toggleChatbot(!isChatbotOpen)} />
+      {/* <Chatbot isOpen={isChatbotOpen} toggleChatbot={toggleChatbot} /> */}
+      <Chatbot isOpen={isChatbotOpen} />
     </div>
   );
 }
