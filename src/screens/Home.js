@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import IntroLogo from "../assets/images/Homepage_click_logo.png";
+import map from "../assets/images/mapForHome.jpeg";
 import { Fragment, useState } from "react";
 import NavBarStyled from "./components/NavBarStyled";
 import RoomCard from "./components/RoomCard";
@@ -190,6 +191,7 @@ const Home = () => {
         </div>
         <div className="homepage_map">
           <div className="homepage_map_title">Location</div>
+          <img src={map} alt="Google Map" className="homepage_map_img" />
           {/* <MapContainer
             className="homepage_map_container"
             center={[51.505, -0.09]}

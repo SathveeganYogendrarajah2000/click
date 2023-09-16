@@ -103,20 +103,35 @@
     }
   }
   &_map {
-    height: 300px;
+    height: 500px;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding: 0 128px;
+    // padding-bottom: 24px;
+    position: relative;
+    justify-content: flex-start;
 
     &_title {
       text-align: center;
       font-family: "Bubbler One-Regular", Helvetica;
       font-size: xx-large;
+      width: 100%;
     }
     &_container {
       height: 100%;
       width: 100%;
+    }
+    &_img {
+      height: 80%;
+      width: 100%;
+      border-radius: 10px;
+      // background-image: url("./assets/images/bedType.png");
+      // background-image: url("src\assets\images\mapForHome.jpeg");
+      // background-repeat: no-repeat;
+      // background-size: cover;
+      // background-position: center;
     }
   }
 }
