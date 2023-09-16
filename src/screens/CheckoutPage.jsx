@@ -19,22 +19,17 @@ const CheckoutPage = () => {
     pricePerNight: 167,
   });
 
-  // Create a reference to the "rooms" collection
   const roomsRef = collection(db, "rooms");
 
-  // Create a query to filter documents where the "roomID" field matches the roomId
   const roomQuery = query(roomsRef, where("roomID", "==", roomId));
 
   useEffect(() => {
-    // Use getDocs to fetch documents that match the query
     const fetchRoomData = async () => {
       try {
         const querySnapshot = await getDocs(roomQuery);
         if (!querySnapshot.empty) {
-          // Get the first document from the query snapshot
           const docSnap = querySnapshot.docs[0];
           if (docSnap.exists()) {
-            // Document exists, set the data to state
             setRoomData(docSnap.data());
           } else {
             console.log("No such document!");

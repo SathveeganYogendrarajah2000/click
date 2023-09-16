@@ -57,10 +57,10 @@ const Chatbot = ({ isOpen }) => {
   const chatbotStyle = {
     display: isOpen ? "block" : "none",
     position: "fixed",
-    bottom: "50px", // Adjust as needed for vertical position
-    right: "20px", // Adjust as needed for horizontal position
+    bottom: "50px",
+    right: "20px",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-    zIndex: "1000", // Ensure the chatbot is above other content
+    zIndex: "1000",
   };
 
   return (

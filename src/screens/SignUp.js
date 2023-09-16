@@ -103,11 +103,6 @@ const SignUp = () => {
           role: "customer",
         });
         console.log("Document written with ID: ", docRef.id);
-        // collection(db, "users").doc(userId).set({
-        // firstName: firstName,
-        // lastName: lastName,
-        // role: "customer",
-        // });
 
         console.log(userCredential);
         navigate("/");
