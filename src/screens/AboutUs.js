@@ -1,11 +1,17 @@
-import NavBar from "./components/NavBar";
-import "../css/aboutUs.css";
-import Footer from "./components/Footer";
-import get_in_touch from "../assets/images/Get-In-Touch-headline.png";
-import follow_us from "../assets/images/follow-us.png";
-import online_res from "../assets/images/online-reservations.jpg";
-import visit_us from "../assets/images/plan-visit-sign.png";
-import feedback from "../assets/images/Feedback.png";
+import NavBar from './components/NavBar';
+import '../css/aboutUs.css';
+import Footer from './components/Footer';
+import get_in_touch from '../assets/images/Get-In-Touch-headline.png';
+import follow_us from '../assets/images/follow-us.png';
+import online_res from '../assets/images/online-reservations.jpg';
+import visit_us from '../assets/images/plan-visit-sign.png';
+import feedback from '../assets/images/Feedback.png';
+import getInTouch from '../assets/images/Get in touch.jpg';
+import faceBook from '../assets/images/facebookjpg.jpg';
+import planAVisit from '../assets/images/Plan a visit.jpg';
+import onlineReservations from '../assets/images/Search bar.jpg';
+import social1 from '../assets/images/Social1.jpg';
+import social2 from '../assets/images/Social2.jpg';
 
 const AboutUs = () => {
   return (
@@ -20,7 +26,7 @@ const AboutUs = () => {
             way.
           </p>
         </div>
-        <h2 style={{ textAlign: "center" }}>Our Team</h2>
+        <h2 style={{ textAlign: 'center' }}>Our Team</h2>
         <div className="aboutUs_row">
           <div className="aboutUs_row_column">
             <div className="aboutUs_row_column_card">
@@ -96,7 +102,7 @@ const AboutUs = () => {
         <div className="aboutUs_content_container_mid">
           <div className="aboutUs_content_container_in">
             <img
-              src={get_in_touch}
+              src={getInTouch}
               alt="getInTouch"
               className="aboutUs_content_container_image"
             />
@@ -114,7 +120,7 @@ const AboutUs = () => {
 
           <div className="aboutUs_content_container_in">
             <img
-              src={follow_us}
+              src={social2}
               alt="followUs"
               className="aboutUs_content_container_image"
             />
@@ -128,7 +134,7 @@ const AboutUs = () => {
 
           <div className="aboutUs_content_container_in">
             <img
-              src={online_res}
+              src={onlineReservations}
               alt="onlineRes"
               className="aboutUs_content_container_image"
             />
@@ -143,7 +149,7 @@ const AboutUs = () => {
 
           <div className="aboutUs_content_container_in">
             <img
-              src={feedback}
+              src={faceBook}
               alt="Feedback"
               className="aboutUs_content_container_image"
             />
@@ -160,7 +166,7 @@ const AboutUs = () => {
 
           <div className="aboutUs_content_container_in">
             <img
-              src={visit_us}
+              src={planAVisit}
               alt="visitUs"
               className="aboutUs_content_container_image"
             />

@@ -1,39 +1,47 @@
-import { React, useState } from "react";
-import Footer from "./components/Footer";
-import "../css/contact.css"
-import contactUs from "../assets/images/contact-us-concept.jpg"
+import { React, useState } from 'react';
+import Footer from './components/Footer';
+import '../css/contact.css';
+import contactUs from '../assets/images/contact-us-concept.jpg';
 //import NavBarStyled from "./components/NavBarStyled";
-import NavBar from "./components/NavBar";
+import NavBar from './components/NavBar';
+import ContactUsImage from '../assets/images/contact-us_image.jpg';
 
 function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [contactnumber, setContactNumber] = useState("");
-  const [reason, setReason] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contactnumber, setContactNumber] = useState('');
+  const [reason, setReason] = useState('');
 
   // Function to handle form submission
   function handleSubmit() {
-    setName("");
-    setEmail("");
-    setContactNumber("");
-    setReason("");
+    setName('');
+    setEmail('');
+    setContactNumber('');
+    setReason('');
   }
   return (
     <div>
       <NavBar />
       <div className="contact_container">
-      <img src={contactUs} alt="contact us" width=" 100%" height="450px" />
-      <div className="contact_midContainer">     
-        <div className="contact_contentContainer">
-          
-          <div>
-            <h1 className="contact_contentHeading1">Contact Us at CLICK: </h1>
-            <h4 className="contact_contentHeading4">Whether you have inquiries about our menu, book a reservation,
-                or have any special requests, our staff is here to make your experience exceptional.
-                Our dedicated team is always ready to assist you. </h4>
+        <img
+          src={ContactUsImage}
+          alt="contact us"
+          width=" 100%"
+          height="500px"
+        />
+        <div className="contact_midContainer">
+          <div className="contact_contentContainer">
+            <div>
+              <h1 className="contact_contentHeading1">Contact Us at CLICK: </h1>
+              <h4 className="contact_contentHeading4">
+                Whether you have inquiries about our menu, book a reservation,
+                or have any special requests, our staff is here to make your
+                experience exceptional. Our dedicated team is always ready to
+                assist you.{' '}
+              </h4>
+            </div>
           </div>
-        </div>  
-        
+
           <div className="contact_formContainer">
             <form className="contact_form">
               <h2 className="contact_formHeading">Contact Customer Support</h2>
@@ -46,7 +54,7 @@ function Contact() {
                 onChange={(e) => setName(e.target.value)}
                 required
               />
-                          
+
               <input
                 className="contact_formInput"
                 type="email"
@@ -56,7 +64,7 @@ function Contact() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-                        
+
               <input
                 className="contact_formInput"
                 type="text"
@@ -66,7 +74,7 @@ function Contact() {
                 onChange={(e) => setContactNumber(e.target.value)}
                 required
               />
-                    
+
               <input
                 className="contact_formInput"
                 type="text"
@@ -76,21 +84,18 @@ function Contact() {
                 onChange={(e) => setReason(e.target.value)}
                 required
               />
-            
+
               <div className="contact_buttonContainer">
                 <button
                   type="submit"
                   onSubmit={handleSubmit}
-                  className="contact_submitButton"
-                >
+                  className="contact_submitButton">
                   Send Now
                 </button>
               </div>
-              
             </form>
           </div>
-        
-      </div>
+        </div>
       </div>
       <Footer />
     </div>
