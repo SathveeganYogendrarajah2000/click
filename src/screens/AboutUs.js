@@ -82,8 +82,11 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
+
         </div>
+
       </div>
+
       <h1 className="aboutUs_contentHeading1" >Your Gateway to Exceptional Dining and Comfort</h1>
       <div className='aboutUs_content_container_out'>
         
@@ -136,7 +139,7 @@ const AboutUs = () => {
       </div>
       <h2 className="aboutUs_contentHeading1">Thank you for choosing CLICK as your destination for exceptional cuisine and relaxation. We can't wait to welcome you!</h2>
       <Footer/>
-    </div>
+    </>
 
   );
 };
