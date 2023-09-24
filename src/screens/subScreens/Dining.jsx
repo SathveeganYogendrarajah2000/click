@@ -1,14 +1,13 @@
-import ReservationForm from "../components/ReservationForm";
 import "../../css/Dining.css";
 import food_1 from "../../assets/images/food_1.jpg";
 import food_2 from "../../assets/images/food_2.jpg";
 import food_3 from "../../assets/images/food_3.png";
 import food_4 from "../../assets/images/food_4.jpg";
-import "../../css/ReservationForm.css";
+
 
 function Dining() {
   return (
-    <div className="reservationForm_container">
+    
       <div className="dining_Container">
         <h2 className="dining_FindRes">Find Reservations</h2>
         <h1 className="dining_Heading">CLICK</h1>
@@ -54,8 +53,7 @@ function Dining() {
         <h3 className="dining_Heading">Main Course</h3>
         <h4 className="dining_ContentHeading">Oriental</h4>
       </div>
-      <ReservationForm />
-    </div>
+      
   );
 }
 export default Dining;
