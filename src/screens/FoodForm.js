@@ -9,7 +9,7 @@ const AddFoodForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [types, setTypes] = useState([]);
 
-  // Available food types
+  // Available food types (SAMPLE)
   const availableTypes = [
     "beverage",
     "main course",
@@ -34,7 +34,7 @@ const AddFoodForm = () => {
         name,
         price: parseFloat(price),
         type,
-        url: imageUrl, // Use the provided URL for the image
+        url: imageUrl,
       };
 
       await addDoc(collection(db, "foods"), foodData);
@@ -45,7 +45,7 @@ const AddFoodForm = () => {
       setType("");
       setImageUrl("");
 
-      // Optionally, you can show a success message to the user
+      //show a success message to the user
       alert("Food item added successfully!");
     } catch (error) {
       console.error("Error adding food item: ", error);

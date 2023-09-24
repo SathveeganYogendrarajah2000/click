@@ -9,6 +9,7 @@ import Carousel from "./components/Carousel";
 import table01 from "../assets/images/homePageTable01.jpg";
 import table02 from "../assets/images/homePageTable02.jpg";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { NavLink } from "react-router-dom";
 // import FloatingChatButton from "./components/FloatingChatButton";
 // import Chatbot from "./components/Chatbot";
 
@@ -181,10 +182,13 @@ const Home = () => {
           <div className="homepage_info_cards">
             <h1 className="homepage_info_cards_title">Dine In</h1>
             <div className="homepage_info_cards_tableCard">
-              <img src={table01} alt="" className="homepage_info_cards_img01" />
-              <button className="homepage_info_cards_button">
-                Reserve Your Tables
-              </button>
+              <img src={table01} alt="" className="homepage_info_cards_img" />
+              <NavLink className="homepage_info_cards_button" to="/dinein">
+                <button className="homepage_info_cards_button_btn">
+                  Reserve Your Tables
+                </button>
+              </NavLink>
+
               <img src={table02} alt="" className="homepage_info_cards_img02" />
             </div>
           </div>
