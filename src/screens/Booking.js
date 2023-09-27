@@ -15,16 +15,15 @@ import Experiences from "./subScreens/Experiences.jsx";
 import SearchBar from "./components/SearchBar.jsx";
 //import DineIn from "./DineIn.js";
 
+import { useSearchData } from "./components/SearchDataContext.js";
+
 const Booking = () => {
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-
-  const location = useLocation();
-  const searchData = location.state;
-  // console.log(searchData);
-
+  const { searchData } = useSearchData();
+  const adults = searchData.adults;
+  const children = searchData.children;
   // const adults = searchData.adults;
   // const children = searchData.children;
+  console.log(searchData);
 
   const style = {
     flexDirection: "row",

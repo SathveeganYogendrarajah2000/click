@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSearchData } from "./SearchDataContext";
 
 const SearchBar = () => {
-  const [searchData, setSearchData] = useState({
-    roomType: "",
-    checkInDate: null,
-    checkOutDate: null,
-    adults: 1,
-    children: 0,
-  });
+  // const [searchData, setSearchData] = useState({
+  //   roomType: "",
+  //   checkInDate: null,
+  //   checkOutDate: null,
+  //   adults: 1,
+  //   children: 0,
+  // });
+
+  const { searchData, setSearchData } = useSearchData();
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setSearchData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    navigate(`/booking/${searchData}`);
+    navigate(`/booking/guestrooms/standardrates`);
   };
 
   return (
@@ -22,9 +33,10 @@ const SearchBar = () => {
         <select
           className="bookingContainer_hero_searchbar_select-room"
           value={searchData.roomType}
-          onChange={(e) =>
-            setSearchData({ ...searchData, roomType: e.target.value })
-          }
+          // onChange={(e) =>
+          //   setSearchData({ ...searchData, roomType: e.target.value })
+          // }
+          onChange={handleInputChange}
         >
           <option value="">Select Room Type</option>
           <option value="suite">Suite Room</option>
@@ -46,9 +58,10 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_date-picker-section_picker"
               type="date"
               value={searchData.checkInDate}
-              onChange={(date) =>
-                setSearchData({ ...searchData, checkInDate: date.target.value })
-              }
+              // onChange={(date) =>
+              //   setSearchData({ ...searchData, checkInDate: date.target.value })
+              // }
+              onChange={handleInputChange}
             />
           </div>
           <div className="bookingContainer_hero_searchbar_date-picker-section-01">
@@ -63,12 +76,13 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_date-picker-section_picker"
               type="date"
               value={searchData.checkOutDate}
-              onChange={(date) =>
-                setSearchData({
-                  ...searchData,
-                  checkOutDate: date.target.value,
-                })
-              }
+              // onChange={(date) =>
+              //   setSearchData({
+              //     ...searchData,
+              //     checkOutDate: date.target.value,
+              //   })
+              // }
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -80,9 +94,10 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_people-section_input-people"
               type="number"
               value={searchData.adults}
-              onChange={(e) =>
-                setSearchData({ ...searchData, adults: e.target.value })
-              }
+              // onChange={(e) =>
+              //   setSearchData({ ...searchData, adults: e.target.value })
+              // }
+              onChange={handleInputChange}
             />
           </div>
           <div className="bookingContainer_hero_searchbar_people-section-item">
@@ -91,9 +106,10 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_people-section_input-people"
               type="number"
               value={searchData.children}
-              onChange={(e) =>
-                setSearchData({ ...searchData, children: e.target.value })
-              }
+              // onChange={(e) =>
+              //   setSearchData({ ...searchData, children: e.target.value })
+              // }
+              onChange={handleInputChange}
             />
           </div>
         </div>
