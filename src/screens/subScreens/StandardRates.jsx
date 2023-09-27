@@ -2,14 +2,16 @@ import RoomBookingCard from "../components/RoomBookingCard";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const StandardRates = () => {
   const [roomsDetails, setRoomsDetails] = useState([]); // Initialize state to hold data
 
+  // const params = useParams();
   const location = useLocation();
-  const searchData = location.state;
-  console.log(searchData);
+  const queryParams = new URLSearchParams(location.search);
+  // const searchData = location.state;
+  console.log(queryParams.get("searchData"));
 
   useEffect(() => {
     // Use an asynchronous function inside useEffect to fetch data

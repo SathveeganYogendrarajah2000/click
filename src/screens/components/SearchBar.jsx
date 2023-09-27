@@ -13,7 +13,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    navigate("/booking", { state: searchData });
+    navigate(`/booking/${searchData}`);
   };
 
   return (
