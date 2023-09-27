@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -38,7 +38,7 @@ const NavBar = (props) => {
       } else {
         setUser(null);
       }
-      console.log("Authentication state changed:", user);
+      // console.log("Authentication state changed:", user);
     });
     // Clean up the subscription when the component unmounts
     return () => unsubscribe();
@@ -64,9 +64,7 @@ const NavBar = (props) => {
         </NavLink>
       </div>
       <div className="navbar_links">
-        <NavLink exact to="/">
-          Home
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About Us</NavLink>
         <NavLink to="/contact">Contact</NavLink>
         <NavLink to="/booking/guestrooms/standardrates">Booking</NavLink>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchData, setSearchData] = useState({
@@ -9,8 +10,10 @@ const SearchBar = () => {
     children: 0,
   });
 
+  const navigate = useNavigate();
+
   const handleSearch = () => {
-    // Handle the search logic here
+    navigate("/booking", { state: searchData });
   };
 
   return (
