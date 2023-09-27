@@ -4,9 +4,6 @@ import { NavLink, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Offers from "./subScreens/Offers.jsx";
 import Dining from "./subScreens/Dining";
-import ReservationForm from "./components/ReservationForm";
-
-
 
 const DineIn = () => {
   return (
@@ -29,18 +26,12 @@ const DineIn = () => {
                 DineIn
             </NavLink>
         </div>
-        <div className="bookingContainer_content_nav_link">
-            <NavLink    
-                to ='/dinein/reservation'
-                className="bookingContainer_content_nav_text-wrapper">
-                Reservation
-            </NavLink>
-        </div>
+        
       </nav> 
       <Routes >
           <Route path="/" element={<Dining />} />
           <Route path="/offers" element={<Offers />} />
-          <Route path="/reservation" element={<ReservationForm />} />
+          
       </Routes>
       
       <Footer/>

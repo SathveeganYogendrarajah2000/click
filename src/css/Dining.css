@@ -1,13 +1,14 @@
 .dining_Container{
     display: flex;
     flex-direction: column;
+    max-width: 60%;
     margin-top: 5px;
     padding: 20px;
     background-color: #fcfdfd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-left: 10%;
-    margin-right: 10%;
+    
 }
 
 .dining_FindRes{

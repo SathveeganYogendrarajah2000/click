@@ -3,7 +3,7 @@
   padding: 20px;
   background-color: #fcfdfd;
   border-left: 3px solid #090130;;
- 
+  max-width: 30%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   
 }
@@ -55,8 +55,6 @@
 .reservationForm_container{
   display: flex;
   flex-direction: row;
-  margin-right: 10%;
-  margin-left: 10%;
-  
+ 
 }
 
