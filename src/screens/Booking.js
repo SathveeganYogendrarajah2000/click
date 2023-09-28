@@ -21,9 +21,7 @@ const Booking = () => {
   const { searchData } = useSearchData();
   const adults = searchData.adults;
   const children = searchData.children;
-  // const adults = searchData.adults;
-  // const children = searchData.children;
-  console.log(searchData);
+  // console.log(searchData);
 
   const style = {
     flexDirection: "row",

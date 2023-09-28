@@ -1,26 +1,15 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import IntroLogo from "../assets/images/Homepage_click_logo.png";
 import map from "../assets/images/mapForHome.jpeg";
-import { Fragment, useState } from "react";
-import NavBarStyled from "./components/NavBarStyled";
-import RoomCard from "./components/RoomCard";
+import { Fragment } from "react";
 import Carousel from "./components/Carousel";
 import SearchBar from "./components/SearchBar";
 import table01 from "../assets/images/homePageTable01.jpg";
 import table02 from "../assets/images/homePageTable02.jpg";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { NavLink } from "react-router-dom";
-// import FloatingChatButton from "./components/FloatingChatButton";
-// import Chatbot from "./components/Chatbot";
 
 const Home = () => {
-  // const [roomType, setRoomType] = useState("");
-  // const [checkInDate, setCheckInDate] = useState(null);
-  // const [checkOutDate, setCheckOutDate] = useState(null);
-  // const [adults, setAdults] = useState(1);
-  // const [children, setChildren] = useState(0);
-
   const roomData = [
     {
       imagePath:
@@ -54,10 +43,6 @@ const Home = () => {
     },
   ];
 
-  const handleSearch = () => {
-    // Handle the search logic here
-  };
-
   const style = {
     flexDirection: "row",
     width: "100%",
@@ -76,7 +61,7 @@ const Home = () => {
           className="homepage_hero bookingContainer_hero"
         >
           <NavBar style={style} />
-          <SearchBar />
+            <SearchBar />
         </div>
         {/* <div className="homepage_hero">
           <div className="homepage_hero_bottom">

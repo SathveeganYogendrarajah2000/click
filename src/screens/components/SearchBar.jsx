@@ -3,22 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useSearchData } from "./SearchDataContext";
 
 const SearchBar = () => {
-  // const [searchData, setSearchData] = useState({
-  //   roomType: "",
-  //   checkInDate: null,
-  //   checkOutDate: null,
-  //   adults: 1,
-  //   children: 0,
-  // });
-
   const { searchData, setSearchData } = useSearchData();
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setSearchData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    // console.log("handleInputChange called: " + name + " " + value);
   };
 
   const navigate = useNavigate();
@@ -33,6 +26,7 @@ const SearchBar = () => {
         <select
           className="bookingContainer_hero_searchbar_select-room"
           value={searchData.roomType}
+          name="roomType"
           // onChange={(e) =>
           //   setSearchData({ ...searchData, roomType: e.target.value })
           // }
@@ -57,6 +51,7 @@ const SearchBar = () => {
               id="date-picker-1"
               className="bookingContainer_hero_searchbar_date-picker-section_picker"
               type="date"
+              name="checkInDate"
               value={searchData.checkInDate}
               // onChange={(date) =>
               //   setSearchData({ ...searchData, checkInDate: date.target.value })
@@ -75,6 +70,7 @@ const SearchBar = () => {
               id="date-picker-2"
               className="bookingContainer_hero_searchbar_date-picker-section_picker"
               type="date"
+              name="checkOutDate"
               value={searchData.checkOutDate}
               // onChange={(date) =>
               //   setSearchData({
@@ -93,6 +89,7 @@ const SearchBar = () => {
             <input
               className="bookingContainer_hero_searchbar_people-section_input-people"
               type="number"
+              name="adults"
               value={searchData.adults}
               // onChange={(e) =>
               //   setSearchData({ ...searchData, adults: e.target.value })
@@ -105,6 +102,7 @@ const SearchBar = () => {
             <input
               className="bookingContainer_hero_searchbar_people-section_input-people"
               type="number"
+              name="children"
               value={searchData.children}
               // onChange={(e) =>
               //   setSearchData({ ...searchData, children: e.target.value })

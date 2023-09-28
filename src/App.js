@@ -24,8 +24,8 @@ function App() {
     console.log(isOpen);
   };
   return (
-    <div className="App">
-      <SearchDataProvider>
+    <SearchDataProvider>
+      <div className="App">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -45,11 +45,12 @@ function App() {
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </BrowserRouter>
-      </SearchDataProvider>
-      <FloatingChatButton onClick={() => toggleChatbot(!isChatbotOpen)} />
-      {/* <Chatbot isOpen={isChatbotOpen} toggleChatbot={toggleChatbot} /> */}
-      <Chatbot isOpen={isChatbotOpen} />
-    </div>
+
+        <FloatingChatButton onClick={() => toggleChatbot(!isChatbotOpen)} />
+        {/* <Chatbot isOpen={isChatbotOpen} toggleChatbot={toggleChatbot} /> */}
+        <Chatbot isOpen={isChatbotOpen} />
+      </div>
+    </SearchDataProvider>
   );
 }
 
