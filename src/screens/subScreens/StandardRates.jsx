@@ -7,7 +7,8 @@ import { useSearchData } from "../components/SearchDataContext";
 const StandardRates = () => {
   const [roomsDetails, setRoomsDetails] = useState([]); // Initialize state to hold data from Firebase
   const { searchData } = useSearchData();
-
+  const { roomType, checkInDate, checkOutDate, adults, children } = searchData;
+  
   useEffect(() => {
     // Use an asynchronous function inside useEffect to fetch data
     const fetchData = async () => {
@@ -25,6 +26,7 @@ const StandardRates = () => {
 
     fetchData(); // Call the async function to fetch data
   }, []); // Empty dependency array to fetch data once on component mount
+  // console.log(roomsDetails);
   return (
     <div className="guestroomContainer_rooms_standardrates">
       {/* {console.log(querySnapshot.data())} */}

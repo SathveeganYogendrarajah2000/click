@@ -15,6 +15,7 @@ import FloatingChatButton from "./screens/components/FloatingChatButton";
 import Chatbot from "./screens/components/Chatbot";
 import FoodForm from "./screens/FoodForm";
 import { SearchDataProvider } from "./screens/components/SearchDataContext";
+import AddRoomForm from "./screens/AddRoomForm";
 
 function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -42,6 +43,7 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/foodform" element={<FoodForm />} />
+            <Route path="/addroomform" element={<AddRoomForm />} />
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </BrowserRouter>

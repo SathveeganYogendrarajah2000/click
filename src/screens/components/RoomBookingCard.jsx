@@ -9,7 +9,7 @@ const RoomBookingCard = (props) => {
       <div className="roombookingcardContainer_image">
         <img
           className="roombookingcardContainer_image_picture-web"
-          alt="Room"
+          alt={props.name}
           src={props.imagePath}
         />
       </div>
