@@ -34,6 +34,14 @@
   border-radius: 5px;
 }
 
+.reservationForm_select{
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #2841e8;
+  border-radius: 5px;
+}
+
 .reservationForm_inputComment {
   width: 100%;
   padding: 5px;
