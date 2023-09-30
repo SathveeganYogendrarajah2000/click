@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../css/ReservationForm.css";
 import { db } from "../../../src/firebase.js";
-import { collection,  addDoc, Timestamp, query, where, getDocs} from "firebase/firestore";
+import { collection,  addDoc, Timestamp, query, where, getDocs, updateDoc} from "firebase/firestore";
 
 
 
@@ -79,18 +79,23 @@ function ReservationForm (){
         const querySnapshot = await getDocs(tableQuery);
         if (!querySnapshot.empty){
           const resultRef = querySnapshot.docs[0];
+          const resultDoc = querySnapshot.docs[0].ref; // Get the DocumentReference
           const fieldValue = resultRef.data()[timeslot]; 
           //alert(`result ID: ${resultRef.id} fieldvalue: ${fieldValue} `);
           if (fieldValue > 0){
-            //need to add code for decrement the count of available tables for the timeslot
-            alert(`result ID: ${resultRef.id} ${fieldValue} `);
+            // Decrement the specified field by 1
+            const updateObject = {
+              [timeslot] : fieldValue - 1
+            };
+            // Update the document with the decrement operation
+            await updateDoc(resultDoc, updateObject);
+            //alert("Document successfully updated with decrement!");
+            //alert(`result ID: ${resultRef.id} ${fieldValue} `);
           }
           else{
             alert("No available tables for the given timeslot.") ;
             return;
-          }
-          
-          
+          }          
         }
         else{
           tableAvailabilityData[timeslot]= 19;
@@ -117,7 +122,7 @@ function ReservationForm (){
     }
     // display alert message if reservation document didn't add to firestore database
     catch (error) {
-      alert("Reservation Adding Error. Please Retry.", error);
+      alert("Reservation Adding Error. Please Retry."+ error);
     }
      
     // set the fields to their default values  
