@@ -36,7 +36,20 @@ const SearchBar = () => {
           <option value="suite">Suite Room</option>
           <option value="single">Single Bedroom</option>
           <option value="double">Double Bedroom</option>
-          <option value="double">KING/TWIN</option>
+          <option value="king_twin">KING/TWIN</option>
+          <option value="family">Family Room</option>
+          <option value="penthouse">Penthouse</option>
+          <option value="deluxe">Deluxe Room</option>
+          <option value="executive">Executive Suite</option>
+          <option value="ocean_view">Ocean View Room</option>
+          <option value="garden_view">Garden View Room</option>
+          <option value="poolside">Poolside Room</option>
+          <option value="mountain_view">Mountain View Room</option>
+          <option value="connecting">Connecting Rooms</option>
+          <option value="accessible">Accessible Room</option>
+          <option value="honeymoon">Honeymoon Suite</option>
+          <option value="presidential">Presidential Suite</option>
+
           {/* Add more room types */}
         </select>
         <div className="bookingContainer_hero_searchbar_date-picker-section">

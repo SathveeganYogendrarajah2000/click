@@ -2,8 +2,11 @@ import { NavLink } from "react-router-dom";
 
 import bedType from "../../assets/images/bedType.png";
 import maximumOccoumpany from "../../assets/images/maximumOccoumpany.png";
+import { useSearchData } from "./SearchDataContext";
 
 const RoomBookingCard = (props) => {
+  const { searchData } = useSearchData();
+  
   return (
     <div className="roombookingcardContainer">
       <div className="roombookingcardContainer_image">
