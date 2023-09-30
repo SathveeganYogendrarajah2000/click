@@ -21,7 +21,6 @@ const StandardRates = () => {
         setRoomsDetails(roomData);
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
-        console.error("Error fetching data:", error);
         setLoading(false); // Set loading to false in case of an error
       }
     };
