@@ -12,15 +12,6 @@ const CheckoutPage = () => {
   const [roomData, setRoomData] = useState(null);
   const { searchData } = useSearchData();
   const { roomType, checkInDate, checkOutDate, adults, children } = searchData;
-  // const [roomDetails, setRoomDetails] = useState({
-  //   name: "Sample Room Name",
-  //   type: { roomType },
-  //   checkInDate: { checkInDate },
-  //   checkOutDate: { checkOutDate },
-  //   adults: { adults },
-  //   children: { children },
-  //   pricePerNight: 167,
-  // });
 
   const roomsRef = collection(db, "rooms");
 
@@ -47,17 +38,6 @@ const CheckoutPage = () => {
 
     fetchRoomData();
   }, [roomQuery]);
-  // console.log(roomData.price);
-
-  // const [roomDetails, setRoomDetails] = useState({
-  //   name: "Sample Room Name",
-  //   type: "Suite",
-  //   checkInDate: "2023-09-15",
-  //   checkOutDate: "2023-09-20",
-  //   adults: 2,
-  //   children: 1,
-  //   pricePerNight: 167,
-  // });
 
   // Function to calculate the total price based on the number of nights
   const calculateTotalPrice = () => {
@@ -186,9 +166,8 @@ const CheckoutPage = () => {
               id="adults"
               className="checkout-container_customerDetails_input"
               value={adults}
-              // onChange={(e) =>
-              //   setRoomDetails({ ...roomDetails, adults: e.target.value })
-              // }
+              // onChange={(e) => {adults = e.target.value}}
+              disabled
             />
           </div>
           <div className="checkout-container_customerDetails_inputSec">
@@ -203,9 +182,8 @@ const CheckoutPage = () => {
               id="children"
               className="checkout-container_customerDetails_input"
               value={children}
-              // onChange={(e) =>
-              //   setRoomDetails({ ...roomDetails, children: e.target.value })
-              // }
+              // onChange={(e) => {children = e.target.value}}
+              disabled
             />
           </div>
           <div className="checkout-container_customerDetails_inputSec">
@@ -221,12 +199,6 @@ const CheckoutPage = () => {
               className="checkout-container_customerDetails_input"
               value={roomData ? roomData.price : "404: not found"}
               disabled
-              // onChange={(e) =>
-              //   setRoomDetails({
-              //     ...roomDetails,
-              //     pricePerNight: e.target.value,
-              //   })
-              // }
             />
           </div>
           <p className="checkout-container_customerDetails_totalPrice">

@@ -6,7 +6,6 @@ import { useSearchData } from "./SearchDataContext";
 
 const RoomBookingCard = (props) => {
   const { searchData } = useSearchData();
-  
   return (
     <div className="roombookingcardContainer">
       <div className="roombookingcardContainer_image">

@@ -13,8 +13,6 @@ const SearchBar = () => {
     roomType: "Please select a room type",
     checkInDate: "Please select a check-in date",
     checkOutDate: "Please select a check-out date",
-    adults: "Please enter the number of adults",
-    children: "Please enter the number of children",
   };
 
   // Reset the state whenever the route changes
@@ -34,11 +32,6 @@ const SearchBar = () => {
     let newErrors = { ...errors }; // Create a copy of current errors
 
     // Reset specific errors when corresponding input is changed
-    if (name === "adults" || name === "children") {
-      delete newErrors.adults;
-      delete newErrors.children;
-    }
-
     if (name === "checkInDate") {
       delete newErrors.checkInDate;
     }
@@ -111,9 +104,6 @@ const SearchBar = () => {
           className="bookingContainer_hero_searchbar_select-room"
           value={searchData.roomType}
           name="roomType"
-          // onChange={(e) =>
-          //   setSearchData({ ...searchData, roomType: e.target.value })
-          // }
           onChange={handleInputChange}
         >
           <option value="">Select Room Type</option>
@@ -133,8 +123,6 @@ const SearchBar = () => {
           <option value="accessible">Accessible Room</option>
           <option value="honeymoon">Honeymoon Suite</option>
           <option value="presidential">Presidential Suite</option>
-
-          {/* Add more room types */}
         </select>
         <div className="bookingContainer_hero_searchbar_date-picker-section">
           <div className="bookingContainer_hero_searchbar_date-picker-section-01">
@@ -150,9 +138,6 @@ const SearchBar = () => {
               type="date"
               name="checkInDate"
               value={searchData.checkInDate}
-              // onChange={(date) =>
-              //   setSearchData({ ...searchData, checkInDate: date.target.value })
-              // }
               onChange={handleInputChange}
             />
           </div>
@@ -169,12 +154,6 @@ const SearchBar = () => {
               type="date"
               name="checkOutDate"
               value={searchData.checkOutDate}
-              // onChange={(date) =>
-              //   setSearchData({
-              //     ...searchData,
-              //     checkOutDate: date.target.value,
-              //   })
-              // }
               onChange={handleInputChange}
             />
           </div>
@@ -188,9 +167,6 @@ const SearchBar = () => {
               type="number"
               name="adults"
               value={searchData.adults}
-              // onChange={(e) =>
-              //   setSearchData({ ...searchData, adults: e.target.value })
-              // }
               onChange={handleInputChange}
             />
           </div>
@@ -201,9 +177,6 @@ const SearchBar = () => {
               type="number"
               name="children"
               value={searchData.children}
-              // onChange={(e) =>
-              //   setSearchData({ ...searchData, children: e.target.value })
-              // }
               onChange={handleInputChange}
             />
           </div>
