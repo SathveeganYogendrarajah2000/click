@@ -15,6 +15,7 @@ function ReservationForm (){
   const [time, setTime] =useState("");
   const [timeslot, setTimeslot] =useState("");
   const [comments, setComments] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   // get the tommorrow date to restrict the date object values for current and past dates
   const today = new Date();
   const tomorrow = new Date(today);
@@ -65,7 +66,7 @@ function ReservationForm (){
   // Function to handle form submission
   const handleReserveNow = async (e) => {
     e.preventDefault();
-
+    setIsButtonDisabled(true);
     try {
       // Check if any of the required fields are empty
       if (!name || !email || !contactnumber || !guests || !date || !time) {
@@ -94,13 +95,13 @@ function ReservationForm (){
           }
           else{
             alert("No available tables for the given timeslot.") ;
+            setIsButtonDisabled(false);
             return;
           }          
         }
         else{
           tableAvailabilityData[timeslot]= 19;
-          const resultRef = await addDoc(tablesRef, tableAvailabilityData);
-          alert(`result ID: ${resultRef.id}`);
+          await addDoc(tablesRef, tableAvailabilityData);
         }  
         // Create a reservation data object using form details
         const reservationData = {
@@ -134,6 +135,7 @@ function ReservationForm (){
     setTime("");
     setTimeslot("");
     setComments("");
+    setIsButtonDisabled(false);
   };
 
 
@@ -151,6 +153,7 @@ function ReservationForm (){
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            disabled={isButtonDisabled}
             required
           />
         </div>
@@ -164,6 +167,7 @@ function ReservationForm (){
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={isButtonDisabled}
             required
           />
         </div>
@@ -177,6 +181,7 @@ function ReservationForm (){
             id="contactnumber"
             value={contactnumber}
             onChange={(e) => setContactNumber(e.target.value)}
+            disabled={isButtonDisabled}
             required
           />
         </div>
@@ -190,6 +195,7 @@ function ReservationForm (){
             id="guests"
             value={guests}
             onChange={(e) => setGuests(parseInt(e.target.value))}
+            disabled={isButtonDisabled}
             min="1"
             max ="12"
             required
@@ -205,6 +211,7 @@ function ReservationForm (){
             id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            disabled={isButtonDisabled}
             min={tomorrowFormatted} 
             required
           />
@@ -218,6 +225,7 @@ function ReservationForm (){
             id="time"
             value={time}
             onChange={handleTimeSlotChange}
+            disabled={isButtonDisabled}
             required>
             <option value="">Select a Timeslot</option>
             <option value="08am-11am">08am-11am</option>
@@ -237,13 +245,15 @@ function ReservationForm (){
             id="comments"
             value={comments}
             onChange={(e) => setComments(e.target.value)}
+            disabled={isButtonDisabled}
           />
         </div>
         
         <button
           type="submit"
-          className="reservation-formButton"
+          className={isButtonDisabled ? 'reservation-formDisabledButton' : 'reservation-formButton'}
           onClick={handleReserveNow} 
+          disabled={isButtonDisabled}
         >
           Reserve Now
         </button>
