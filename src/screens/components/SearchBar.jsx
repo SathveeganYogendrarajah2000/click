@@ -6,6 +6,12 @@ const SearchBar = () => {
   const { searchData, setSearchData } = useSearchData();
   // Initialize the errors object with predefined error messages
   const [errors, setErrors] = useState({});
+  const [account, setAccount] = useState({
+    checkInDate: "",
+    checkOutDate: "",
+    reason: "",
+    leavetype: "",
+  });
   const location = useLocation();
 
   // Initialize the errors object with predefined error messages
@@ -23,6 +29,7 @@ const SearchBar = () => {
       checkOutDate: "",
       adults: 1,
       children: 0,
+      inputFieldUpdated: false,
     });
     setErrors(initialErrors);
   }, [location.pathname, setSearchData]);
@@ -42,16 +49,6 @@ const SearchBar = () => {
 
     if (name === "roomType") {
       delete newErrors.roomType;
-    }
-
-    // Validate adults and children
-    if (name === "adults" || name === "children") {
-      const intValue = parseInt(value, 10);
-      if (isNaN(intValue) || intValue < 0) {
-        newErrors.count = "Value must be a non-negative number";
-      } else {
-        delete newErrors.count; // Clear the error if the input is valid
-      }
     }
 
     // Validate date inputs
@@ -78,6 +75,8 @@ const SearchBar = () => {
       [name]: value,
     }));
     setErrors(newErrors);
+
+    setAccount({ ...account, [name]: value }); // set account state
   };
 
   const navigate = useNavigate();
@@ -90,6 +89,11 @@ const SearchBar = () => {
       searchData.checkInDate &&
       searchData.checkOutDate
     ) {
+      // Update the searchData and errors state
+      setSearchData((prevData) => ({
+        ...prevData,
+        inputFieldUpdated: true,
+      }));
       navigate(`/booking/guestrooms/standardrates`);
     } else {
       // Show a browser alert message with all accumulated errors
@@ -137,6 +141,7 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_date-picker-section_picker"
               type="date"
               name="checkInDate"
+              min={new Date().toISOString().split("T")[0]}
               value={searchData.checkInDate}
               onChange={handleInputChange}
             />
@@ -153,6 +158,11 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_date-picker-section_picker"
               type="date"
               name="checkOutDate"
+              min={
+                account.startdate
+                  ? new Date(account.startdate).toISOString().split("T")[0]
+                  : ""
+              }
               value={searchData.checkOutDate}
               onChange={handleInputChange}
             />
@@ -166,6 +176,8 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_people-section_input-people"
               type="number"
               name="adults"
+              min={1}
+              max={5}
               value={searchData.adults}
               onChange={handleInputChange}
             />
@@ -176,6 +188,8 @@ const SearchBar = () => {
               className="bookingContainer_hero_searchbar_people-section_input-people"
               type="number"
               name="children"
+              min={0}
+              max={5}
               value={searchData.children}
               onChange={handleInputChange}
             />

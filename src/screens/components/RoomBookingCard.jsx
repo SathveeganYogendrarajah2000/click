@@ -61,7 +61,10 @@ const RoomBookingCard = (props) => {
 
           <div className="roombookingcardContainer_details_c2_row2">
             <NavLink to={`/checkout/${props.roomID}`}>
-              <button className="button-2 roombookingcardContainer_details_c2_row2_btn">
+              <button
+                className="button-2 roombookingcardContainer_details_c2_row2_btn"
+                disabled={!searchData.inputFieldUpdated}
+              >
                 VIEW RATES
               </button>
             </NavLink>

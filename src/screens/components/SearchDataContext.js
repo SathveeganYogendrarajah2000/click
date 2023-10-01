@@ -11,6 +11,7 @@ export const SearchDataProvider = ({ children }) => {
     checkOutDate: null,
     adults: 1,
     children: 0,
+    inputFieldUpdated: false,
   });
 
   return (
