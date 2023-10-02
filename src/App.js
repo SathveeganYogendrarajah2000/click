@@ -22,7 +22,6 @@ function App() {
 
   const toggleChatbot = (isOpen) => {
     setIsChatbotOpen(isOpen);
-    console.log(isOpen);
   };
   return (
     <SearchDataProvider>
@@ -47,9 +46,7 @@ function App() {
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </BrowserRouter>
-
         <FloatingChatButton onClick={() => toggleChatbot(!isChatbotOpen)} />
-        {/* <Chatbot isOpen={isChatbotOpen} toggleChatbot={toggleChatbot} /> */}
         <Chatbot isOpen={isChatbotOpen} />
       </div>
     </SearchDataProvider>

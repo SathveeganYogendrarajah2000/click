@@ -11,7 +11,6 @@ const FloatingChatButton = ({ onClick }) => {
     right: "20px", 
     background: "#aa7938", 
     color: "#fff", 
-    // padding: '10px 20px',
     cursor: "pointer",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     zIndex: "1000", // Ensure the button is above other content

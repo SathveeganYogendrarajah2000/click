@@ -61,7 +61,7 @@ const Home = () => {
           className="homepage_hero bookingContainer_hero"
         >
           <NavBar style={style} />
-            <SearchBar />
+          <SearchBar />
         </div>
         {/* <div className="homepage_hero">
           <div className="homepage_hero_bottom">

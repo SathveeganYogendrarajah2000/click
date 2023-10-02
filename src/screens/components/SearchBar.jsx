@@ -3,36 +3,43 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useSearchData } from "./SearchDataContext";
 
 const SearchBar = () => {
-  const { searchData, setSearchData } = useSearchData();
-  // Initialize the errors object with predefined error messages
-  const [errors, setErrors] = useState({});
-  const [account, setAccount] = useState({
+  const { searchData, setSearchData } = useSearchData({
+    roomType: "", // Set default values for all fields here
     checkInDate: "",
     checkOutDate: "",
-    reason: "",
-    leavetype: "",
+    adults: 1,
+    children: 0,
   });
-  const location = useLocation();
-
+  const [error, showError] = useState(true);
   // Initialize the errors object with predefined error messages
+
   const initialErrors = {
     roomType: "Please select a room type",
     checkInDate: "Please select a check-in date",
     checkOutDate: "Please select a check-out date",
   };
 
+  const [errors, setErrors] = useState(initialErrors);
+  const [account, setAccount] = useState({
+    checkInDate: "",
+    checkOutDate: "",
+  });
+  // const location = useLocation();
+
+  // Initialize the errors object with predefined error messages
+
   // Reset the state whenever the route changes
-  useEffect(() => {
-    setSearchData({
-      roomType: "", // Set default values for all fields here
-      checkInDate: "",
-      checkOutDate: "",
-      adults: 1,
-      children: 0,
-      inputFieldUpdated: false,
-    });
-    setErrors(initialErrors);
-  }, [location.pathname, setSearchData]);
+  // useEffect(() => {
+  //   setSearchData({
+  //     roomType: "", // Set default values for all fields here
+  //     checkInDate: "",
+  //     checkOutDate: "",
+  //     adults: 1,
+  //     children: 0,
+  //     inputFieldUpdated: false,
+  //   });
+  //   setErrors(initialErrors);
+  // }, [location.pathname, setSearchData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -99,8 +106,16 @@ const SearchBar = () => {
       // Show a browser alert message with all accumulated errors
       const errorMessages = Object.values(errors).join("\n");
       alert("Please fix the following errors:\n" + errorMessages);
+      setSearchData({
+        roomType: "", // Set default values for all fields here
+        checkInDate: "",
+        checkOutDate: "",
+        adults: 1,
+        children: 0,
+      });
     }
   };
+  
   return (
     <div>
       <div className="bookingContainer_hero_searchbar">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
 
 import NavBar from "./components/NavBar";
@@ -10,8 +10,12 @@ import { useSearchData } from "./components/SearchDataContext";
 const CheckoutPage = () => {
   const { roomId } = useParams();
   const [roomData, setRoomData] = useState(null);
-  const { searchData } = useSearchData();
-  const { roomType, checkInDate, checkOutDate, adults, children } = searchData;
+  const navigate = useNavigate();
+
+  const initialCapacity = roomData ? roomData.capacity : 0;
+  // const [remainingCapacity, setRemainingCapacity] = useState(initialCapacity); // [adults, children]
+
+  const { searchData, setSearchData } = useSearchData();
 
   const roomsRef = collection(db, "rooms");
 
@@ -42,48 +46,39 @@ const CheckoutPage = () => {
   // Function to calculate the total price based on the number of nights
   const calculateTotalPrice = () => {
     if (!roomData) return 0;
-    const checkIn = new Date(checkInDate);
-    const checkOut = new Date(checkOutDate);
+    const checkIn = new Date(searchData.checkInDate);
+    const checkOut = new Date(searchData.checkOutDate);
     const numberOfNights = (checkOut - checkIn) / (1000 * 60 * 60 * 24); // Calculate nights
     return numberOfNights * roomData.price;
   };
+
+  const handleAdultsChange = (e) => {
+    const newValue = parseInt(e.target.value);
+    if (!isNaN(newValue) && newValue > 0) {
+      setSearchData((prevData) => ({
+        ...prevData,
+        adults: newValue,
+      }));
+      // setRemainingCapacity(initialCapacity - newValue);
+    }
+  };
+
+  const handleChildrenChange = (e) => {
+    const newValue = parseInt(e.target.value);
+    if (!isNaN(newValue) && newValue >= 0) {
+      setSearchData((prevData) => ({
+        ...prevData,
+        children: newValue,
+      }));
+      // setRemainingCapacity(initialCapacity - newValue);
+    }
+  };
+
   return (
     <>
       <NavBar />
       <div className="checkout-container">
-        <div className="checkout-container_roomDetails">
-          {roomData ? (
-            <>
-              <div className="checkout-container_roomDetails_container">
-                <h1 className="checkout-container_roomDetails_name">
-                  {roomData.name}
-                </h1>
-                <p className="checkout-container_roomDetails_price">
-                  Price: ${roomData.price} per night
-                </p>
-                <p className="checkout-container_roomDetails_type">
-                  Type: {roomData.type}
-                </p>
-                <p className="checkout-container_roomDetails_capacity">
-                  Capacity: {roomData.capacity} guests
-                </p>
-                <p className="checkout-container_roomDetails_description">
-                  Description: {roomData.description}
-                </p>
-              </div>
-              <img
-                className="checkout-container_roomDetails_img"
-                src={roomData.picturePath}
-                alt={roomData.name}
-              />
-            </>
-          ) : (
-            <p className="checkout-container_roomDetails_loading">
-              Loading room data...
-            </p>
-          )}
-        </div>
-
+        {/********** Customer Details ***********/}
         <div className="checkout-container_customerDetails">
           <h1 className="checkout-container_customerDetails_title">
             Room Details
@@ -129,11 +124,13 @@ const CheckoutPage = () => {
               type="date"
               id="checkInDate"
               className="checkout-container_customerDetails_input"
-              value={roomData ? checkInDate : "404: not found"}
-              disabled
-              // onChange={(e) =>
-              //   setRoomDetails({ ...roomDetails, checkInDate: e.target.value })
-              // }
+              value={roomData ? searchData.checkInDate : "404: not found"}
+              onChange={(e) =>
+                setSearchData((prevData) => ({
+                  ...prevData,
+                  checkInDate: e.target.value,
+                }))
+              }
             />
           </div>
           <div className="checkout-container_customerDetails_inputSec">
@@ -147,11 +144,13 @@ const CheckoutPage = () => {
               type="date"
               id="checkOutDate"
               className="checkout-container_customerDetails_input"
-              value={roomData ? checkOutDate : "404: not found"}
-              disabled
-              // onChange={(e) =>
-              //   setRoomDetails({ ...roomDetails, checkOutDate: e.target.value })
-              // }
+              value={roomData ? searchData.checkOutDate : "404: not found"}
+              onChange={(e) =>
+                setSearchData((prevData) => ({
+                  ...prevData,
+                  checkOutDate: e.target.value,
+                }))
+              }
             />
           </div>
           <div className="checkout-container_customerDetails_inputSec">
@@ -163,11 +162,12 @@ const CheckoutPage = () => {
             </label>
             <input
               type="number"
+              min={1}
+              // max={roomData.capacity}
               id="adults"
               className="checkout-container_customerDetails_input"
-              value={adults}
-              // onChange={(e) => {adults = e.target.value}}
-              disabled
+              value={searchData.adults}
+              onChange={handleAdultsChange}
             />
           </div>
           <div className="checkout-container_customerDetails_inputSec">
@@ -179,11 +179,12 @@ const CheckoutPage = () => {
             </label>
             <input
               type="number"
+              min={0}
+              // max={roomData.capacity}
               id="children"
               className="checkout-container_customerDetails_input"
-              value={children}
-              // onChange={(e) => {children = e.target.value}}
-              disabled
+              value={searchData.children}
+              onChange={handleChildrenChange}
             />
           </div>
           <div className="checkout-container_customerDetails_inputSec">
@@ -204,9 +205,55 @@ const CheckoutPage = () => {
           <p className="checkout-container_customerDetails_totalPrice">
             Total Price: ${calculateTotalPrice()}
           </p>
-          <button className="checkout-container_customerDetails_confirm-button">
-            Confirm Booking
-          </button>
+          <div className="checkout-container_customerDetails_buttonSec">
+            <button className="checkout-container_customerDetails_buttonSec_button">
+              Confirm Booking
+            </button>
+            <button
+              className="checkout-container_customerDetails_buttonSec_button"
+              onClick={() => {
+                try {
+                  navigate(`/booking/guestrooms/standardrates`);
+                } catch (error) {
+                  console.error("Error navigating:", error);
+                }
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+        <div className="checkout-container_roomDetails">
+          {roomData ? (
+            <>
+              <div className="checkout-container_roomDetails_container">
+                <h1 className="checkout-container_roomDetails_name">
+                  {roomData.name}
+                </h1>
+                <p className="checkout-container_roomDetails_price">
+                  Price: ${roomData.price} per night
+                </p>
+                <p className="checkout-container_roomDetails_type">
+                  Type: {roomData.type}
+                </p>
+                <p className="checkout-container_roomDetails_capacity">
+                  Capacity: {roomData.capacity} guests
+                </p>
+                <p className="checkout-container_roomDetails_description">
+                  Description: {roomData.description}
+                </p>
+              </div>
+              <img
+                className="checkout-container_roomDetails_img"
+                src={roomData.picturePath}
+                alt={roomData.name}
+              />
+            </>
+          ) : (
+            <p className="checkout-container_roomDetails_loading">
+              Loading room data...
+            </p>
+          )}
         </div>
       </div>
       <Footer />
