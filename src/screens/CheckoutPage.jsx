@@ -4,6 +4,8 @@ import { db } from "../firebase";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import PaymentModal from "./components/PaymentModal";
+
 import { collection, query, where, getDocs } from "@firebase/firestore";
 import { useSearchData } from "./components/SearchDataContext";
 
@@ -11,6 +13,26 @@ const CheckoutPage = () => {
   const { roomId } = useParams();
   const [roomData, setRoomData] = useState(null);
   const navigate = useNavigate();
+
+  const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
+
+  // Additional state to track payment success or failure
+  const [isPaymentSuccessful, setPaymentSuccessful] = useState(false);
+
+  const openPaymentModal = () => {
+    setPaymentModalOpen(true);
+  };
+
+  const closePaymentModal = () => {
+    setPaymentModalOpen(false);
+    // Reset payment success state if needed
+    setPaymentSuccessful(false);
+  };
+
+  const handlePayment = () => {
+    const paymentSuccess = true; // Replace with your actual logic
+    setPaymentSuccessful(paymentSuccess);
+  };
 
   const initialCapacity = roomData ? roomData.capacity : 0;
   // const [remainingCapacity, setRemainingCapacity] = useState(initialCapacity); // [adults, children]
@@ -206,7 +228,10 @@ const CheckoutPage = () => {
             Total Price: ${calculateTotalPrice()}
           </p>
           <div className="checkout-container_customerDetails_buttonSec">
-            <button className="checkout-container_customerDetails_buttonSec_button">
+            <button
+              className="checkout-container_customerDetails_buttonSec_button"
+              onClick={openPaymentModal}
+            >
               Confirm Booking
             </button>
             <button
@@ -222,6 +247,13 @@ const CheckoutPage = () => {
               Cancel
             </button>
           </div>
+          {isPaymentModalOpen && (
+            <PaymentModal
+              onClose={closePaymentModal}
+              onPayment={handlePayment}
+              paymentSuccessful={isPaymentSuccessful}
+            />
+          )}
         </div>
         <div className="checkout-container_roomDetails">
           {roomData ? (

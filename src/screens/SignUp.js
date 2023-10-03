@@ -102,9 +102,9 @@ const SignUp = () => {
           lastName: lastName,
           role: "customer",
         });
-        console.log("Document written with ID: ", docRef.id);
+        // console.log("Document written with ID: ", docRef.id);
 
-        console.log(userCredential);
+        // console.log(userCredential);
         navigate("/");
       })
       .catch((error) => {
