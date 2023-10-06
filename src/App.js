@@ -13,35 +13,43 @@ import UserProfile from "./screens/UserProfile";
 import { useState } from "react";
 import FloatingChatButton from "./screens/components/FloatingChatButton";
 import Chatbot from "./screens/components/Chatbot";
+import FoodForm from "./screens/FoodForm";
+import { SearchDataProvider } from "./screens/components/SearchDataContext";
+import AddRoomForm from "./screens/AddRoomForm";
 
 function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const toggleChatbot = (isOpen) => {
     setIsChatbotOpen(isOpen);
-    console.log(isOpen);
   };
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/userprofile" element={<UserProfile />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/booking/*" element={<Booking />} />
-          <Route path="/checkout/:roomId" element={<CheckoutPage />} />
-          <Route path="/dinein/*" element={<DineIn />} />
-          <Route path="/dinein/findReservation" element={<FindReservation />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
-      </BrowserRouter>
-      <FloatingChatButton onClick={() => toggleChatbot(!isChatbotOpen)} />
-      {/* <Chatbot isOpen={isChatbotOpen} toggleChatbot={toggleChatbot} /> */}
-      <Chatbot isOpen={isChatbotOpen} />
-    </div>
+    <SearchDataProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/booking/*" element={<Booking />} />
+            <Route path="/userprofile" element={<UserProfile />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/checkout/:roomId" element={<CheckoutPage />} />
+            <Route path="/dinein/*" element={<DineIn />} />
+            <Route
+              path="/dinein/findReservation"
+              element={<FindReservation />}
+            />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/foodform" element={<FoodForm />} />
+            <Route path="/addroomform" element={<AddRoomForm />} />
+            <Route path="*" element={<h1>Not Found</h1>} />
+          </Routes>
+        </BrowserRouter>
+        <FloatingChatButton onClick={() => toggleChatbot(!isChatbotOpen)} />
+        <Chatbot isOpen={isChatbotOpen} />
+      </div>
+    </SearchDataProvider>
   );
 }
 

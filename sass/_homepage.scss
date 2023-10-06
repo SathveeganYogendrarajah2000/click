@@ -70,26 +70,17 @@
         height: 100%;
       }
 
-      &_img01 {
+      &_img {
         width: 100%;
         height: 40%;
-        // background-image: url("../assets/images/homepage_info01.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
       }
-      &_img02 {
-        width: 100%;
-        height: 40%;
-        // background-image: url("../assets/images/homepage_info02.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      }
+
       &_button {
         width: 100%;
         height: 10%;
-        font-size: 24px;
         background-color: #d29751;
         display: flex;
         justify-content: center;
@@ -98,6 +89,13 @@
         transition: all 0.3s ease-in-out;
         &:hover {
           background-color: #f2c078;
+        }
+
+        &_btn {
+          border: none;
+          background-color: #d29751;
+          font-size: 24px;
+          font-style: italic;
         }
       }
     }
@@ -109,7 +107,6 @@
     flex-direction: column;
     gap: 16px;
     padding: 0 128px;
-    // padding-bottom: 24px;
     position: relative;
     justify-content: flex-start;
 
@@ -127,11 +124,6 @@
       height: 80%;
       width: 100%;
       border-radius: 10px;
-      // background-image: url("./assets/images/bedType.png");
-      // background-image: url("src\assets\images\mapForHome.jpeg");
-      // background-repeat: no-repeat;
-      // background-size: cover;
-      // background-position: center;
     }
   }
 }

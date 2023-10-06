@@ -1,15 +1,42 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 import bedType from "../../assets/images/bedType.png";
 import maximumOccoumpany from "../../assets/images/maximumOccoumpany.png";
+import { useSearchData } from "./SearchDataContext";
 
 const RoomBookingCard = (props) => {
+  const { searchData } = useSearchData();
+  const [showTooltip, setShowTooltip] = useState(false); // State to control the tooltip visibility
+
+  const handleMouseEnter = () => {
+    if (!searchData.inputFieldUpdated) {
+      setShowTooltip(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
+
+  const tooltipStyle = {
+    position: "absolute",
+    backgroundColor: "#333",
+    color: "#fff",
+    padding: "8px",
+    borderRadius: "4px",
+    top: "100%", // Position below the button
+    left: "50%", // Centered horizontally
+    transform: "translateX(-50%)", // Centered horizontally
+    zIndex: 1, // Ensure it's above other elements
+  };
+
   return (
     <div className="roombookingcardContainer">
       <div className="roombookingcardContainer_image">
         <img
           className="roombookingcardContainer_image_picture-web"
-          alt="Room"
+          alt={props.name}
           src={props.imagePath}
         />
       </div>
@@ -44,7 +71,7 @@ const RoomBookingCard = (props) => {
             </div>
           </div>
           <div className="roombookingcardContainer_details_c1_row2">
-            Double glazed windows to ensure its sound proof
+            Double glazed windows to ensure its soundproof
           </div>
         </div>
         <div className="div-room-rate-wrap roombookingcardContainer_details_c2">
@@ -57,11 +84,25 @@ const RoomBookingCard = (props) => {
             </div>
           </div>
 
-          <div className="roombookingcardContainer_details_c2_row2">
+          <div
+            className="roombookingcardContainer_details_c2_row2"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <NavLink to={`/checkout/${props.roomID}`}>
-              <button className="button-2 roombookingcardContainer_details_c2_row2_btn">
+              <button
+                className="button-2 roombookingcardContainer_details_c2_row2_btn"
+                disabled={!searchData.inputFieldUpdated}
+                onMouseEnter={() => setShowTooltip(true)} // Show tooltip on hover
+                onMouseLeave={() => setShowTooltip(false)} // Hide tooltip on mouse leave
+              >
                 VIEW RATES
               </button>
+              {showTooltip && !searchData.inputFieldUpdated && (
+                <div style={tooltipStyle} className="tooltip">
+                  Please fill the Search fields!
+                </div>
+              )}
             </NavLink>
           </div>
         </div>

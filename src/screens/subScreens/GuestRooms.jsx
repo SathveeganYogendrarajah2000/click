@@ -54,7 +54,6 @@ const GuestRooms = (props) => {
           </div>
           <nav className="guestroomContainer_rooms_navbar">
             <NavLink
-              exact
               to="/booking/guestrooms/standardrates"
               className="guestroomContainer_rooms_navbar_item"
             >
