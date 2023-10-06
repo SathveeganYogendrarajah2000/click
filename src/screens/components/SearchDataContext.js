@@ -14,6 +14,8 @@ export const SearchDataProvider = ({ children }) => {
     inputFieldUpdated: false,
   });
 
+  
+
   return (
     <SearchDataContext.Provider value={{ searchData, setSearchData }}>
       {children}
