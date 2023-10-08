@@ -1,40 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import PaymentModal from "./components/PaymentModal";
+
 import { collection, query, where, getDocs } from "@firebase/firestore";
+import { useSearchData } from "./components/SearchDataContext";
 
 const CheckoutPage = () => {
   const { roomId } = useParams();
   const [roomData, setRoomData] = useState(null);
-  const [roomDetails, setRoomDetails] = useState({
-    name: "Sample Room Name",
-    type: "Suite",
-    checkInDate: "2023-09-15",
-    checkOutDate: "2023-09-20",
-    adults: 2,
-    children: 1,
-    pricePerNight: 167,
-  });
+  const navigate = useNavigate();
 
-  // Create a reference to the "rooms" collection
+  const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
+
+  // Additional state to track payment success or failure
+  const [isPaymentSuccessful, setPaymentSuccessful] = useState(false);
+
+  const openPaymentModal = () => {
+    setPaymentModalOpen(true);
+  };
+
+  const closePaymentModal = () => {
+    setPaymentModalOpen(false);
+    // Reset payment success state if needed
+    setPaymentSuccessful(false);
+  };
+
+  const handlePayment = () => {
+    const paymentSuccess = true; // Replace with your actual logic
+    setPaymentSuccessful(paymentSuccess);
+  };
+
+  const initialCapacity = roomData ? roomData.capacity : 0;
+  // const [remainingCapacity, setRemainingCapacity] = useState(initialCapacity); // [adults, children]
+
+  const { searchData, setSearchData } = useSearchData();
+
   const roomsRef = collection(db, "rooms");
 
-  // Create a query to filter documents where the "roomID" field matches the roomId
   const roomQuery = query(roomsRef, where("roomID", "==", roomId));
 
   useEffect(() => {
-    // Use getDocs to fetch documents that match the query
     const fetchRoomData = async () => {
       try {
         const querySnapshot = await getDocs(roomQuery);
         if (!querySnapshot.empty) {
-          // Get the first document from the query snapshot
           const docSnap = querySnapshot.docs[0];
           if (docSnap.exists()) {
-            // Document exists, set the data to state
             setRoomData(docSnap.data());
           } else {
             console.log("No such document!");
@@ -52,15 +67,194 @@ const CheckoutPage = () => {
 
   // Function to calculate the total price based on the number of nights
   const calculateTotalPrice = () => {
-    const checkIn = new Date(roomDetails.checkInDate);
-    const checkOut = new Date(roomDetails.checkOutDate);
+    if (!roomData) return 0;
+    const checkIn = new Date(searchData.checkInDate);
+    const checkOut = new Date(searchData.checkOutDate);
     const numberOfNights = (checkOut - checkIn) / (1000 * 60 * 60 * 24); // Calculate nights
-    return numberOfNights * roomDetails.pricePerNight;
+    return numberOfNights * roomData.price;
   };
+
+  const handleAdultsChange = (e) => {
+    const newValue = parseInt(e.target.value);
+    if (!isNaN(newValue) && newValue > 0) {
+      setSearchData((prevData) => ({
+        ...prevData,
+        adults: newValue,
+      }));
+      // setRemainingCapacity(initialCapacity - newValue);
+    }
+  };
+
+  const handleChildrenChange = (e) => {
+    const newValue = parseInt(e.target.value);
+    if (!isNaN(newValue) && newValue >= 0) {
+      setSearchData((prevData) => ({
+        ...prevData,
+        children: newValue,
+      }));
+      // setRemainingCapacity(initialCapacity - newValue);
+    }
+  };
+
   return (
     <>
       <NavBar />
       <div className="checkout-container">
+        {/********** Customer Details ***********/}
+        <div className="checkout-container_customerDetails">
+          <h1 className="checkout-container_customerDetails_title">
+            Room Details
+          </h1>
+          <div className="checkout-container_customerDetails_inputSec">
+            <label
+              htmlFor="customerName"
+              className="checkout-container_customerDetails_label"
+            >
+              Name:
+            </label>
+            <input
+              type="text"
+              id="customerName"
+              className="checkout-container_customerDetails_input"
+              value={roomData ? roomData.name : "404: not found"}
+              disabled
+            />
+          </div>
+          <div className="checkout-container_customerDetails_inputSec">
+            <label
+              htmlFor="customerType"
+              className="checkout-container_customerDetails_label"
+            >
+              Type:
+            </label>
+            <input
+              type="text"
+              id="customerType"
+              className="checkout-container_customerDetails_input"
+              value={roomData ? roomData.type : "404: not found"}
+              disabled
+            />
+          </div>
+          <div className="checkout-container_customerDetails_inputSec">
+            <label
+              htmlFor="checkInDate"
+              className="checkout-container_customerDetails_label"
+            >
+              Check-in Date:
+            </label>
+            <input
+              type="date"
+              id="checkInDate"
+              className="checkout-container_customerDetails_input"
+              value={roomData ? searchData.checkInDate : "404: not found"}
+              onChange={(e) =>
+                setSearchData((prevData) => ({
+                  ...prevData,
+                  checkInDate: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className="checkout-container_customerDetails_inputSec">
+            <label
+              htmlFor="checkOutDate"
+              className="checkout-container_customerDetails_label"
+            >
+              Check-out Date:
+            </label>
+            <input
+              type="date"
+              id="checkOutDate"
+              className="checkout-container_customerDetails_input"
+              value={roomData ? searchData.checkOutDate : "404: not found"}
+              onChange={(e) =>
+                setSearchData((prevData) => ({
+                  ...prevData,
+                  checkOutDate: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className="checkout-container_customerDetails_inputSec">
+            <label
+              htmlFor="adults"
+              className="checkout-container_customerDetails_label"
+            >
+              Adults:
+            </label>
+            <input
+              type="number"
+              min={1}
+              // max={roomData.capacity}
+              id="adults"
+              className="checkout-container_customerDetails_input"
+              value={searchData.adults}
+              onChange={handleAdultsChange}
+            />
+          </div>
+          <div className="checkout-container_customerDetails_inputSec">
+            <label
+              htmlFor="children"
+              className="checkout-container_customerDetails_label"
+            >
+              Children:
+            </label>
+            <input
+              type="number"
+              min={0}
+              // max={roomData.capacity}
+              id="children"
+              className="checkout-container_customerDetails_input"
+              value={searchData.children}
+              onChange={handleChildrenChange}
+            />
+          </div>
+          <div className="checkout-container_customerDetails_inputSec">
+            <label
+              htmlFor="pricePerNight"
+              className="checkout-container_customerDetails_label"
+            >
+              Price per Night:
+            </label>
+            <input
+              type="number"
+              id="pricePerNight"
+              className="checkout-container_customerDetails_input"
+              value={roomData ? roomData.price : "404: not found"}
+              disabled
+            />
+          </div>
+          <p className="checkout-container_customerDetails_totalPrice">
+            Total Price: ${calculateTotalPrice()}
+          </p>
+          <div className="checkout-container_customerDetails_buttonSec">
+            <button
+              className="checkout-container_customerDetails_buttonSec_button"
+              onClick={openPaymentModal}
+            >
+              Confirm Booking
+            </button>
+            <button
+              className="checkout-container_customerDetails_buttonSec_button"
+              onClick={() => {
+                try {
+                  navigate(`/booking/guestrooms/standardrates`);
+                } catch (error) {
+                  console.error("Error navigating:", error);
+                }
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+          {isPaymentModalOpen && (
+            <PaymentModal
+              onClose={closePaymentModal}
+              onPayment={handlePayment}
+              paymentSuccessful={isPaymentSuccessful}
+            />
+          )}
+        </div>
         <div className="checkout-container_roomDetails">
           {roomData ? (
             <>
@@ -92,140 +286,6 @@ const CheckoutPage = () => {
               Loading room data...
             </p>
           )}
-        </div>
-
-        <div className="checkout-container_customerDetails">
-          <h1 className="checkout-container_customerDetails_title">
-            Room Details
-          </h1>
-          <div className="checkout-container_customerDetails_inputSec">
-            <label
-              htmlFor="customerName"
-              className="checkout-container_customerDetails_label"
-            >
-              Name:
-            </label>
-            <input
-              type="text"
-              id="customerName"
-              className="checkout-container_customerDetails_input"
-              value={roomDetails.name}
-              onChange={(e) =>
-                setRoomDetails({ ...roomDetails, name: e.target.value })
-              }
-            />
-          </div>
-          <div className="checkout-container_customerDetails_inputSec">
-            <label
-              htmlFor="customerType"
-              className="checkout-container_customerDetails_label"
-            >
-              Type:
-            </label>
-            <input
-              type="text"
-              id="customerType"
-              className="checkout-container_customerDetails_input"
-              value={roomDetails.type}
-              onChange={(e) =>
-                setRoomDetails({ ...roomDetails, type: e.target.value })
-              }
-            />
-          </div>
-          <div className="checkout-container_customerDetails_inputSec">
-            <label
-              htmlFor="checkInDate"
-              className="checkout-container_customerDetails_label"
-            >
-              Check-in Date:
-            </label>
-            <input
-              type="date"
-              id="checkInDate"
-              className="checkout-container_customerDetails_input"
-              value={roomDetails.checkInDate}
-              onChange={(e) =>
-                setRoomDetails({ ...roomDetails, checkInDate: e.target.value })
-              }
-            />
-          </div>
-          <div className="checkout-container_customerDetails_inputSec">
-            <label
-              htmlFor="checkOutDate"
-              className="checkout-container_customerDetails_label"
-            >
-              Check-out Date:
-            </label>
-            <input
-              type="date"
-              id="checkOutDate"
-              className="checkout-container_customerDetails_input"
-              value={roomDetails.checkOutDate}
-              onChange={(e) =>
-                setRoomDetails({ ...roomDetails, checkOutDate: e.target.value })
-              }
-            />
-          </div>
-          <div className="checkout-container_customerDetails_inputSec">
-            <label
-              htmlFor="adults"
-              className="checkout-container_customerDetails_label"
-            >
-              Adults:
-            </label>
-            <input
-              type="number"
-              id="adults"
-              className="checkout-container_customerDetails_input"
-              value={roomDetails.adults}
-              onChange={(e) =>
-                setRoomDetails({ ...roomDetails, adults: e.target.value })
-              }
-            />
-          </div>
-          <div className="checkout-container_customerDetails_inputSec">
-            <label
-              htmlFor="children"
-              className="checkout-container_customerDetails_label"
-            >
-              Children:
-            </label>
-            <input
-              type="number"
-              id="children"
-              className="checkout-container_customerDetails_input"
-              value={roomDetails.children}
-              onChange={(e) =>
-                setRoomDetails({ ...roomDetails, children: e.target.value })
-              }
-            />
-          </div>
-          <div className="checkout-container_customerDetails_inputSec">
-            <label
-              htmlFor="pricePerNight"
-              className="checkout-container_customerDetails_label"
-            >
-              Price per Night:
-            </label>
-            <input
-              type="number"
-              id="pricePerNight"
-              className="checkout-container_customerDetails_input"
-              value={roomDetails.pricePerNight}
-              onChange={(e) =>
-                setRoomDetails({
-                  ...roomDetails,
-                  pricePerNight: e.target.value,
-                })
-              }
-            />
-          </div>
-          <p className="checkout-container_customerDetails_totalPrice">
-            Total Price: ${calculateTotalPrice()}
-          </p>
-          <button className="checkout-container_customerDetails_confirm-button">
-            Confirm Booking
-          </button>
         </div>
       </div>
       <Footer />

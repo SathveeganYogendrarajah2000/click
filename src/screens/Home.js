@@ -1,21 +1,15 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import IntroLogo from "../assets/images/Homepage_click_logo.png";
-import { Fragment, useState } from "react";
-import NavBarStyled from "./components/NavBarStyled";
-import RoomCard from "./components/RoomCard";
+import map from "../assets/images/mapForHome.jpeg";
+import { Fragment } from "react";
 import Carousel from "./components/Carousel";
+import SearchBar from "./components/SearchBar";
 import table01 from "../assets/images/homePageTable01.jpg";
 import table02 from "../assets/images/homePageTable02.jpg";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
-  const [roomType, setRoomType] = useState("");
-  const [checkInDate, setCheckInDate] = useState(null);
-  const [checkOutDate, setCheckOutDate] = useState(null);
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-
   const roomData = [
     {
       imagePath:
@@ -49,10 +43,6 @@ const Home = () => {
     },
   ];
 
-  const handleSearch = () => {
-    // Handle the search logic here
-  };
-
   const style = {
     flexDirection: "row",
     width: "100%",
@@ -71,80 +61,7 @@ const Home = () => {
           className="homepage_hero bookingContainer_hero"
         >
           <NavBar style={style} />
-          <div className="bookingContainer_hero_searchbar">
-            <select
-              className="bookingContainer_hero_searchbar_select-room"
-              value={roomType}
-              onChange={(e) => setRoomType(e.target.value)}
-            >
-              <option value="">Select Room Type</option>
-              <option value="suite">Suite Room</option>
-              <option value="single">Single Bedroom</option>
-              <option value="double">Double Bedroom</option>
-              <option value="double">KING/TWIN</option>
-              {/* Add more room types */}
-            </select>
-            <div className="bookingContainer_hero_searchbar_date-picker-section">
-              <div className="bookingContainer_hero_searchbar_date-picker-section-01">
-                <label
-                  className="bookingContainer_hero_searchbar_date-picker-section_label"
-                  htmlFor="date-picker-1"
-                >
-                  Check-in
-                </label>
-                <input
-                  id="date-picker-1"
-                  className="bookingContainer_hero_searchbar_date-picker-section_picker"
-                  type="date"
-                  value={checkInDate}
-                  onChange={(date) => setCheckInDate(date)}
-                />
-              </div>
-              <div className="bookingContainer_hero_searchbar_date-picker-section-01">
-                <label
-                  className="bookingContainer_hero_searchbar_date-picker-section_label"
-                  htmlFor="date-picker-2"
-                >
-                  Check-out
-                </label>
-                <input
-                  id="date-picker-2"
-                  className="bookingContainer_hero_searchbar_date-picker-section_picker"
-                  type="date"
-                  value={checkOutDate}
-                  onChange={(date) => setCheckOutDate(date)}
-                />
-              </div>
-            </div>
-
-            <div className="bookingContainer_hero_searchbar_people-section">
-              <div className="bookingContainer_hero_searchbar_people-section-item">
-                <label style={{ color: "#fff" }}>Adults:</label>
-                <input
-                  className="bookingContainer_hero_searchbar_people-section_input-people"
-                  type="number"
-                  value={adults}
-                  onChange={(e) => setAdults(e.target.value)}
-                />
-              </div>
-              <div className="bookingContainer_hero_searchbar_people-section-item">
-                <label style={{ color: "#fff" }}>Children:</label>
-                <input
-                  className="bookingContainer_hero_searchbar_people-section_input-people"
-                  type="number"
-                  value={children}
-                  onChange={(e) => setChildren(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <button
-              className="bookingContainer_hero_searchbar_check-button"
-              onClick={handleSearch}
-            >
-              Check Availability
-            </button>
-          </div>
+          <SearchBar />
         </div>
         {/* <div className="homepage_hero">
           <div className="homepage_hero_bottom">
@@ -178,16 +95,20 @@ const Home = () => {
           <div className="homepage_info_cards">
             <h1 className="homepage_info_cards_title">Dine In</h1>
             <div className="homepage_info_cards_tableCard">
-              <img src={table01} alt="" className="homepage_info_cards_img01" />
-              <button className="homepage_info_cards_button">
-                Reserve Your Tables
-              </button>
+              <img src={table01} alt="" className="homepage_info_cards_img" />
+              <NavLink className="homepage_info_cards_button" to="/dinein">
+                <button className="homepage_info_cards_button_btn">
+                  Reserve Your Tables
+                </button>
+              </NavLink>
+
               <img src={table02} alt="" className="homepage_info_cards_img02" />
             </div>
           </div>
         </div>
         <div className="homepage_map">
           <div className="homepage_map_title">Location</div>
+          <img src={map} alt="Google Map" className="homepage_map_img" />
           {/* <MapContainer
             className="homepage_map_container"
             center={[51.505, -0.09]}
@@ -207,6 +128,13 @@ const Home = () => {
           </MapContainer> */}
         </div>
       </div>
+      {/* <iframe
+        title="chatbot"
+        allow="microphone;"
+        width="350"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/b03404e7-69c4-435b-92a2-3c2d464fb635"
+      ></iframe> */}
       <Footer />
     </Fragment>
   );

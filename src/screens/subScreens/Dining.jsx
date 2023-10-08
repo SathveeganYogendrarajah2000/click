@@ -4,14 +4,23 @@ import food_2 from "../../assets/images/food_2.jpg";
 import food_3 from "../../assets/images/food_3.png";
 import food_4 from "../../assets/images/food_4.jpg";
 import ReservationForm from "../components/ReservationForm";
+import { useNavigate } from "react-router";
 
 // function for display dining page
 function Dining() {
+  const navigate = useNavigate();
   return (
     <div className="reservationForm_container">
       
       <div className="dining_Container">
-        <h2 className="dining_FindRes">Find Reservations</h2>
+        <button
+          onClick={() => {
+            navigate("/dinein/findReservation");
+          }}
+          className="dining_FindRes"
+        >
+          Find Reservations
+        </button>
         <h1 className="dining_Heading">CLICK</h1>
 
         <p className="dining_Paragraph">

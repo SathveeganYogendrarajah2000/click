@@ -70,26 +70,17 @@
         height: 100%;
       }
 
-      &_img01 {
+      &_img {
         width: 100%;
         height: 40%;
-        // background-image: url("../assets/images/homepage_info01.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
       }
-      &_img02 {
-        width: 100%;
-        height: 40%;
-        // background-image: url("../assets/images/homepage_info02.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      }
+
       &_button {
         width: 100%;
         height: 10%;
-        font-size: 24px;
         background-color: #d29751;
         display: flex;
         justify-content: center;
@@ -99,24 +90,40 @@
         &:hover {
           background-color: #f2c078;
         }
+
+        &_btn {
+          border: none;
+          background-color: #d29751;
+          font-size: 24px;
+          font-style: italic;
+        }
       }
     }
   }
   &_map {
-    height: 300px;
+    height: 500px;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding: 0 128px;
+    position: relative;
+    justify-content: flex-start;
 
     &_title {
       text-align: center;
       font-family: "Bubbler One-Regular", Helvetica;
       font-size: xx-large;
+      width: 100%;
     }
     &_container {
       height: 100%;
       width: 100%;
+    }
+    &_img {
+      height: 80%;
+      width: 100%;
+      border-radius: 10px;
     }
   }
 }
