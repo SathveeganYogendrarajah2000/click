@@ -123,7 +123,7 @@ function ReservationForm (){
     }
     // display alert message if reservation document didn't add to firestore database
     catch (error) {
-      alert("Reservation Adding Error. Please Retry."+ error);
+      alert("Reservation Adding Error. Please Retry.");
     }
      
     // set the fields to their default values  

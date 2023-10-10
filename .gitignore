@@ -24,3 +24,4 @@ yarn-error.log*
 
 Database.js
 .env
+firebase.js

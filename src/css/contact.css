@@ -59,7 +59,19 @@
     height: 40px;
     margin-top: 50px;
     margin-bottom: 15px;
-     
+    border-color: none;
+}
+
+.contact_submitDisabledButton{
+    color: #ffffff;
+    width: 30%;
+    align-items:center;
+    background-color: #2d2c2b;
+    border-radius: 6px;
+    height: 40px;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    border-color: none;
 }
 
 .contact_buttonContainer{
