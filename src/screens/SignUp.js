@@ -1,7 +1,7 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase.js";
 
