@@ -72,6 +72,8 @@ const PaymentModal = ({ onClose, onPayment }) => {
     // Simulate payment processing (you can replace this with actual payment logic).
     // For this example, we consider it successful if all fields are filled.
     if (paymentMethod && cardNumber && expirationDate && cvv) {
+
+
       setPaymentSuccess(true);
       onPayment(); // You can replace this with actual payment processing.
     }

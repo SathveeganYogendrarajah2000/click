@@ -1,23 +1,37 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import PaymentModal from "./components/PaymentModal";
 
-import { collection, query, where, getDocs } from "@firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "@firebase/firestore";
 import { useSearchData } from "./components/SearchDataContext";
 
 const CheckoutPage = () => {
   const { roomId } = useParams();
   const [roomData, setRoomData] = useState(null);
+  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
 
   const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
 
   // Additional state to track payment success or failure
   const [isPaymentSuccessful, setPaymentSuccessful] = useState(false);
+
+  // Listen for auth state changes
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const openPaymentModal = () => {
     setPaymentModalOpen(true);
@@ -29,7 +43,16 @@ const CheckoutPage = () => {
     setPaymentSuccessful(false);
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
+    addDoc(collection(db, "bookings"), {
+      roomID: roomId,
+      userID: user.uid,
+      checkInDate: searchData.checkInDate,
+      checkOutDate: searchData.checkOutDate,
+      adults: searchData.adults,
+      children: searchData.children,
+      totalPrice: calculateTotalPrice(),
+    });
     const paymentSuccess = true; // Replace with your actual logic
     setPaymentSuccessful(paymentSuccess);
   };
