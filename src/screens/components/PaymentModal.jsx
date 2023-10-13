@@ -4,8 +4,6 @@ import { auth } from "../../firebase";
 import { db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-import { useSearchData } from "./SearchDataContext";
-
 const PaymentModal = ({ onClose, onPayment }) => {
   const [currentStep, setCurrentStep] = useState(1); // Track the current step
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -21,8 +19,6 @@ const PaymentModal = ({ onClose, onPayment }) => {
   const [userDetails, setUserDetails] = useState([]);
 
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-
-  const { searchData } = useSearchData();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -72,8 +68,6 @@ const PaymentModal = ({ onClose, onPayment }) => {
     // Simulate payment processing (you can replace this with actual payment logic).
     // For this example, we consider it successful if all fields are filled.
     if (paymentMethod && cardNumber && expirationDate && cvv) {
-
-
       setPaymentSuccess(true);
       onPayment(); // You can replace this with actual payment processing.
     }

@@ -193,7 +193,7 @@ const SearchBar = () => {
               name="adults"
               min={1}
               max={5}
-              value={searchData.adults}
+              value={parseInt(searchData.adults, 10)}
               onChange={handleInputChange}
             />
           </div>
@@ -205,7 +205,7 @@ const SearchBar = () => {
               name="children"
               min={0}
               max={5}
-              value={searchData.children}
+              value={parseInt(searchData.children, 10)}
               onChange={handleInputChange}
             />
           </div>
