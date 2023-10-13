@@ -45,29 +45,45 @@
 
 .offers_imageContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 10%;
     width: fit-content ;
     height: fit-content;
-    border-top: 2px solid #d29751;
+    
 }
 
 .offers_image{
     display: flex;
-    flex-direction: column;
-    padding: 10px;
+    flex-direction: row;
+    align-items: center;
+    margin-right:5%;
+    margin-left:5%;
+    margin-top: 2%;
+    padding-top: 2%;
+    border-top: 2px solid #d29751;
 }
 
 .offers_button{
-    width:  350px;
+    width:  650px;
     height: 30px;
     font-size: medium;
     background-color: #d29751;
     border-color: #d29751;
-    color: aliceblue;
+    color: white;
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.offers_details{
+    
+    padding-left: 30px;
+    
+}
+
+.offers_additionalDetails{
+    text-align: left;
+   
 }
