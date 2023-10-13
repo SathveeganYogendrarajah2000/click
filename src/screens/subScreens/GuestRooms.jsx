@@ -64,7 +64,7 @@ const GuestRooms = (props) => {
                 from $150 per night
               </div>
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/booking/guestrooms/memberrates"
               className="guestroomContainer_rooms_navbar_item"
             >
@@ -85,12 +85,12 @@ const GuestRooms = (props) => {
               <div className="guestroomContainer_rooms_navbar_item_price">
                 from $125 per night
               </div>
-            </NavLink>
+            </NavLink> */}
           </nav>
           <Routes>
             <Route path="/standardrates" element={<StandardRates />} />
-            <Route path="/memberrates" element={<MemberRates />} />
-            <Route path="/packagerates" element={<PackageRates />} />
+            {/* <Route path="/memberrates" element={<MemberRates />} />
+            <Route path="/packagerates" element={<PackageRates />} /> */}
           </Routes>
         </div>
         <div className="guestroomContainer_offers">
