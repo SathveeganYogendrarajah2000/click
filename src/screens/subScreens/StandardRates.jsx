@@ -23,9 +23,11 @@ const StandardRates = () => {
           // Filter the data based on your criteria here
           const filteredData = roomData.filter((bookingCard) => {
             const matchRoomType = bookingCard.type === roomType;
-            const matchCapacity = bookingCard.capacity >= adults + children;
+            const matchCapacity =
+              bookingCard.capacity >=
+              parseInt(adults, 10) + parseInt(children, 10);
             const matchAvailability = bookingCard.availability > 0;
-
+  
             // Return true if all conditions match
             return matchRoomType && matchCapacity && matchAvailability;
           });
