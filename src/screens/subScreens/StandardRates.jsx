@@ -1,13 +1,13 @@
 import RoomBookingCard from "../components/RoomBookingCard";
 import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, where, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useSearchData } from "../components/SearchDataContext";
 
 const StandardRates = () => {
   const [roomsDetails, setRoomsDetails] = useState([]);
   const { searchData } = useSearchData();
-  const { roomType, checkInDate, checkOutDate, adults, children } = searchData;
+  const { roomType, adults, children, inputFieldUpdated } = searchData;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,20 +18,37 @@ const StandardRates = () => {
         querySnapshot.forEach((doc) => {
           roomData.push(doc.data());
         });
-        setRoomsDetails(roomData);
+
+        if (inputFieldUpdated) {
+          // Filter the data based on your criteria here
+          const filteredData = roomData.filter((bookingCard) => {
+            const matchRoomType = bookingCard.type === roomType;
+            const matchCapacity =
+              bookingCard.capacity >=
+              parseInt(adults, 10) + parseInt(children, 10);
+            // Return true if all conditions match
+            return matchRoomType && matchCapacity;
+          });
+
+          setRoomsDetails(filteredData);
+        } else {
+          // No need to filter, set the data as is
+          setRoomsDetails(roomData);
+        }
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         setLoading(false); // Set loading to false in case of an error
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [inputFieldUpdated, roomType, adults, children]);
 
   return (
     <div className="guestroomContainer_rooms_standardrates">
       {loading ? (
-        <p>Loading...</p> // Display a loading message while data is being fetched
+        <p>Loading...</p>
       ) : (
         roomsDetails.map((bookingCard, index) => (
           <RoomBookingCard
