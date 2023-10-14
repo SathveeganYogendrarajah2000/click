@@ -71,6 +71,7 @@ function ReservationForm (){
       // Check if any of the required fields are empty
       if (!name || !email || !contactnumber || !guests || !date || !time) {
         alert('Required Fields Incomplete. Please Fill.');
+        setIsButtonDisabled(false);
         return;
       }      
       else{
