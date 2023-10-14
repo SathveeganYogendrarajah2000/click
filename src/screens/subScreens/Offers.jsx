@@ -3,13 +3,15 @@ import "../../css/Dining.css";
 import offers_1 from "../../assets/images/offers_1.jpg";
 import offers_2 from "../../assets/images/offers_2.jpg";
 import offers_3 from "../../assets/images/offers_3.jpg";
+import { useState } from "react";
+
 
 
 function Offers(){
-  function viewOffers(){
-    return(
-      <p>details</p>
-    );
+  const [showDetails, setShowDetails] = useState(false);
+
+  const viewOffers =()=>{
+    setShowDetails(!showDetails)
   };
 
   return (   
@@ -31,38 +33,55 @@ function Offers(){
         <h3 className="offers_contentHeading3">Recommended Offers</h3>
         <div className="offers_imageContainer">
           <div className="offers_image">
-            <img src={offers_1} alt="offers_1" width= "350px" height= "250px" />
-            <div>
+            <img src={offers_1} alt="offers_1" width= "400px" height= "250px" />
+            <div className="offers_details">
               <p style={{textAlign:"center"}}>Dining</p>
               <p style={{textAlign:"center"}}> 10 Jan 2023 - 30 Dec 2023</p>
-              <p style={{textAlign:"center"}}>Daily Dinner Buffer at Central</p>
-              <p style={{textAlign:"center"}}>Immerse your self in the most action-packed dinner buffet experience in the city.</p>
-            </div>
-            <button onClick={viewOffers} className="offers_button">View details</button>
-          </div>
-          <div className="offers_image">
-            <img src={offers_2} alt="offers_2" width= "350px" height= "250px" />
-            <div>
-              <p style={{textAlign:"center"}}>Dining</p>
-              <p style={{textAlign:"center"}}> 10 Jan 2023 - 30 Dec 2023</p>
-              <p style={{textAlign:"center"}}>Daily Dinner Buffer at Central</p>
-              <p style={{textAlign:"center"}}>Immerse your self in the most action-packed dinner buffet experience in the city.</p>
-            </div>
-            <button onClick={viewOffers} className="offers_button">View details</button>
-          </div>
-          <div className="offers_image">
-            <img src={offers_3} alt="offers_3" width= "350px" height= "250px" />
-            <div>
-              <p style={{textAlign:"center"}}>Dining</p>
-              <p style={{textAlign:"center"}}> 10 Jan 2023 - 30 Dec 2023</p>
-              <p style={{textAlign:"center"}}>Daily Dinner Buffer at Central</p>
-              <p style={{textAlign:"center"}}>Immerse your self in the most action-packed dinner buffet experience in the city.</p>
-          
+              <p > Daily Dinner Buffer at Central. Immerse your self in the most action-packed dinner buffet experience in the city.</p>
+              <button onClick={viewOffers} className="offers_button">View Additional Details</button>
+              {showDetails && (
+                <div className="offers_additionalDetails">
+                  <p style={{textAlign:"center"}}>Additional details:</p>
+                  <p>Location: Central Restaurant</p>
+                  <p>Price: $20 per person</p>
+                </div>
+              )}
             </div>
             
-            <button onClick={viewOffers} className="offers_button">View details</button>
-           
+          </div>
+          <div className="offers_image">
+            <img src={offers_2} alt="offers_2" width= "400px" height= "250px" />
+            <div className="offers_details">
+              <p style={{textAlign:"center"}}>Dining</p>
+              <p style={{textAlign:"center"}}> 16 Jan 2023 - 31 Jan 2023</p>
+              <p>Indulge in the city's most thrilling dinner buffet extravaganza at Central. Treat yourself to a nightly feast like no other. </p>
+              <button onClick={viewOffers} className="offers_button">View Additional Details</button>
+              {showDetails && (
+                <div className="offers_additonalDetails">
+                  <p>Additional details:</p>
+                  <p>Location: Central Restaurant</p>
+                  <p>Price: $15 per person</p>
+                </div>
+              )}
+            </div>
             
+          </div>
+          <div className="offers_image">
+            <img src={offers_3} alt="offers_3" width= "400px" height= "250px" />
+            <div className="offers_details">
+              <p style={{textAlign:"center"}}>Dining</p>
+              <p style={{textAlign:"center"}}> 10 Jan 2023 - 30 Dec 2023</p>
+              <p style={{textAlign:"center"}}>Daily Dinner Buffer at Central</p>
+              <p style={{textAlign:"center"}}>Immerse your self in the most action-packed dinner buffet experience in the city.</p>
+              <button onClick={viewOffers} className="offers_button">View details</button>
+              {showDetails && (
+                <div className="offers_additionalDetails">
+                  <p>Additional details:</p>
+                  <p>Location: Central Restaurant</p>
+                  <p>Price: $20 per person</p>
+                </div>
+              )}
+            </div>      
           </div>
         </div>
       </div>
