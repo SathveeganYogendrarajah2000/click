@@ -18,25 +18,8 @@ const StandardRates = () => {
         querySnapshot.forEach((doc) => {
           roomData.push(doc.data());
         });
+        setRoomsDetails(roomData);
 
-        if (inputFieldUpdated) {
-          // Filter the data based on your criteria here
-          const filteredData = roomData.filter((bookingCard) => {
-            const matchRoomType = bookingCard.type === roomType;
-            const matchCapacity =
-              bookingCard.capacity >=
-              parseInt(adults, 10) + parseInt(children, 10);
-            const matchAvailability = bookingCard.availability > 0;
-  
-            // Return true if all conditions match
-            return matchRoomType && matchCapacity && matchAvailability;
-          });
-
-          setRoomsDetails(filteredData);
-        } else {
-          // No need to filter, set the data as is
-          setRoomsDetails(roomData);
-        }
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         setLoading(false); // Set loading to false in case of an error
@@ -45,6 +28,32 @@ const StandardRates = () => {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const filterData = () => {
+      try {
+        if (inputFieldUpdated) {
+          // Filter the data based on your criteria here
+          const filteredData = roomsDetails.filter((bookingCard) => {
+            const matchRoomType = bookingCard.type === roomType;
+            const matchCapacity =
+              bookingCard.capacity >=
+              parseInt(adults, 10) + parseInt(children, 10);
+
+            // Return true if all conditions match
+            return matchRoomType && matchCapacity;
+          });
+
+          setRoomsDetails(filteredData);
+        }
+      } catch (error) {
+        setLoading(false); // Set loading to false in case of an error
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    filterData();
   }, [inputFieldUpdated, roomType, adults, children]);
 
   return (
