@@ -1,16 +1,17 @@
-import ReservationForm from "../components/ReservationForm";
 import "../../css/Dining.css";
 import food_1 from "../../assets/images/food_1.jpg";
 import food_2 from "../../assets/images/food_2.jpg";
 import food_3 from "../../assets/images/food_3.png";
 import food_4 from "../../assets/images/food_4.jpg";
-import "../../css/ReservationForm.css";
+import ReservationForm from "../components/ReservationForm";
 import { useNavigate } from "react-router";
 
+// function for display dining page
 function Dining() {
   const navigate = useNavigate();
   return (
     <div className="reservationForm_container">
+      
       <div className="dining_Container">
         <button
           onClick={() => {
@@ -63,8 +64,8 @@ function Dining() {
         <h3 className="dining_Heading">Main Course</h3>
         <h4 className="dining_ContentHeading">Oriental</h4>
       </div>
-      <ReservationForm />
-    </div>
+      <ReservationForm/>
+    </div>  
   );
 }
 export default Dining;

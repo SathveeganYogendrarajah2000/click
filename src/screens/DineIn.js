@@ -41,10 +41,12 @@ const DineIn = () => {
             DineIn
           </NavLink>
         </div>
+        
       </nav>
       <Routes>
         <Route path="/" element={<Dining />} />
         <Route path="/offers" element={<Offers />} />
+          
       </Routes>
 
       <Footer />

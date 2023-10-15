@@ -5,12 +5,101 @@ import pic2 from "../assets/images/findReservFood02.jpeg";
 import pic3 from "../assets/images/findReservFood03.jpeg";
 import pic4 from "../assets/images/findReservFood04.jpeg";
 import pic5 from "../assets/images/findReservFood05.jpeg";
+import { useState } from "react";
+import {db} from "../../src/firebase.js";
+import { deleteDoc,getDocs,collection,query,where,updateDoc} from "firebase/firestore";
 
 const FindReservation = () => {
-  const handleSubmit = (e) => {
+  const [confNum,setConfNum]=useState("");
+  const [reservationData, setReservationData]=useState(null);
+  //get the reference of the document which is corresponding for given confirmation number
+  
+  const handleCancel = async (e)=>{
+    try{
+      //code for increment the available table for particular timeslot
+      const tablesRef = collection(db,"tables_availability");
+      const tableQuery = query(tablesRef, where("date", "==",  reservationData.resDate));
+      //alert(" tablequery got");
+      getDocs(tableQuery)
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const resultDoc = querySnapshot.docs[0];
+          const resultDocRef = querySnapshot.docs[0].ref;
+          const fieldValue = resultDoc.data()[reservationData.resTime];
+
+          if (fieldValue < 20) {
+            const updateObject = {
+              [reservationData.resTime]: fieldValue + 1
+            };
+
+            return updateDoc(resultDocRef, updateObject);
+          }
+        } else {
+          alert("empty querysnapshot.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error querying Firestore:", error);
+      });
+      // code for Delete the document
+      const docRef = collection(db,"reservations");
+      const q = query(docRef, where('confirmationNum', '==', confNum));
+      // Fetch the documents that match the query
+      getDocs(q)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((docSnap) => {
+          // Delete the document
+          deleteDoc(docSnap.ref)
+            .then(() => {
+              alert('Document successfully deleted.');
+            })
+            .catch((error) => {
+              console.error('Error deleting document:', error);
+            });
+        });
+      })
+      .catch((error) => {
+        console.error('Error fetching document:', error);
+      });
+    }
+    catch(error){
+      alert("Error occured:"+error);
+    }
+    setConfNum("");
+    setReservationData(null);
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Your reservation has been found!");
+    try{
+      if(!confNum){
+        alert("Required field incomplete.");
+        return;
+      }
+      else{
+        const docRef = collection(db,"reservations");
+        const q = query(docRef, where('confirmationNum', '==', confNum));
+        // Fetch the documents that match the query
+        getDocs(q)
+          .then((querySnapshot) => {
+            if(!querySnapshot.empty){
+            querySnapshot.forEach((docSnap) => {
+              setReservationData(docSnap.data());
+            });}
+            else{
+              alert("Entered confirmation number doesn't exist!");
+            }
+          })
+          .catch((error) => {
+            console.log("Error occured : "+error);
+          });
+      }
+    }
+    catch(error) {
+      alert('Error in fetching data:'+ error);
+    };    
   };
+
   return (
     <div className="findReserv">
       <NavBar />
@@ -35,23 +124,43 @@ const FindReservation = () => {
             type="text"
             id="findReservInput01"
             className="findReserv_form_input"
+            onChange={(e)=>setConfNum(e.target.value)}
             required
           />
         </div>
-        <div className="findReserv_form_inputSec">
-          <label htmlFor="findReservInput01" className="findReserv_form_label">
-            Family Name / Surname *
-          </label>
-          <input
-            type="text"
-            id="findReservInput01"
-            className="findReserv_form_input"
-            required
-          />
-        </div>
-        <button onSubmit={handleSubmit} className="findReserv_form_btn">
+        
+        <button onClick={handleSubmit} className="findReserv_form_btn">
           Find Reservations
         </button>
+        <div>
+          {reservationData ? (
+            <div style={{marginTop:"20px", marginBottom:"20px"}}>
+              <h2>Your Reservation Details</h2>
+              <div style={{ display: "grid", gridTemplateColumns: "150px 1fr" }}>
+                <span style={{textAlign:"left"}}>Name </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.customerName}</span>
+                <span  style={{textAlign:"left"}}>Email </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.customerEmail}</span>
+                <span style={{textAlign:"left"}}>Number of guests </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.numOfGuests}</span>
+                <span style={{textAlign:"left"}}>contact number   </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.customerContactNum}</span>
+                <span style={{textAlign:"left"}}>reservation Date  </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.resDate}</span>
+                <span style={{textAlign:"left"}}>reservation Timeslot </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.resTime}</span>
+                <span style={{textAlign:"left"}}>table Number </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.tableID}</span>
+              </div>           
+              <p style={{textAlign:"justufy", marginTop:"20px"}}>If any details are incorrect please cancel the reservation and make a new reservation </p>
+              <button onClick={handleCancel} className="findReserv_form_btn">
+                Cancel Reservation
+              </button>
+            </div>
+          ) : (
+            <p>you can see your reservation details here...</p>
+          )}
+        </div>
       </form>
       <Footer />
     </div>

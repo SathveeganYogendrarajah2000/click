@@ -1,16 +1,10 @@
 import NavBar from './components/NavBar';
 import '../css/aboutUs.css';
 import Footer from './components/Footer';
-import get_in_touch from '../assets/images/Get-In-Touch-headline.png';
-import follow_us from '../assets/images/follow-us.png';
-import online_res from '../assets/images/online-reservations.jpg';
-import visit_us from '../assets/images/plan-visit-sign.png';
-import feedback from '../assets/images/Feedback.png';
 import getInTouch from '../assets/images/Get in touch.jpg';
 import faceBook from '../assets/images/facebookjpg.jpg';
 import planAVisit from '../assets/images/Plan a visit.jpg';
 import onlineReservations from '../assets/images/Search bar.jpg';
-import social1 from '../assets/images/Social1.jpg';
 import social2 from '../assets/images/Social2.jpg';
 
 const AboutUs = () => {
@@ -84,8 +78,11 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
+
         </div>
+
       </div>
+
       <h1 className="aboutUs_contentHeading1">
         Your Gateway to Exceptional Dining and Comfort
       </h1>
@@ -189,12 +186,10 @@ const AboutUs = () => {
           and comfort starts with a CLICK.
         </h4>
       </div>
-      <h2 className="aboutUs_contentHeading1">
-        Thank you for choosing CLICK as your destination for exceptional cuisine
-        and relaxation. We can't wait to welcome you!
-      </h2>
-      <Footer />
+      <h2 className="aboutUs_contentHeading1">Thank you for choosing CLICK as your destination for exceptional cuisine and relaxation. We can't wait to welcome you!</h2>
+      <Footer/>
     </>
+
   );
 };
 

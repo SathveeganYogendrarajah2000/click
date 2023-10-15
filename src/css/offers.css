@@ -3,7 +3,7 @@
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   
 }
 
 .offers_contentHeading1{
@@ -43,31 +43,30 @@
     color: #0d0d0d;
 }
 
-.offers_imageContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.offers_Container{
+    margin-left: 8%;
+    margin-right:8%;
     margin-bottom: 10%;
-    width: fit-content ;
-    height: fit-content;
-    border-top: 2px solid #d29751;
-}
-
-.offers_image{
     display: flex;
     flex-direction: column;
-    padding: 10px;
+
 }
 
-.offers_button{
-    width:  350px;
-    height: 30px;
-    font-size: medium;
-    background-color: #d29751;
-    border-color: #d29751;
-    color: aliceblue;
-    border-radius: 5px;
+.offers_update{
     margin-top: 10px;
+    padding-top: 10px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid #d29751;
+}
+
+.offers_details{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-right: 30px;
+    margin-left: 30px;
+    text-align: left;
+   
 }
