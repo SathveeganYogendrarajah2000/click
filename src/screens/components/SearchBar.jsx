@@ -115,7 +115,7 @@ const SearchBar = () => {
       });
     }
   };
-  
+
   return (
     <div>
       <div className="bookingContainer_hero_searchbar">

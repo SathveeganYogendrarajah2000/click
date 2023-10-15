@@ -84,6 +84,11 @@ const CheckoutPage = () => {
     setPaymentModalOpen(false);
     // Reset payment success state if needed
     setPaymentSuccessful(false);
+    try {
+      navigate(`/booking/guestrooms/standardrates`);
+    } catch (error) {
+      console.error("Error navigating:", error);
+    }
   };
 
   // Function to handle the payment
