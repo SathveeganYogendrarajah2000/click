@@ -250,7 +250,7 @@ const SignUp = () => {
             className="signUp_form_sl-btn-normal"
             type="submit"
             onClick={handleSignup}
-            disabled={submitDisabled}
+            // disabled={submitDisabled}
           >
             Submit
           </button>
