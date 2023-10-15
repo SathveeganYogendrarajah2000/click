@@ -14,6 +14,7 @@ function ReservationForm (){
   const [date, setDate] = useState("");
   const [time, setTime] =useState("");
   const [timeslot, setTimeslot] =useState("");
+  const[confirmationNum,setConfirmationNum] =useState("");
   const [comments, setComments] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   // get the tommorrow date to restrict the date object values for current and past dates
@@ -25,7 +26,7 @@ function ReservationForm (){
   const formFilled = Timestamp.now();
   //get references for the cillections "reservations" and "tables_availability"
   const reservationRef = collection(db,'reservations');
-  
+  let fieldValue = 20;
 
  // Event handler to update the timeslot state variable when the dropdown value changes
   const handleTimeSlotChange = (e) => {
@@ -53,7 +54,22 @@ function ReservationForm (){
         break;
     };
   };
-
+  /* function for create a new table availability data with setting all availability to true
+  function createNewTableData(){
+    const numTables = 20;
+    const numTimeslots = 5;
+    const initialData ={date:date}
+    for (let i = 1; i <= numTimeslots; i++) {
+      const timeslotKey = `timeslot_${i}`;
+      initialData[timeslotKey] = {};
+      //initialData[timeslotKey][availableTables]=20;
+      for (let j = 1; j <= numTables; j++) {
+        const tableKey = `T${j.toString().padStart(2, '0')}`;
+        initialData[timeslotKey][tableKey] = true;
+      }
+    }
+  };
+  */
   const tableAvailabilityData ={
     date: date,
     timeslot_1:20,
@@ -82,7 +98,7 @@ function ReservationForm (){
         if (!querySnapshot.empty){
           const resultRef = querySnapshot.docs[0];
           const resultDoc = querySnapshot.docs[0].ref; // Get the DocumentReference
-          const fieldValue = resultRef.data()[timeslot]; 
+          fieldValue = resultRef.data()[timeslot]; 
           //alert(`result ID: ${resultRef.id} fieldvalue: ${fieldValue} `);
           if (fieldValue > 0){
             // Decrement the specified field by 1
@@ -101,10 +117,13 @@ function ReservationForm (){
           }          
         }
         else{
+          
           tableAvailabilityData[timeslot]= 19;
           await addDoc(tablesRef, tableAvailabilityData);
         }  
         // Create a reservation data object using form details
+        setConfirmationNum(name+date+timeslot);
+        //alert(confirmationNum);
         const reservationData = {
           customerName: name,
           customerEmail:email, 
@@ -112,12 +131,14 @@ function ReservationForm (){
           numOfGuests: guests,
           resDate: date,
           resTime: timeslot,
+          tableID : fieldValue,
+          confirmationNum : confirmationNum,
           comment:comments,
           formFilledTime: formFilled
         };
         // Add reservation data document to the "reservations" collection
-        const docRef = await addDoc(reservationRef, reservationData);
-        alert(`Reservation Added Successfully. Check Details with ID: ${docRef.id}`);
+        await addDoc(reservationRef, reservationData);
+        alert(`Reservation Added Successfully. Check Details with ID: ${confirmationNum}`);
       
       }
         

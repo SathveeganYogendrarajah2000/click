@@ -7,7 +7,7 @@ import pic4 from "../assets/images/findReservFood04.jpeg";
 import pic5 from "../assets/images/findReservFood05.jpeg";
 import { useState } from "react";
 import {db} from "../../src/firebase.js";
-import { deleteDoc, doc ,getDoc,getDocs,collection,query,where,updateDoc} from "firebase/firestore";
+import { deleteDoc,getDocs,collection,query,where,updateDoc} from "firebase/firestore";
 
 const FindReservation = () => {
   const [confNum,setConfNum]=useState("");
@@ -42,14 +42,25 @@ const FindReservation = () => {
         console.error("Error querying Firestore:", error);
       });
       // code for Delete the document
-      const docRef = doc(db,"reservations",confNum);
-      deleteDoc(docRef)
-      .then(() => {
-        alert("Document successfully deleted!");
+      const docRef = collection(db,"reservations");
+      const q = query(docRef, where('confirmationNum', '==', confNum));
+      // Fetch the documents that match the query
+      getDocs(q)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((docSnap) => {
+          // Delete the document
+          deleteDoc(docSnap.ref)
+            .then(() => {
+              alert('Document successfully deleted.');
+            })
+            .catch((error) => {
+              console.error('Error deleting document:', error);
+            });
+        });
       })
       .catch((error) => {
-        alert("Error deleting document: ", error);
-      }); 
+        console.error('Error fetching document:', error);
+      });
     }
     catch(error){
       alert("Error occured:"+error);
@@ -66,16 +77,22 @@ const FindReservation = () => {
         return;
       }
       else{
-        const docRef = doc(db,"reservations",confNum);
-        //get the document snapshot using the reference
-        const docSnap = await getDoc(docRef);
-        //check if the document belongs to confirmation number exists or not
-        if (docSnap.exists()){
-          setReservationData(docSnap.data());
-        }
-        else{
-          alert(" confirmation number you entered is wrong!")
-        }
+        const docRef = collection(db,"reservations");
+        const q = query(docRef, where('confirmationNum', '==', confNum));
+        // Fetch the documents that match the query
+        getDocs(q)
+          .then((querySnapshot) => {
+            if(!querySnapshot.empty){
+            querySnapshot.forEach((docSnap) => {
+              setReservationData(docSnap.data());
+            });}
+            else{
+              alert("Entered confirmation number doesn't exist!");
+            }
+          })
+          .catch((error) => {
+            console.log("Error occured : "+error);
+          });
       }
     }
     catch(error) {
@@ -132,6 +149,8 @@ const FindReservation = () => {
                 <span style={{textAlign:"left"}}>:  {reservationData.resDate}</span>
                 <span style={{textAlign:"left"}}>reservation Timeslot </span>
                 <span style={{textAlign:"left"}}>:  {reservationData.resTime}</span>
+                <span style={{textAlign:"left"}}>table Number </span>
+                <span style={{textAlign:"left"}}>:  {reservationData.tableID}</span>
               </div>           
               <p style={{textAlign:"justufy", marginTop:"20px"}}>If any details are incorrect please cancel the reservation and make a new reservation </p>
               <button onClick={handleCancel} className="findReserv_form_btn">
