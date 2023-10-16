@@ -1,7 +1,7 @@
+import React, { useEffect, useState } from "react";
 import RoomBookingCard from "../components/RoomBookingCard";
 import { db } from "../../firebase";
-import { collection, getDocs, where, query } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 import { useSearchData } from "../components/SearchDataContext";
 
 const StandardRates = () => {
@@ -9,6 +9,7 @@ const StandardRates = () => {
   const { searchData } = useSearchData();
   const { roomType, adults, children, inputFieldUpdated } = searchData;
   const [loading, setLoading] = useState(true);
+  const [originalData, setOriginalData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,7 @@ const StandardRates = () => {
           roomData.push(doc.data());
         });
         setRoomsDetails(roomData);
-
+        setOriginalData(roomData); // Save the original data
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         setLoading(false); // Set loading to false in case of an error
@@ -35,18 +36,20 @@ const StandardRates = () => {
       try {
         if (inputFieldUpdated) {
           // Filter the data based on your criteria here
-          const filteredData = roomsDetails.filter((bookingCard) => {
-            const matchRoomType = bookingCard.type === roomType;
+          const filteredData = originalData.filter((bookingCard) => {
+            const matchRoomType = bookingCard.type.trim() === roomType.trim();
             const matchCapacity =
               bookingCard.capacity >=
               parseInt(adults, 10) + parseInt(children, 10);
 
-            // Return true if all conditions match
             return matchRoomType && matchCapacity;
           });
 
           setRoomsDetails(filteredData);
+        } else {
+          setRoomsDetails(originalData); // Reset to original data
         }
+        setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         setLoading(false); // Set loading to false in case of an error
         console.error("Error fetching data:", error);
@@ -54,7 +57,7 @@ const StandardRates = () => {
     };
 
     filterData();
-  }, [inputFieldUpdated, roomType, adults, children]);
+  }, [inputFieldUpdated, roomType, adults, children, originalData]);
 
   return (
     <div className="guestroomContainer_rooms_standardrates">
