@@ -5,11 +5,41 @@ import MemberRates from "./MemberRates";
 import PackageRates from "./PackageRates";
 
 import RoomOffer01 from "../../assets/images/RoomOffer01.jpeg";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import TrackBookingModal from "../components/TrackBookingModal";
 
 const GuestRooms = (props) => {
+  const [user, setUser] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Listen to the Firebase Auth state and set the local state.
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+    // Clean up the subscription when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
   return (
     <>
       <div className="guestroomContainer">
+        {user !== null && (
+          <button onClick={() => setShowModal(true)}>
+            Track Booking Details
+          </button>
+        )}
+
+        {/* Display the modal when showModal is true */}
+        {showModal && (
+          <TrackBookingModal user={user} onClose={() => setShowModal(false)} />
+        )}
         <div className="top">
           <p className="guestroomContainer_heading">
             Guest Rooms at

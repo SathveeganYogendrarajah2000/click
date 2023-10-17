@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 
 // import DatePicker from "react-datepicker";
@@ -21,7 +21,6 @@ const Booking = () => {
   const { searchData } = useSearchData();
   const adults = searchData.adults;
   const children = searchData.children;
-  // console.log(searchData);
 
   const style = {
     flexDirection: "row",
