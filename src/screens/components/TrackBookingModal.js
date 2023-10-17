@@ -29,12 +29,17 @@ const TrackBookingModal = ({ user, onClose }) => {
         console.error("Error fetching booking data:", error);
       }
     };
-
     const fetchRoomData = async (roomID) => {
       try {
-        const roomDoc = await getDocs(collection(db, "rooms", roomID));
-        if (!roomDoc.empty) {
-          return roomDoc.docs[0].data();
+        if (roomID) {
+          const roomQuery = query(
+            collection(db, "rooms"),
+            where("roomID", "==", roomID)
+          );
+          const roomDoc = await getDocs(roomQuery);
+          if (!roomDoc.empty) {
+            return roomDoc.docs[0].data();
+          }
         }
       } catch (error) {
         console.error("Error fetching room data:", error);
@@ -60,7 +65,7 @@ const TrackBookingModal = ({ user, onClose }) => {
             <th>Adults</th>
             <th>Children</th>
             <th>Name</th>
-            <th>Description</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -72,7 +77,15 @@ const TrackBookingModal = ({ user, onClose }) => {
               <td>{booking.adults}</td>
               <td>{booking.children}</td>
               <td>{roomData ? roomData.name : "N/A"}</td>
-              <td>{roomData ? roomData.description : "N/A"}</td>
+              <td>
+                {roomData ? (
+                  <>
+                    <img src={roomData.picturePath} alt="room" />
+                  </>
+                ) : (
+                  "N/A"
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

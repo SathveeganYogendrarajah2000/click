@@ -31,7 +31,7 @@ const GuestRooms = (props) => {
     <>
       <div className="guestroomContainer">
         {user !== null && (
-          <button onClick={() => setShowModal(true)}>
+          <button className="guestroomContainer_modalbtn" onClick={() => setShowModal(true)}>
             Track Booking Details
           </button>
         )}
