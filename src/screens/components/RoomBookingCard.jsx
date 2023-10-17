@@ -107,10 +107,10 @@ const RoomBookingCard = (props) => {
           >
             <NavLink to={`/checkout/${props.roomID}`}>
               <button
-                className="button-2 roombookingcardContainer_details_c2_row2_btn"
+                className="roombookingcardContainer_details_c2_row2_btn"
                 disabled={!searchData.inputFieldUpdated || !user}
-                onMouseEnter={() => setShowTooltip(true)} // Show tooltip on hover
-                onMouseLeave={() => setShowTooltip(false)} // Hide tooltip on mouse leave
+                // onMouseEnter={() => setShowTooltip(true)} // Show tooltip on hover
+                // onMouseLeave={() => setShowTooltip(false)} // Hide tooltip on mouse leave
               >
                 VIEW RATES
               </button>

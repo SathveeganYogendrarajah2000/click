@@ -9,14 +9,13 @@ import PaymentModal from "./components/PaymentModal";
 import {
   collection,
   query,
-  doc,
   where,
   getDocs,
-  getDoc,
   addDoc,
-  writeBatch,
-  runTransaction,
-  setDoc,
+  serverTimestamp,
+  doc,
+  getDoc,
+  updateDoc,
 } from "@firebase/firestore";
 
 import { useSearchData } from "./components/SearchDataContext";
@@ -34,9 +33,6 @@ const CheckoutPage = () => {
   const [isPaymentSuccessful, setPaymentSuccessful] = useState(false);
 
   const { searchData, setSearchData } = useSearchData();
-
-  // Get a new write batch
-  const batch = writeBatch(db);
 
   const roomsRef = collection(db, "rooms");
 
@@ -93,52 +89,35 @@ const CheckoutPage = () => {
 
   // Function to handle the payment
   const handlePayment = async () => {
-    // Update availability in the rooms collection
-    // const roomDocRef = doc(db, "rooms", roomId);
-    // const roomDocRef = doc(db, "rooms", roomData.roomID);
-    // console.log("roomDocRef", roomDocRef);
-    // const availabilityField = "availability";
     try {
-      // await runTransaction(db, async (transaction) => {
-      //   const roomDoc = await transaction.get(roomDocRef);
-      //   console.log("roomDoc", roomDoc);
-      //   if (roomDoc.exists()) {
-      //     const currentAvailability = roomDoc.data()[availabilityField];
-      //     if (currentAvailability > 0) {
-      //       transaction.update(
-      //         roomDocRef,
-      //         availabilityField,
-      //         currentAvailability - 1
-      //       );
-      //     } else {
-      //       // Handle cases where availability is already 0
-      //       throw new Error("No availability left for this room.");
-      //     }
-      //   } else {
-      //     // Handle cases where the room document doesn't exist
-      //     throw new Error("Room not found.");
-      //   }
-      // });
+      // Get the room document by roomID
+      const roomDocRef = doc(db, "rooms", roomId);
+      const roomDocSnapshot = await getDoc(roomDocRef);
 
-      // batch.update(roomDocRef, {
-      //   availability: roomData.availability - 1,
-      // });
+      if (roomDocSnapshot.exists()) {
+        // Room exists, update its availability field
+        const roomData = roomDocSnapshot.data();
+        const newAvailability = roomData.availability - 1;
 
-      // await batch.commit();
+        // Update the room document with the new availability
+        await updateDoc(roomDocRef, {
+          availability: newAvailability,
+        });
+        // Perform the booking by adding a new document in the 'bookings' collection
+        await addDoc(collection(db, "bookings"), {
+          roomID: roomId,
+          userID: user.uid,
+          checkInDate: searchData.checkInDate,
+          checkOutDate: searchData.checkOutDate,
+          adults: searchData.adults,
+          children: searchData.children,
+          totalPrice: calculateTotalPrice(),
+          createdTime: serverTimestamp(),
+        });
 
-      // Perform the booking by adding a new document in the 'bookings' collection
-      await addDoc(collection(db, "bookings"), {
-        roomID: roomId,
-        userID: user.uid,
-        checkInDate: searchData.checkInDate,
-        checkOutDate: searchData.checkOutDate,
-        adults: searchData.adults,
-        children: searchData.children,
-        totalPrice: calculateTotalPrice(),
-      });
-
-      // Update the payment success state
-      setPaymentSuccessful(true);
+        // Update the payment success state
+        setPaymentSuccessful(true);
+      }
     } catch (error) {
       // Handle errors related to availability or room not found
       console.error("Error handling payment:", error);
