@@ -93,7 +93,7 @@ const RoomBookingCard = (props) => {
         <div className="div-room-rate-wrap roombookingcardContainer_details_c2">
           <div className="roombookingcardContainer_details_c2_row1">
             <div className="roombookingcardContainer_details_c2_row1_01">
-              $ {props.price}*
+              Rs {props.price}*
             </div>
             <div className="roombookingcardContainer_details_c2_row1_02">
               Starting Rate/Night
