@@ -96,15 +96,12 @@ const SignUp = () => {
       .then((userCredential) => {
         const userId = userCredential.user.uid;
 
-        const docRef = addDoc(collection(db, "users"), {
+        addDoc(collection(db, "users"), {
           user_id: userId,
           firstName: firstName,
           lastName: lastName,
           role: "customer",
         });
-        // console.log("Document written with ID: ", docRef.id);
-
-        // console.log(userCredential);
         navigate("/");
       })
       .catch((error) => {

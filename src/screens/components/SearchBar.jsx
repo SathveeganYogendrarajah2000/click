@@ -142,6 +142,7 @@ const SearchBar = () => {
           <option value="Accessible Room">Accessible Room</option>
           <option value="Honeymoon Suite">Honeymoon Suite</option>
           <option value="Presidential Suite">Presidential Suite</option>
+          <option value="King">King</option>
         </select>
         <div className="bookingContainer_hero_searchbar_date-picker-section">
           <div className="bookingContainer_hero_searchbar_date-picker-section-01">
