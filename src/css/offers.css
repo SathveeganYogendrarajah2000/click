@@ -70,3 +70,24 @@
     text-align: left;
    
 }
+
+.offers_searchbox{
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.offers_searchInput{
+    margin: 10px;
+    width: 120px;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.offers_searchLabel{
+    margin-left: 100px;
+    font-weight: 200;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
