@@ -1,19 +1,35 @@
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import pic1 from "../assets/images/findReservFood01.jpeg";
-import pic2 from "../assets/images/findReservFood02.jpeg";
-import pic3 from "../assets/images/findReservFood03.jpeg";
-import pic4 from "../assets/images/findReservFood04.jpeg";
-import pic5 from "../assets/images/findReservFood05.jpeg";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import {db} from "../../src/firebase.js";
-import { deleteDoc,getDocs,collection,query,where,updateDoc} from "firebase/firestore";
+import { getDocs,collection,query,where} from "firebase/firestore";
+import "../css/Dining.css";
 
-const FindReservation = () => {
-  const [confNum,setConfNum]=useState("");
+const FindReservation = ({user,onClose}) => {
+  const uid = user.uid;
   const [reservationData, setReservationData]=useState(null);
-  //get the reference of the document which is corresponding for given confirmation number
+ 
+  useEffect(() => {
+    const fetchReservationData = async () => {
+      try {
+        const ReservationQuery = query(
+          collection(db, "reservations"),
+          where("userID", "==", uid)
+        );
+        const ReservationSnapshot = await getDocs(ReservationQuery);
+        const Reservations = [];
+        for (const doc of ReservationSnapshot.docs) {
+          const resData = doc.data();
+          Reservations.push(resData);
+        }
+        setReservationData(Reservations);
+      }
+      catch (error) {
+        console.error("Error fetching reservation data:", error);
+      }
+    };
+    fetchReservationData();
+  }, [uid]);
   
+  /*
   const handleCancel = async (e)=>{
     try{
       //code for increment the available table for particular timeslot
@@ -41,26 +57,14 @@ const FindReservation = () => {
       .catch((error) => {
         console.error("Error querying Firestore:", error);
       });
-      // code for Delete the document
-      const docRef = collection(db,"reservations");
-      const q = query(docRef, where('confirmationNum', '==', confNum));
-      // Fetch the documents that match the query
-      getDocs(q)
-      .then((querySnapshot) => {
-        querySnapshot.forEach((docSnap) => {
-          // Delete the document
-          deleteDoc(docSnap.ref)
-            .then(() => {
-              alert('Document successfully deleted.');
-            })
-            .catch((error) => {
-              console.error('Error deleting document:', error);
-            });
-        });
-      })
-      .catch((error) => {
-        console.error('Error fetching document:', error);
-      });
+      const docRef = doc(db, "reservations", confNum); // confNum is the document ID
+      try {
+        await deleteDoc(docRef);
+        alert("Document successfully deleted.");
+      } catch (error) {
+        console.error("Error deleting document:", error);
+      }
+
     }
     catch(error){
       alert("Error occured:"+error);
@@ -68,101 +72,57 @@ const FindReservation = () => {
     setConfNum("");
     setReservationData(null);
   }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try{
-      if(!confNum){
-        alert("Required field incomplete.");
-        return;
-      }
-      else{
-        const docRef = collection(db,"reservations");
-        const q = query(docRef, where('confirmationNum', '==', confNum));
-        // Fetch the documents that match the query
-        getDocs(q)
-          .then((querySnapshot) => {
-            if(!querySnapshot.empty){
-            querySnapshot.forEach((docSnap) => {
-              setReservationData(docSnap.data());
-            });}
-            else{
-              alert("Entered confirmation number doesn't exist!");
-            }
-          })
-          .catch((error) => {
-            console.log("Error occured : "+error);
-          });
-      }
-    }
-    catch(error) {
-      alert('Error in fetching data:'+ error);
-    };    
-  };
+*/
+  
 
   return (
-    <div className="findReserv">
-      <NavBar />
-      <div className="findReserv_gallery">
-        <img src={pic1} alt="Pic 1" />
-        <img src={pic2} alt="Pic 2" />
-        <img src={pic3} alt="Pic 3" />
-        <img src={pic4} alt="Pic 4" />
-        <img src={pic5} alt="Pic 5" />
-      </div>
-
-      <form action="" className="findReserv_form">
-        <h1 className="findReserv_form_formTitle">Find Reservations</h1>
-        <div className="findReserv_form_describe">
-          Please enter your details below to find your reservation.
-        </div>
-        <div className="findReserv_form_inputSec">
-          <label htmlFor="findReservInput01" className="findReserv_form_label">
-            Confirmation Number *
-          </label>
-          <input
-            type="text"
-            id="findReservInput01"
-            className="findReserv_form_input"
-            onChange={(e)=>setConfNum(e.target.value)}
-            required
-          />
-        </div>
-        
-        <button onClick={handleSubmit} className="findReserv_form_btn">
-          Find Reservations
-        </button>
+    <div className="dining_findReserv">
         <div>
           {reservationData ? (
             <div style={{marginTop:"20px", marginBottom:"20px"}}>
-              <h2>Your Reservation Details</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "150px 1fr" }}>
-                <span style={{textAlign:"left"}}>Name </span>
-                <span style={{textAlign:"left"}}>:  {reservationData.customerName}</span>
-                <span  style={{textAlign:"left"}}>Email </span>
-                <span style={{textAlign:"left"}}>:  {reservationData.customerEmail}</span>
-                <span style={{textAlign:"left"}}>Number of guests </span>
-                <span style={{textAlign:"left"}}>:  {reservationData.numOfGuests}</span>
-                <span style={{textAlign:"left"}}>contact number   </span>
-                <span style={{textAlign:"left"}}>:  {reservationData.customerContactNum}</span>
-                <span style={{textAlign:"left"}}>reservation Date  </span>
-                <span style={{textAlign:"left"}}>:  {reservationData.resDate}</span>
-                <span style={{textAlign:"left"}}>reservation Timeslot </span>
-                <span style={{textAlign:"left"}}>:  {reservationData.resTime}</span>
-                <span style={{textAlign:"left"}}>table Number </span>
-                <span style={{textAlign:"left"}}>:  {reservationData.tableID}</span>
-              </div>           
-              <p style={{textAlign:"justufy", marginTop:"20px"}}>If any details are incorrect please cancel the reservation and make a new reservation </p>
-              <button onClick={handleCancel} className="findReserv_form_btn">
-                Cancel Reservation
-              </button>
+              <p>Here you can see your reservation details</p>
+              <table className="dining_table">
+              <thead className="dining_table_thead">
+                <tr>
+                  <th className="dining_table_th">Reservation Date</th>
+                  <th className="dining_table_th">Reservation timeslot</th>
+                  <th className="dining_table_th">Number of Guests</th>
+                  <th className="dining_table_th">table Number</th>
+                  <th className="dining_table_th">Comments</th>
+                </tr>
+              </thead>
+              <tbody className="dining_table_tbody">
+                {reservationData.map(( reservation, index) => (
+                  <tr key={index}>
+                    <td className="dining_table_td">{reservation.resDate}</td>
+                    <td className="dining_table_td">{reservation.resTime}</td>
+                    <td className="dining_table_td">{reservation.numOfGuests}</td>
+                    <td className="dining_table_td">{reservation.tableID}</td>
+                    <td className="dining_table_td_comment">{reservation.comment}</td>
+                  </tr>
+                ))}
+              </tbody>
+              </table>
             </div>
           ) : (
             <p>you can see your reservation details here...</p>
           )}
         </div>
-      </form>
-      <Footer />
+        <button 
+        style={{
+          
+          width:"80px", 
+          height:"40px",    
+          backgroundColor:"red", 
+          borderRadius:"6px", 
+          border:"none", 
+          fontSize:"18px",
+          color:"white"}} 
+        onClick = {onClose}>
+        close
+      </button>
+     
+   
     </div>
   );
 };

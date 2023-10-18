@@ -17,6 +17,8 @@ import FoodForm from "./screens/FoodForm";
 import { SearchDataProvider } from "./screens/components/SearchDataContext";
 import AddRoomForm from "./screens/AddRoomForm";
 
+
+
 function App() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
@@ -35,10 +37,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/checkout/:roomId" element={<CheckoutPage />} />
             <Route path="/dinein/*" element={<DineIn />} />
-            <Route
-              path="/dinein/findReservation"
-              element={<FindReservation />}
-            />
+            <Route path="/dinein/findReservation" element={<FindReservation />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/foodform" element={<FoodForm />} />

@@ -1,26 +1,49 @@
 import "../../css/Dining.css";
-import food_1 from "../../assets/images/food_1.jpg";
-import food_2 from "../../assets/images/food_2.jpg";
-import food_3 from "../../assets/images/food_3.png";
-import food_4 from "../../assets/images/food_4.jpg";
+import pic1 from "../../assets/images/findReservFood01.jpeg";
+import pic2 from "../../assets/images/findReservFood02.jpeg";
+import pic3 from "../../assets/images/findReservFood03.jpeg";
+import pic4 from "../../assets/images/findReservFood04.jpeg";
+import pic5 from "../../assets/images/findReservFood05.jpeg";
 import ReservationForm from "../components/ReservationForm";
-import { useNavigate } from "react-router";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import FindReservation from "../FindReservation";
+import { useState, useEffect } from "react";
 
 // function for display dining page
 function Dining() {
-  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Listen to the Firebase Auth state and set the local state.
+  useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUser(user);
+    } else {
+      setUser(null);
+    }
+  });
+  // Clean up the subscription when the component unmounts
+  return () => unsubscribe();
+  }, []);
+
+  //const navigate = useNavigate();
   return (
     <div className="reservationForm_container">
-      
       <div className="dining_Container">
-        <button
-          onClick={() => {
-            navigate("/dinein/findReservation");
-          }}
-          className="dining_FindRes"
-        >
-          Find Reservations
-        </button>
+        {user !== null && (
+          <button className="dining_FindRes" onClick={() => {
+            setShowModal(true);
+          }}>
+            Find Reservations
+          </button>
+        )}
+        {/* Display the modal when showModal is true */}
+        {showModal && (
+          <FindReservation user={user} onClose={() => setShowModal(false)} />
+        )}
+        
         <h1 className="dining_Heading">CLICK</h1>
 
         <p className="dining_Paragraph">
@@ -39,12 +62,16 @@ function Dining() {
         </p>
 
         <h3 className="dining_CenterHeading">Pictures from our users</h3>
-        <div className="dining_ImageContainer">
-          <img src={food_1} alt="food1" className="dining_Image" />
-          <img src={food_2} alt="food2" className="dining_Image" />
-          <img src={food_3} alt="food3" className="dining_Image" />
-          <img src={food_4} alt="food4" className="dining_Image" />
+    
+        <div className="findReserv_gallery">
+          <img src={pic1} alt="Pic 1" />
+          <img src={pic2} alt="Pic 2" />
+          <img src={pic3} alt="Pic 3" />
+          <img src={pic4} alt="Pic 4" />
+          <img src={pic5} alt="Pic 5" />
         </div>
+
+        
         <h2 className="dining_CenterHeading">Main Course</h2>
         <h3 className="dining_Heading">Starters</h3>
         <h4 className="dining_ContentHeading">Imported Salmon Steak</h4>

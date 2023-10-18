@@ -60,16 +60,56 @@
     text-align: justify;
 }
 
-.dining_ImageContainer{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 60px;
-}
-
 .dining_Image{
     height: 150px;
     width: 150px;
     padding: 1px;
+}
+
+/* Style for the entire table */
+.dining_table {
+    border-color: "black";
+    width: 100%;
+    
+}
+
+/* Style for the table header (thead) */
+.dining_table_thead {
+  background-color: #333;
+  color: #fff;
+}
+
+.dining_table_th {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #120909;
+}
+
+/* Style for table data (tbody) */
+.dining_table_tbody {
+  background-color: #666363;
+}
+
+.dining_table_td {
+  padding: 10px;
+  border: 1px solid #090707;
+  text-align: center;
+}
+
+
+
+/* Add padding and ellipsis for long comments */
+.dining_table_td_comment {
+  padding: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Adjust max-width as needed */
+  border: 1px solid #090707;
+}
+
+.dining_findReserv{
+  margin: 10px;
+  border-bottom: 3px solid  #d29751 ;
+  padding-bottom: 20px;
 }

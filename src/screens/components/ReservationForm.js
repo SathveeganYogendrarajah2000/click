@@ -1,34 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/ReservationForm.css";
 import { db } from "../../../src/firebase.js";
-import { collection,  addDoc, Timestamp, query, where, getDocs, updateDoc} from "firebase/firestore";
-
+import { collection,  addDoc,  query, where, getDocs, updateDoc} from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
 
 
 function ReservationForm (){
   // Define state variables for the form fields
-  const [name, setName] = useState("");
+  const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
-  const [contactnumber, setContactNumber] = useState("");
   const [guests, setGuests] = useState(1);
   const [date, setDate] = useState("");
   const [time, setTime] =useState("");
   const [timeslot, setTimeslot] =useState("");
-  const[confirmationNum,setConfirmationNum] =useState("");
   const [comments, setComments] = useState("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   // get the tommorrow date to restrict the date object values for current and past dates
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
   const tomorrowFormatted = tomorrow.toISOString().split('T')[0]; // Format as YYYY-MM-DD
-  // get the current time of form filling
-  const formFilled = Timestamp.now();
+  
   //get references for the cillections "reservations" and "tables_availability"
   const reservationRef = collection(db,'reservations');
   let fieldValue = 20;
 
- // Event handler to update the timeslot state variable when the dropdown value changes
+  // Listen to the Firebase Auth state and set the local state.
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setIsButtonDisabled(false);
+        setEmail(user.email);       
+      } else {
+        setUser(null);
+        alert("For table reservation you need to Sign In")
+      }
+    });
+    // Clean up the subscription when the component unmounts
+    return () => unsubscribe();
+    }, []);
+
+   
+
+  // Event handler to update the timeslot state variable when the dropdown value changes
   const handleTimeSlotChange = (e) => {
     setTime(e.target.value);
     const value =e.target.value;
@@ -54,22 +71,7 @@ function ReservationForm (){
         break;
     };
   };
-  /* function for create a new table availability data with setting all availability to true
-  function createNewTableData(){
-    const numTables = 20;
-    const numTimeslots = 5;
-    const initialData ={date:date}
-    for (let i = 1; i <= numTimeslots; i++) {
-      const timeslotKey = `timeslot_${i}`;
-      initialData[timeslotKey] = {};
-      //initialData[timeslotKey][availableTables]=20;
-      for (let j = 1; j <= numTables; j++) {
-        const tableKey = `T${j.toString().padStart(2, '0')}`;
-        initialData[timeslotKey][tableKey] = true;
-      }
-    }
-  };
-  */
+  // assumed 20 tables allocated for reservation purposes
   const tableAvailabilityData ={
     date: date,
     timeslot_1:20,
@@ -82,14 +84,13 @@ function ReservationForm (){
   // Function to handle form submission
   const handleReserveNow = async (e) => {
     e.preventDefault();
-    setIsButtonDisabled(true);
+    
     try {
       // Check if any of the required fields are empty
-      if (!name || !email || !contactnumber || !guests || !date || !time) {
+      if (!guests || !date || !time) {
         alert('Required Fields Incomplete. Please Fill.');
-        setIsButtonDisabled(false);
         return;
-      }      
+      }
       else{
         const tablesRef = collection(db,"tables_availability");
         // Create a query to filter documents where the "date" field matches the date
@@ -122,23 +123,19 @@ function ReservationForm (){
           await addDoc(tablesRef, tableAvailabilityData);
         }  
         // Create a reservation data object using form details
-        setConfirmationNum(name+date+timeslot);
-        //alert(confirmationNum);
+        // Create a reservation data object using form details
         const reservationData = {
-          customerName: name,
-          customerEmail:email, 
-          customerContactNum: contactnumber,
           numOfGuests: guests,
           resDate: date,
           resTime: timeslot,
-          tableID : fieldValue,
-          confirmationNum : confirmationNum,
+          tableID : 20-fieldValue,
           comment:comments,
-          formFilledTime: formFilled
+          userID : user.uid,
+          
         };
         // Add reservation data document to the "reservations" collection
         await addDoc(reservationRef, reservationData);
-        alert(`Reservation Added Successfully. Check Details with ID: ${confirmationNum}`);
+        alert(`Reservation Added Successfully. Check Details in Find Reservations page...`);
       
       }
         
@@ -149,36 +146,20 @@ function ReservationForm (){
     }
      
     // set the fields to their default values  
-    setName("");
     setEmail("");
-    setContactNumber("");
     setGuests(1);
     setDate("");
     setTime("");
     setTimeslot("");
     setComments("");
-    setIsButtonDisabled(false);
+    
   };
 
 
   // return the customer reservation form with various fields
   return (
-      <form className="reservation-form" >
+      <form className="reservation-form" disabled={isButtonDisabled}>
         <h2 className="reservationForm_heading">Reservation</h2>
-        <div>
-          <label className="reservationForm_label" htmlFor="name">
-            Your Name
-          </label>
-          <input
-            className="reservationForm_input"
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            disabled={isButtonDisabled}
-            required
-          />
-        </div>
         <div>
           <label className="reservationForm_label" htmlFor="email">
             Your Email
@@ -188,23 +169,7 @@ function ReservationForm (){
             type="email"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={isButtonDisabled}
-            required
-          />
-        </div>
-        <div>
-          <label className="reservationForm_label" htmlFor="contactnumber">
-            Contact Number
-          </label>
-          <input
-            className="reservationForm_input"
-            type="text"
-            id="contactnumber"
-            value={contactnumber}
-            onChange={(e) => setContactNumber(e.target.value)}
-            disabled={isButtonDisabled}
-            required
+            disabled ="true"
           />
         </div>
         <div>
@@ -217,7 +182,6 @@ function ReservationForm (){
             id="guests"
             value={guests}
             onChange={(e) => setGuests(parseInt(e.target.value))}
-            disabled={isButtonDisabled}
             min="1"
             max ="12"
             required
@@ -233,7 +197,6 @@ function ReservationForm (){
             id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            disabled={isButtonDisabled}
             min={tomorrowFormatted} 
             required
           />
@@ -247,7 +210,6 @@ function ReservationForm (){
             id="time"
             value={time}
             onChange={handleTimeSlotChange}
-            disabled={isButtonDisabled}
             required>
             <option value="">Select a Timeslot</option>
             <option value="08am-11am">08am-11am</option>
@@ -267,7 +229,7 @@ function ReservationForm (){
             id="comments"
             value={comments}
             onChange={(e) => setComments(e.target.value)}
-            disabled={isButtonDisabled}
+            
           />
         </div>
         
@@ -275,11 +237,11 @@ function ReservationForm (){
           type="submit"
           className={isButtonDisabled ? 'reservation-formDisabledButton' : 'reservation-formButton'}
           onClick={handleReserveNow} 
-          disabled={isButtonDisabled}
+          
         >
           Reserve Now
         </button>
-
+        <p style={{fontStyle:"italic",color:"red"}} >Please SignIn to make a reservation.</p>
       </form>
    
   );
