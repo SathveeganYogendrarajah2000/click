@@ -10,6 +10,7 @@ function ReservationForm (){
   // Define state variables for the form fields
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
+  const [name,setName]= useState("");
   const [guests, setGuests] = useState(1);
   const [date, setDate] = useState("");
   const [time, setTime] =useState("");
@@ -33,17 +34,31 @@ function ReservationForm (){
       if (user) {
         setUser(user);
         setIsButtonDisabled(false);
-        setEmail(user.email);       
+        setEmail(user.email);     
+        fetchUserData(user.uid);  
       } else {
         setUser(null);
-        alert("For table reservation you need to Sign In")
+        
       }
     });
     // Clean up the subscription when the component unmounts
     return () => unsubscribe();
     }, []);
 
-   
+    const fetchUserData = async (uid) => {
+      const userDataCollection = collection(db, "users"); 
+      const q = query(userDataCollection, where("uid", "==", uid));
+      try {
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+          setName(userData.firstName);
+         
+        });
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
 
   // Event handler to update the timeslot state variable when the dropdown value changes
   const handleTimeSlotChange = (e) => {
@@ -160,6 +175,18 @@ function ReservationForm (){
       <form className="reservation-form" disabled={isButtonDisabled}>
         <h2 className="reservationForm_heading">Reservation</h2>
         <div>
+          <label className="reservationForm_label" htmlFor="name">
+            Your Name
+          </label>
+          <input
+            className="reservationForm_input"
+            type="text"
+            id="name"
+            value={name}
+            disabled ="true"
+          />
+        </div>
+        <div>
           <label className="reservationForm_label" htmlFor="email">
             Your Email
           </label>
@@ -171,6 +198,7 @@ function ReservationForm (){
             disabled ="true"
           />
         </div>
+       
         <div>
           <label className="reservationForm_label" htmlFor="guests">
             Number of Guests

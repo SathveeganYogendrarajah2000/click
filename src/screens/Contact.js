@@ -1,29 +1,65 @@
-import { React, useState } from 'react';
+import { React, useState,useEffect } from 'react';
 import Footer from './components/Footer';
 import '../css/contact.css';
 import { db } from "../../src/firebase.js";
-import { Timestamp, collection ,addDoc} from 'firebase/firestore';
+import { Timestamp, collection ,addDoc,query, where, getDocs} from 'firebase/firestore';
 //import NavBarStyled from "./components/NavBarStyled";
 import NavBar from './components/NavBar';
 import ContactUsImage from '../assets/images/contact-us_image.jpg';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase.js";
 
 function Contact() {
   // Define state variables for the form fields
+  const [user, setUser] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contactnumber, setContactNumber] = useState('');
   const [reason, setReason] = useState('');
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   // get the current time of form filling
   const formFilled = Timestamp.now();
 
+
+  // Listen to the Firebase Auth state and set the local state.
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setIsButtonDisabled(false);
+        setEmail(user.email);   
+        fetchUserData(user.uid);    
+      } 
+      else {
+        setUser(null);
+      }
+    });
+    // Clean up the subscription when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const fetchUserData = async (uid) => {
+    const userDataCollection = collection(db, "users"); 
+    const q = query(userDataCollection, where("uid", "==", uid));
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+        setName(userData.firstName);
+        setContactNumber(userData.phone_number);
+      });
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+  
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsButtonDisabled(true);
+    
     try {
       // Check if any of the required fields are empty
-      if (!name || !email || !contactnumber || !reason) {
+      if (!name || !contactnumber || !reason) {
         alert('Required Fields Incomplete. Please Fill.');
         return;
       }      
@@ -34,6 +70,7 @@ function Contact() {
           customerEmail:email, 
           customerContactNum: contactnumber,
           reason: reason,
+          customerID: user.uid,
           formFilledTime: formFilled
         };
         //get reference to "customer_support" collection
@@ -47,11 +84,7 @@ function Contact() {
       alert("customer contact support information Adding Error. Please Retry.");
     }  
     // set the fields to their default values  
-    setName('');
-    setEmail('');
-    setContactNumber('');
     setReason('');
-    setIsButtonDisabled(false);
   }
   return (
     <div>
@@ -73,6 +106,8 @@ function Contact() {
                 experience exceptional. Our dedicated team is always ready to
                 assist you.{' '}
               </h4>
+              <p style={{color:"red",fontStyle:"italic"}}>Sign in to enhance your support experience. With an account, 
+                you can access personalized assistance and save time filling out the customer contact support form.</p>
             </div>
           </div>
 
@@ -85,33 +120,24 @@ function Contact() {
                 id="name"
                 value={name}
                 placeholder="Your full name"
-                onChange={(e) => setName(e.target.value)}
-                disabled={isButtonDisabled}
-                required
+                disabled="true"
               />
-
               <input
                 className="contact_formInput"
                 type="email"
                 id="email"
                 value={email}
                 placeholder="Your email address"
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={isButtonDisabled}
-                required
+                disabled="true"
               />
-
               <input
                 className="contact_formInput"
                 type="text"
                 id="contactnumber"
                 value={contactnumber}
                 placeholder="Your contact number"
-                onChange={(e) => setContactNumber(e.target.value)}
-                disabled={isButtonDisabled}
-                required
+                disabled="true"
               />
-
               <input
                 className="contact_formInput"
                 type="text"

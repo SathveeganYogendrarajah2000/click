@@ -54,12 +54,13 @@
     color: #ffffff;
     width: 30%;
     align-items:center;
-    background-color: #d29751;
+    background-color:red;
+    border: none;
     border-radius: 6px;
     height: 40px;
     margin-top: 50px;
     margin-bottom: 15px;
-    border-color: none;
+   
 }
 
 .contact_submitDisabledButton{
@@ -67,11 +68,12 @@
     width: 30%;
     align-items:center;
     background-color: #2d2c2b;
+    border:none;
     border-radius: 6px;
     height: 40px;
     margin-top: 50px;
     margin-bottom: 15px;
-    border-color: none;
+   
 }
 
 .contact_buttonContainer{
