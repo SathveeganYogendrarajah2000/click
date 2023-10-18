@@ -113,3 +113,14 @@
   border-bottom: 3px solid  #d29751 ;
   padding-bottom: 20px;
 }
+
+.dining_button{
+  margin: 5px;
+  width : 70px; 
+  height: 30px;   
+  background-color:red; 
+  border-radius:6px; 
+  border:none; 
+  font-size:18px,;
+  color:white;
+}

@@ -128,7 +128,7 @@ function ReservationForm (){
           numOfGuests: guests,
           resDate: date,
           resTime: timeslot,
-          tableID : 20-fieldValue,
+          tableID : 21-fieldValue,
           comment:comments,
           userID : user.uid,
           
@@ -146,7 +146,6 @@ function ReservationForm (){
     }
      
     // set the fields to their default values  
-    setEmail("");
     setGuests(1);
     setDate("");
     setTime("");
