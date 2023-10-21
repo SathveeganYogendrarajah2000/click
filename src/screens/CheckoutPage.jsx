@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import PaymentModal from "./components/PaymentModal";
 
-import { collection, query, where, getDocs } from "@firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+  doc,
+  getDoc,
+  updateDoc,
+} from "@firebase/firestore";
+
 import { useSearchData } from "./components/SearchDataContext";
 
 const CheckoutPage = () => {
   const { roomId } = useParams();
   const [roomData, setRoomData] = useState(null);
+  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
 
   const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
 
   // Additional state to track payment success or failure
   const [isPaymentSuccessful, setPaymentSuccessful] = useState(false);
-
-  const openPaymentModal = () => {
-    setPaymentModalOpen(true);
-  };
-
-  const closePaymentModal = () => {
-    setPaymentModalOpen(false);
-    // Reset payment success state if needed
-    setPaymentSuccessful(false);
-  };
-
-  const handlePayment = () => {
-    const paymentSuccess = true; // Replace with your actual logic
-    setPaymentSuccessful(paymentSuccess);
-  };
-
-  const initialCapacity = roomData ? roomData.capacity : 0;
-  // const [remainingCapacity, setRemainingCapacity] = useState(initialCapacity); // [adults, children]
 
   const { searchData, setSearchData } = useSearchData();
 
@@ -65,6 +60,75 @@ const CheckoutPage = () => {
     fetchRoomData();
   }, [roomQuery]);
 
+  // Listen for auth state changes
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const openPaymentModal = () => {
+    setPaymentModalOpen(true);
+  };
+
+  const closePaymentModal = () => {
+    setPaymentModalOpen(false);
+    // Reset payment success state if needed
+    setPaymentSuccessful(false);
+    try {
+      navigate(`/booking/guestrooms/standardrates`);
+    } catch (error) {
+      console.error("Error navigating:", error);
+    }
+  };
+
+  // Function to handle the payment
+  const handlePayment = async () => {
+    try {
+      // Get the room document by roomID
+      const roomDocRef = doc(db, "rooms", roomId);
+      const roomDocSnapshot = await getDoc(roomDocRef);
+
+      if (roomDocSnapshot.exists()) {
+        // Room exists, update its availability field
+        const roomData = roomDocSnapshot.data();
+        const newAvailability = roomData.availability - 1;
+
+        // Update the room document with the new availability
+        await updateDoc(roomDocRef, {
+          availability: newAvailability,
+        });
+        // Perform the booking by adding a new document in the 'bookings' collection
+        await addDoc(collection(db, "bookings"), {
+          roomID: roomId,
+          userID: user.uid,
+          checkInDate: searchData.checkInDate,
+          checkOutDate: searchData.checkOutDate,
+          adults: searchData.adults,
+          children: searchData.children,
+          totalPrice: calculateTotalPrice(),
+          createdTime: serverTimestamp(),
+        });
+
+        // Update the payment success state
+        setPaymentSuccessful(true);
+      }
+    } catch (error) {
+      // Handle errors related to availability or room not found
+      console.error("Error handling payment:", error);
+      setPaymentSuccessful(false);
+    }
+  };
+
+  const initialCapacity = roomData ? roomData.capacity : 0;
+  const [remainingCapacity, setRemainingCapacity] = useState(initialCapacity); // [adults, children]
+  // console.log(initialCapacity,remainingCapacity);
+
   // Function to calculate the total price based on the number of nights
   const calculateTotalPrice = () => {
     if (!roomData) return 0;
@@ -81,7 +145,7 @@ const CheckoutPage = () => {
         ...prevData,
         adults: newValue,
       }));
-      // setRemainingCapacity(initialCapacity - newValue);
+      setRemainingCapacity(initialCapacity - newValue);
     }
   };
 
@@ -92,7 +156,7 @@ const CheckoutPage = () => {
         ...prevData,
         children: newValue,
       }));
-      // setRemainingCapacity(initialCapacity - newValue);
+      setRemainingCapacity(initialCapacity - newValue);
     }
   };
 
@@ -185,7 +249,7 @@ const CheckoutPage = () => {
             <input
               type="number"
               min={1}
-              // max={roomData.capacity}
+              max={roomData ? roomData.capacity : 0}
               id="adults"
               className="checkout-container_customerDetails_input"
               value={searchData.adults}
@@ -202,7 +266,7 @@ const CheckoutPage = () => {
             <input
               type="number"
               min={0}
-              // max={roomData.capacity}
+              max={roomData ? roomData.capacity : 0}
               id="children"
               className="checkout-container_customerDetails_input"
               value={searchData.children}

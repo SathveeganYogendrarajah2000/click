@@ -126,13 +126,19 @@
         &_btn {
           text-align: center;
           border-radius: 4px;
-          background-color: #aa7938;
+          background-color: #ca9249;
           color: #fff;
           font-family: "Calibri-Regular", Helvetica;
           font-size: 12px;
           font-weight: 700;
           line-height: 20px;
           padding: 4px 16px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #945707;
+            color: #fff;
+          }
         }
       }
     }

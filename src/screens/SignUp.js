@@ -1,7 +1,7 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase.js";
 
@@ -26,8 +26,8 @@ const SignUp = () => {
   // const transporter = nodemailer.createTransport({
   //   service: "Gmail", // Specify your email service
   //   auth: {
-  //     user: "your-email@gmail.com", // Your email address
-  //     pass: "your-email-password", // Your email password
+  //     user: process.env.REACT_APP_EMAIL, // Your email address
+  //     pass: process.env.REACT_APP_EMAIL_PASSWORD, // Your email password
   //   },
   // });
 
@@ -49,7 +49,7 @@ const SignUp = () => {
     try {
       // // Define email content
       // const mailOptions = {
-      //   from: "your-email@gmail.com", // Sender's email address
+      //   from: process.env.REACT_APP_EMAIL, // Sender's email address
       //   to: email, // Recipient's email address
       //   subject: "Verification Code", // Email subject
       //   text: `Your verification code is: ${code}`, // Email body
@@ -63,7 +63,7 @@ const SignUp = () => {
       //   }
       // });
 
-      console.log("Verification code sent successfully:", code);
+      alert(`Verification code sent successfully: ${code}`);
     } catch (error) {
       console.error("Error sending verification code:", error.message);
     }
@@ -96,15 +96,12 @@ const SignUp = () => {
       .then((userCredential) => {
         const userId = userCredential.user.uid;
 
-        const docRef = addDoc(collection(db, "users"), {
+        addDoc(collection(db, "users"), {
           user_id: userId,
           firstName: firstName,
           lastName: lastName,
           role: "customer",
         });
-        // console.log("Document written with ID: ", docRef.id);
-
-        // console.log(userCredential);
         navigate("/");
       })
       .catch((error) => {

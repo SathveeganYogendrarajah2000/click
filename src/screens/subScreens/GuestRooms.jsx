@@ -5,11 +5,41 @@ import MemberRates from "./MemberRates";
 import PackageRates from "./PackageRates";
 
 import RoomOffer01 from "../../assets/images/RoomOffer01.jpeg";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import TrackBookingModal from "../components/TrackBookingModal";
 
 const GuestRooms = (props) => {
+  const [user, setUser] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Listen to the Firebase Auth state and set the local state.
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+    // Clean up the subscription when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
   return (
     <>
       <div className="guestroomContainer">
+        {user !== null && (
+          <button className="guestroomContainer_modalbtn" onClick={() => setShowModal(true)}>
+            Track Booking Details
+          </button>
+        )}
+
+        {/* Display the modal when showModal is true */}
+        {showModal && (
+          <TrackBookingModal user={user} onClose={() => setShowModal(false)} />
+        )}
         <div className="top">
           <p className="guestroomContainer_heading">
             Guest Rooms at
@@ -64,7 +94,7 @@ const GuestRooms = (props) => {
                 from $150 per night
               </div>
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/booking/guestrooms/memberrates"
               className="guestroomContainer_rooms_navbar_item"
             >
@@ -85,12 +115,12 @@ const GuestRooms = (props) => {
               <div className="guestroomContainer_rooms_navbar_item_price">
                 from $125 per night
               </div>
-            </NavLink>
+            </NavLink> */}
           </nav>
           <Routes>
             <Route path="/standardrates" element={<StandardRates />} />
-            <Route path="/memberrates" element={<MemberRates />} />
-            <Route path="/packagerates" element={<PackageRates />} />
+            {/* <Route path="/memberrates" element={<MemberRates />} />
+            <Route path="/packagerates" element={<PackageRates />} /> */}
           </Routes>
         </div>
         <div className="guestroomContainer_offers">

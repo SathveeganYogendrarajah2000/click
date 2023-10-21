@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
 
 import bedType from "../../assets/images/bedType.png";
 import maximumOccoumpany from "../../assets/images/maximumOccoumpany.png";
@@ -9,8 +12,21 @@ const RoomBookingCard = (props) => {
   const { searchData } = useSearchData();
   const [showTooltip, setShowTooltip] = useState(false); // State to control the tooltip visibility
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   const handleMouseEnter = () => {
-    if (!searchData.inputFieldUpdated) {
+    if (!searchData.inputFieldUpdated || !user) {
       setShowTooltip(true);
     }
   };
@@ -77,7 +93,7 @@ const RoomBookingCard = (props) => {
         <div className="div-room-rate-wrap roombookingcardContainer_details_c2">
           <div className="roombookingcardContainer_details_c2_row1">
             <div className="roombookingcardContainer_details_c2_row1_01">
-              $ {props.price}*
+              Rs {props.price}*
             </div>
             <div className="roombookingcardContainer_details_c2_row1_02">
               Starting Rate/Night
@@ -91,16 +107,18 @@ const RoomBookingCard = (props) => {
           >
             <NavLink to={`/checkout/${props.roomID}`}>
               <button
-                className="button-2 roombookingcardContainer_details_c2_row2_btn"
-                disabled={!searchData.inputFieldUpdated}
-                onMouseEnter={() => setShowTooltip(true)} // Show tooltip on hover
-                onMouseLeave={() => setShowTooltip(false)} // Hide tooltip on mouse leave
+                className="roombookingcardContainer_details_c2_row2_btn"
+                disabled={!searchData.inputFieldUpdated || !user}
+                // onMouseEnter={() => setShowTooltip(true)} // Show tooltip on hover
+                // onMouseLeave={() => setShowTooltip(false)} // Hide tooltip on mouse leave
               >
                 VIEW RATES
               </button>
-              {showTooltip && !searchData.inputFieldUpdated && (
+              {showTooltip && (
                 <div style={tooltipStyle} className="tooltip">
-                  Please fill the Search fields!
+                  {user
+                    ? "Please fill the Search fields!"
+                    : "Please Sign in first!"}
                 </div>
               )}
             </NavLink>

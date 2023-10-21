@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-
 import { db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 const PaymentModal = ({ onClose, onPayment }) => {
   const [currentStep, setCurrentStep] = useState(1); // Track the current step
-
   const [paymentMethod, setPaymentMethod] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -32,8 +30,6 @@ const PaymentModal = ({ onClose, onPayment }) => {
         setUid("");
       }
     });
-    // console.log(user);
-    // Clean up the subscription when the component unmounts
     return () => unsubscribe();
   }, []);
 
@@ -137,6 +133,7 @@ const PaymentModal = ({ onClose, onPayment }) => {
                 type="text"
                 placeholder="First Name"
                 value={firstName}
+                disabled={user}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
@@ -145,6 +142,7 @@ const PaymentModal = ({ onClose, onPayment }) => {
                 type="text"
                 placeholder="Last Name"
                 value={lastName}
+                disabled={user}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
@@ -153,6 +151,7 @@ const PaymentModal = ({ onClose, onPayment }) => {
                 type="text"
                 placeholder="email@mail.com"
                 value={email}
+                disabled={user}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>

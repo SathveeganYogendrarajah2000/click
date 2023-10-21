@@ -5,6 +5,22 @@
   padding: 4px 0px 16px;
   position: relative;
 
+  &_modalbtn {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #d28422;
+    }
+  }
+
   &_heading {
     color: #333333;
     font-family: "Calibri-Regular", Helvetica;
@@ -123,7 +139,7 @@
         gap: 16px;
 
         &_image {
-            border-radius: 5px;
+          border-radius: 5px;
         }
 
         &_details {
@@ -153,7 +169,7 @@
             gap: 8px;
             width: 300px;
             align-items: flex-end;
-            
+
             &_deadline {
               font-size: 12px;
               font-weight: 400;
