@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import RoomCard from "./RoomCard"; // Import your RoomCard component
-import { Icon } from "@iconify-icon/react";
+import RoomCard from "./RoomCard"; 
 
 const Carousel = ({ roomData }) => {
   const [currentRoomIndex, setCurrentRoomIndex] = useState(0);

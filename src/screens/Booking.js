@@ -1,8 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { NavLink, Route, Routes, useLocation } from "react-router-dom";
-
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import React, { Fragment } from "react";
+import { NavLink, Route, Routes } from "react-router-dom";
 
 import Footer from "./components/Footer.js";
 import NavBar from "./components/NavBar.js";
@@ -10,10 +7,8 @@ import NavBar from "./components/NavBar.js";
 import Overview from "./subScreens/Overview.jsx";
 import GuestRooms from "./subScreens/GuestRooms.jsx";
 
-//import Offers from "./subScreens/Offers.jsx";
 import Experiences from "./subScreens/Experiences.jsx";
 import SearchBar from "./components/SearchBar.jsx";
-//import DineIn from "./DineIn.js";
 
 import { useSearchData } from "./components/SearchDataContext.js";
 
@@ -35,7 +30,7 @@ const Booking = () => {
       <div className="bookingContainer">
         <div
           style={{
-            backgroundImage: `url(${require("../assets/images/HeroForBooking.jpeg")})`,
+            backgroundImage: `url(${require('../assets/images/HeroForBooking.jpeg')})`,
           }}
           className="bookingContainer_hero"
         >
