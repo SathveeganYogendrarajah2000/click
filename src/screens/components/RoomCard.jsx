@@ -8,17 +8,15 @@ const RoomCard = (props) => {
         <img
           className="roomcardContainer_image_picture-web"
           alt="Room"
-          src={props.imagePath}
+          src={props.picturePath}
         />
       </div>
+      <div className="roomcardContainer_details_c1_heading">{props.name}</div>
+      <p className="roomcardContainer_details_c1_description">
+        {props.description}
+      </p>
       <div className="roomcardContainer_details">
         <div className="roomcardContainer_details_c1">
-          <div className="roomcardContainer_details_c1_heading">
-            {props.name}
-          </div>
-          <p className="roomcardContainer_details_c1_description">
-            {props.description}
-          </p>
           <div className="roomcardContainer_details_c1_row1">
             <div className="roomcardContainer_details_c1_row1_feature">
               <img

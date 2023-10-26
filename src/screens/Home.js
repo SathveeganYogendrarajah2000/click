@@ -1,13 +1,33 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Carousel from "./components/Carousel";
 import SearchBar from "./components/SearchBar";
 import table01 from "../assets/images/homePageTable01.jpg";
 import table02 from "../assets/images/homePageTable02.jpg";
 import { NavLink } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Home = () => {
+  const [roomsDetails, setRoomsDetails] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "rooms"));
+        const roomData = [];
+        querySnapshot.forEach((doc) => {
+          roomData.push(doc.data());
+        });
+        setRoomsDetails(roomData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const roomData = [
     {
       imagePath:
@@ -70,7 +90,7 @@ const Home = () => {
         <div className="homepage_info">
           <div className="homepage_info_cards">
             <h1 className="homepage_info_cards_title">Rooms</h1>
-            <Carousel roomData={roomData} />
+            <Carousel roomData={roomsDetails} />
           </div>
           <div className="homepage_info_cards">
             <h1 className="homepage_info_cards_title">Dine In</h1>
